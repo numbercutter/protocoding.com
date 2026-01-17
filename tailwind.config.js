@@ -19,7 +19,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['DM Sans', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Syne', 'system-ui', '-apple-system', 'sans-serif'],
       },
       spacing: {
         '18': '4.5rem',

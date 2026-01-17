@@ -1,5 +1,5 @@
-/* Satoshi - Premium geometric sans-serif from Fontshare */
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,900&display=swap');
+/* Syne for headlines (editorial/distinctive), DM Sans for body - high design */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -45,9 +45,16 @@ html {
 body {
   background: var(--dark-bg);
   color: var(--text-primary);
-  font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-feature-settings: 'ss01', 'ss02';
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
   letter-spacing: -0.01em;
+}
+
+/* Headlines use Syne - very distinctive editorial font */
+h1, h2, h3, h4, h5, h6,
+.text-2xl, .text-3xl, .text-4xl, .text-5xl, .text-6xl {
+  font-family: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  letter-spacing: -0.02em;
+  font-weight: 700;
 }
 
 /* Eliminate subpixel gaps between sticky sections */
