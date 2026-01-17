@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
 
 // Reusable micro-texture block component
 const TextureBlock = ({ 
@@ -56,40 +55,23 @@ const COMPANIES = [
 
 // Logo Marquee component
 function LogoMarquee() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  const [start, setStart] = useState(false);
-
-  useEffect(() => {
-    if (containerRef.current && scrollerRef.current) {
-      // Duplicate items multiple times for seamless infinite loop
-      const scrollerContent = Array.from(scrollerRef.current.children);
-      for (let i = 0; i < 3; i++) {
-        scrollerContent.forEach((item) => {
-          const duplicatedItem = item.cloneNode(true);
-          if (scrollerRef.current) {
-            scrollerRef.current.appendChild(duplicatedItem);
-          }
-        });
-      }
-      containerRef.current.style.setProperty('--animation-direction', 'forwards');
-      containerRef.current.style.setProperty('--animation-duration', '60s');
-      setStart(true);
-    }
-  }, []);
+  // Render logos 4 times for seamless infinite loop
+  const allLogos = [...COMPANIES, ...COMPANIES, ...COMPANIES, ...COMPANIES];
 
   return (
     <div 
-      ref={containerRef} 
       className="relative overflow-hidden"
+      style={{
+        ['--animation-duration' as string]: '60s',
+        ['--animation-direction' as string]: 'forwards',
+      }}
     >
       <div 
-        ref={scrollerRef} 
-        className={`flex min-w-full shrink-0 gap-16 md:gap-24 py-4 md:py-6 w-max flex-nowrap ${start ? 'animate-scroll' : ''}`}
+        className="flex shrink-0 gap-16 md:gap-24 py-4 md:py-6 w-max flex-nowrap animate-scroll"
       >
-        {COMPANIES.map((company) => (
+        {allLogos.map((company, index) => (
           <div 
-            key={company.name} 
+            key={`${company.name}-${index}`} 
             className="w-24 h-12 md:w-32 md:h-14 flex justify-center items-center"
           >
             <Image 
