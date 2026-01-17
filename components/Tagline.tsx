@@ -1,0 +1,49 @@
+'use client';
+
+import { motion } from 'framer-motion';
+
+export default function Tagline() {
+  return (
+    <section className="section-row min-h-screen">
+      {/* Left gutter */}
+      <div className="gutter-left" />
+      
+      {/* Content */}
+      <div className="material-elevated flex items-center">
+        <div className="p-10 lg:p-20 w-full">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-6"
+          >
+            What We Do
+          </motion.p>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold text-gray-900 leading-[1.05] tracking-tighter max-w-5xl"
+          >
+            Fractional dev. <span className="text-accent">AI integration.</span> Full-stack builds. Go-to-market.
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="mt-8 text-xl text-gray-500 max-w-xl leading-relaxed"
+          >
+            We embed with your team or build from scratch. Product design, engineering, and consulting—whatever you need to ship.
+          </motion.p>
+        </div>
+      </div>
+      
+      {/* Right gutter */}
+      <div className="gutter-right" />
+    </section>
+  );
+}
