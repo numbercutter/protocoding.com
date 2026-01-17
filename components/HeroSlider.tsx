@@ -64,6 +64,8 @@ function LogoMarquee() {
       style={{
         ['--animation-duration' as string]: '60s',
         ['--animation-direction' as string]: 'forwards',
+        maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+        WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
       }}
     >
       <div 
