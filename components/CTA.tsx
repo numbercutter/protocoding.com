@@ -51,15 +51,15 @@ export default function CTA() {
           >
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-10 py-5 bg-accent text-[var(--text-primary)] text-sm font-bold tracking-wide hover:brightness-110"
+              className="inline-flex items-center gap-2 px-10 py-5 bg-accent text-[var(--text-primary)] text-[11px] font-bold tracking-[0.15em] uppercase hover:brightness-110"
             >
-              Get a Free Assessment <ArrowUpRight size={14} />
+              GET STARTED <ArrowUpRight size={14} />
             </Link>
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 px-10 py-5 text-white/40 text-sm font-bold tracking-wide border border-white/10 hover:bg-white/5 hover:text-white"
+              className="inline-flex items-center gap-2 px-10 py-5 text-white/40 text-[11px] font-bold tracking-[0.15em] uppercase border border-white/10 hover:bg-white/5 hover:text-white"
             >
-              View Services
+              OUR SERVICES
             </Link>
           </motion.div>
         </div>

@@ -36,14 +36,7 @@ const TexturedBlock = ({
   isGutter?: boolean;
 }) => (
   <div 
-    className={`relative overflow-hidden ${className}`}
-    style={{
-      background: `linear-gradient(135deg, 
-        rgba(105, 193, 208, 1) 0%, 
-        rgba(95, 178, 192, 1) 50%,
-        rgba(85, 163, 176, 1) 100%
-      )`,
-    }}
+    className={`relative overflow-hidden bg-accent ${className}`}
   >
     {/* Base noise - fine grain */}
     <div 
@@ -179,9 +172,9 @@ export default function FeaturedWork() {
                   hover:brightness-[1.03] transition-all duration-200
                 `}
               >
-                <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/50 mb-3">{item.category}</p>
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-white/90">{item.title}</h3>
-                <p className="text-sm text-white/60 leading-relaxed">{item.description}</p>
+                <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-black/40 mb-3">{item.category}</p>
+                <h3 className="text-lg font-bold text-black/90 mb-2 group-hover:text-black">{item.title}</h3>
+                <p className="text-sm text-black/50 leading-relaxed">{item.description}</p>
               </TexturedBlock>
 
               {/* Right gutter - only for right column items */}

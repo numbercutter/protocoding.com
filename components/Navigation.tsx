@@ -8,10 +8,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const NAV_ITEMS = [
-  { label: 'Services', href: '/services' },
-  { label: 'About', href: '/about' },
-  { label: 'Careers', href: '/careers' },
-  { label: 'Pricing', href: '/pricing' },
+  { label: 'SERVICES', href: '/services' },
+  { label: 'ABOUT', href: '/about' },
+  { label: 'CAREERS', href: '/careers' },
+  { label: 'PRICING', href: '/pricing' },
 ];
 
 const DARK_HERO_PAGES = ['/'];
@@ -76,7 +76,7 @@ export default function Navigation() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className={`flex items-center justify-center text-[13px] font-semibold tracking-wide border-r ${borderColor} ${textMuted} hover:opacity-100`}
+                  className={`flex items-center justify-center font-display text-[11px] font-bold tracking-[0.1em] border-r ${borderColor} ${textMuted} hover:opacity-100`}
                 >
                   {item.label}
                 </Link>
@@ -84,8 +84,8 @@ export default function Navigation() {
             </div>
 
             <div className="hidden md:flex md:col-span-3">
-              <Link href="/contact" className="h-full w-full flex items-center justify-center text-[13px] font-bold tracking-wide bg-accent text-[var(--text-primary)] hover:brightness-110">
-                Free Assessment
+              <Link href="/contact" className="h-full w-full flex items-center justify-center font-display text-[12px] font-bold tracking-[0.1em] uppercase bg-accent text-[var(--text-primary)] hover:brightness-110">
+                GET STARTED
               </Link>
             </div>
 
@@ -105,8 +105,8 @@ export default function Navigation() {
         transition={{ duration: 0.2, ease: 'easeOut' }}
         className="fixed top-0 right-0 md:right-[80px] lg:right-[100px] xl:right-[120px] z-50 p-3"
       >
-        <Link href="/contact" className="flex items-center gap-2 px-5 py-3 bg-accent text-[var(--text-primary)] text-[12px] font-bold tracking-wide hover:brightness-110 shadow-xl">
-          Free Assessment <ArrowUpRight size={12} />
+        <Link href="/contact" className="flex items-center gap-2 px-5 py-3 bg-accent text-[var(--text-primary)] font-display text-[11px] font-bold tracking-[0.1em] uppercase hover:brightness-110 shadow-xl">
+          GET STARTED <ArrowUpRight size={12} />
         </Link>
       </motion.div>
 
@@ -120,13 +120,13 @@ export default function Navigation() {
               <button onClick={() => setIsMobileMenuOpen(false)}><X size={20} /></button>
             </div>
             {NAV_ITEMS.map((item) => (
-              <Link key={item.label} href={item.href} className="block py-4 px-4 text-base font-bold text-[var(--text-primary)] border-b border-black/[0.08] hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link key={item.label} href={item.href} className="block py-4 px-4 font-display text-[13px] font-bold tracking-[0.1em] uppercase text-[var(--text-primary)] border-b border-black/[0.08] hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
                 {item.label}
               </Link>
             ))}
             <div className="p-4">
-              <Link href="/contact" className="block py-3 text-center bg-accent text-[var(--text-primary)] font-bold" onClick={() => setIsMobileMenuOpen(false)}>
-                Get a Free Assessment
+              <Link href="/contact" className="block py-3 text-center bg-accent text-[var(--text-primary)] font-display text-[12px] font-bold tracking-[0.1em] uppercase" onClick={() => setIsMobileMenuOpen(false)}>
+                GET STARTED
               </Link>
             </div>
           </motion.div>

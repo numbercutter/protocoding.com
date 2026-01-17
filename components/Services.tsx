@@ -6,7 +6,7 @@ import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
 const CATEGORIES = [
-  { id: 'all', label: 'All Industries', count: 24 },
+  { id: 'all', label: 'All Industries', count: 6 },
   { id: 'fintech', label: 'Fintech', count: 4 },
   { id: 'healthcare', label: 'Healthcare', count: 4 },
   { id: 'ecommerce', label: 'E-Commerce', count: 4 },
@@ -56,8 +56,9 @@ const USE_CASES = [
 export default function Services() {
   const [activeCategory, setActiveCategory] = useState('all');
   
+  // Limit to 6 items when showing all, show all when filtered
   const filteredCases = activeCategory === 'all' 
-    ? USE_CASES 
+    ? USE_CASES.slice(0, 6) 
     : USE_CASES.filter(c => c.category === activeCategory);
 
   return (
