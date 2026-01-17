@@ -11,7 +11,7 @@ const CASES = [
 
 export default function CaseStudies() {
   return (
-    <section className="section-row min-h-screen">
+    <section className="section-row md:min-h-screen">
       {/* Left gutter */}
       <div className="gutter-left" />
       

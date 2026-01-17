@@ -12,7 +12,7 @@ const STEPS = [
 
 export default function Process() {
   return (
-    <section className="section-row min-h-screen">
+    <section className="section-row md:min-h-screen">
       {/* Left gutter */}
       <div className="gutter-left" />
       

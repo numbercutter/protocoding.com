@@ -6,13 +6,13 @@ import Link from 'next/link';
 
 export default function HeroSlider() {
   return (
-    <section className="section-row-dark min-h-screen">
+    <section className="section-row-dark min-h-[80vh] md:min-h-screen">
       {/* Left gutter */}
       <div className="gutter-left" />
       
       {/* Content */}
       <div className="material-dark flex flex-col">
-        <div className="flex-1 flex flex-col justify-center p-10 lg:p-16">
+        <div className="flex-1 flex flex-col justify-center p-6 pt-20 md:p-10 md:pt-10 lg:p-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

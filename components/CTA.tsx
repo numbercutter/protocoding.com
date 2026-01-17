@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function CTA() {
   return (
-    <section className="section-row-dark min-h-screen">
+    <section className="section-row-dark py-16 md:min-h-screen md:py-0">
       {/* Left gutter */}
       <div className="gutter-left" />
       

@@ -57,16 +57,37 @@ body {
 }
 
 @layer utilities {
-  /* Section row with gutters - gutters are part of the section */
+  /* Section row with gutters - hidden on mobile, visible on md+ */
   .section-row {
-    display: grid;
-    grid-template-columns: 40px 1fr 40px;
+    display: block;
     border-bottom: 1px solid var(--border);
   }
   
+  /* Hide gutters on mobile */
+  .section-row > .gutter-left,
+  .section-row > .gutter-right {
+    display: none;
+  }
+  
   @media (min-width: 768px) {
     .section-row {
+      display: grid;
       grid-template-columns: 56px 1fr 56px;
+    }
+    
+    .section-row > .gutter-left,
+    .section-row > .gutter-right {
+      display: block;
+    }
+    
+    .section-row > .gutter-left {
+      background: #ebe8e4;
+      border-right: 1px solid var(--border);
+    }
+    
+    .section-row > .gutter-right {
+      background: #ebe8e4;
+      border-left: 1px solid var(--border);
     }
   }
   
@@ -76,28 +97,36 @@ body {
     }
   }
   
-  /* Left gutter cell */
-  .section-row > .gutter-left {
-    background: #ebe8e4;
-    border-right: 1px solid var(--border);
-  }
-  
-  /* Right gutter cell */
-  .section-row > .gutter-right {
-    background: #ebe8e4;
-    border-left: 1px solid var(--border);
-  }
-  
-  /* Dark section gutters */
+  /* Dark section gutters - hidden on mobile */
   .section-row-dark {
-    display: grid;
-    grid-template-columns: 40px 1fr 40px;
+    display: block;
     border-bottom: 1px solid var(--border-dark);
   }
   
+  .section-row-dark > .gutter-left,
+  .section-row-dark > .gutter-right {
+    display: none;
+  }
+  
   @media (min-width: 768px) {
     .section-row-dark {
+      display: grid;
       grid-template-columns: 56px 1fr 56px;
+    }
+    
+    .section-row-dark > .gutter-left,
+    .section-row-dark > .gutter-right {
+      display: block;
+    }
+    
+    .section-row-dark > .gutter-left {
+      background: #1f1f1f;
+      border-right: 1px solid var(--border-dark);
+    }
+    
+    .section-row-dark > .gutter-right {
+      background: #1f1f1f;
+      border-left: 1px solid var(--border-dark);
     }
   }
   
@@ -105,16 +134,6 @@ body {
     .section-row-dark {
       grid-template-columns: 72px 1fr 72px;
     }
-  }
-  
-  .section-row-dark > .gutter-left {
-    background: #1f1f1f;
-    border-right: 1px solid var(--border-dark);
-  }
-  
-  .section-row-dark > .gutter-right {
-    background: #1f1f1f;
-    border-left: 1px solid var(--border-dark);
   }
   
   /* Sticky stacking section */

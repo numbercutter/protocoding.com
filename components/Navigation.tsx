@@ -58,19 +58,20 @@ export default function Navigation() {
         transition={{ duration: 0.2, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-50 ${navBg} border-b ${borderColor}`}
       >
-        <div className="grid grid-cols-[40px_1fr_40px] md:grid-cols-[56px_1fr_56px] lg:grid-cols-[72px_1fr_72px] h-14">
-          {/* Left gutter */}
-          <div className={`${gutterBg} border-r ${borderColor}`} />
+        {/* Mobile: no gutters, Desktop: with gutters */}
+        <div className="h-14 md:grid md:grid-cols-[56px_1fr_56px] lg:grid-cols-[72px_1fr_72px]">
+          {/* Left gutter - hidden on mobile */}
+          <div className={`hidden md:block ${gutterBg} border-r ${borderColor}`} />
           
           {/* Nav content */}
-          <div className="grid grid-cols-12">
-            <div className={`col-span-3 flex items-center px-6 border-r ${borderColor}`}>
+          <div className="h-full flex md:grid md:grid-cols-12">
+            <div className={`flex items-center px-4 md:px-6 md:col-span-3 md:border-r ${borderColor}`}>
               <Link href="/" className="flex items-center gap-3">
                 <Image src={logoSrc} alt="Protocoding" width={120} height={24} className="h-5 w-auto" />
               </Link>
             </div>
 
-            <div className="col-span-6 hidden md:grid grid-cols-4">
+            <div className="hidden md:grid md:col-span-6 grid-cols-4">
               {NAV_ITEMS.map((item) => (
                 <Link
                   key={item.label}
@@ -82,19 +83,19 @@ export default function Navigation() {
               ))}
             </div>
 
-            <div className="col-span-3 hidden md:flex">
+            <div className="hidden md:flex md:col-span-3">
               <Link href="/contact" className="h-full w-full flex items-center justify-center text-[13px] font-bold tracking-wide bg-accent text-[var(--text-primary)] hover:brightness-110">
                 Free Assessment
               </Link>
             </div>
 
-            <div className={`col-span-9 md:hidden flex items-center justify-end px-4`}>
+            <div className="flex-1 flex items-center justify-end px-4 md:hidden">
               <button onClick={() => setIsMobileMenuOpen(true)} className={textColor}><Menu size={20} /></button>
             </div>
           </div>
           
-          {/* Right gutter */}
-          <div className={`${gutterBg} border-l ${borderColor}`} />
+          {/* Right gutter - hidden on mobile */}
+          <div className={`hidden md:block ${gutterBg} border-l ${borderColor}`} />
         </div>
       </motion.nav>
 
@@ -102,7 +103,7 @@ export default function Navigation() {
         initial={false}
         animate={{ y: !showFullNav ? 0 : -60, opacity: !showFullNav ? 1 : 0 }}
         transition={{ duration: 0.2, ease: 'easeOut' }}
-        className="fixed top-0 right-[40px] md:right-[56px] lg:right-[72px] z-50 p-3"
+        className="fixed top-0 right-0 md:right-[56px] lg:right-[72px] z-50 p-3"
       >
         <Link href="/contact" className="flex items-center gap-2 px-5 py-3 bg-accent text-[var(--text-primary)] text-[12px] font-bold tracking-wide hover:brightness-110 shadow-xl">
           Free Assessment <ArrowUpRight size={12} />
@@ -112,14 +113,14 @@ export default function Navigation() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-white z-50">
-            <div className="flex justify-between items-center h-14 px-6 border-b border-black/[0.08]">
+            <div className="flex justify-between items-center h-14 px-4 border-b border-black/[0.08]">
               <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
                 <Image src="/logo.svg" alt="Protocoding" width={120} height={24} className="h-5 w-auto" />
               </Link>
               <button onClick={() => setIsMobileMenuOpen(false)}><X size={20} /></button>
             </div>
             {NAV_ITEMS.map((item) => (
-              <Link key={item.label} href={item.href} className="block py-4 px-6 text-base font-bold text-[var(--text-primary)] border-b border-black/[0.08] hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link key={item.label} href={item.href} className="block py-4 px-4 text-base font-bold text-[var(--text-primary)] border-b border-black/[0.08] hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
                 {item.label}
               </Link>
             ))}

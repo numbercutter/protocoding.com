@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function Tagline() {
   return (
-    <section className="section-row min-h-screen">
+    <section className="section-row py-16 md:min-h-screen md:py-0">
       {/* Left gutter */}
       <div className="gutter-left" />
       
