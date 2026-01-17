@@ -89,16 +89,21 @@ main > div > div + div {
     .section-row > .gutter-left,
     .section-row > .gutter-right {
       display: block;
+      background: #ebe8e4;
     }
     
     .section-row > .gutter-left {
-      background: #ebe8e4;
-      border-right: 1px solid var(--border);
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.15);
     }
     
     .section-row > .gutter-right {
-      background: #ebe8e4;
-      border-left: 1px solid var(--border);
+      box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Also add border to content area for guaranteed symmetry */
+    .section-row > *:not(.gutter-left):not(.gutter-right) {
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
     }
   }
   
@@ -134,16 +139,21 @@ main > div > div + div {
     .section-row-dark > .gutter-left,
     .section-row-dark > .gutter-right {
       display: block;
+      background: #1f1f1f;
     }
     
     .section-row-dark > .gutter-left {
-      background: #1f1f1f;
-      border-right: 1px solid var(--border-dark);
+      box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.1);
     }
     
     .section-row-dark > .gutter-right {
-      background: #1f1f1f;
-      border-left: 1px solid var(--border-dark);
+      box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Also add border to content area for guaranteed symmetry */
+    .section-row-dark > *:not(.gutter-left):not(.gutter-right) {
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
     }
   }
   

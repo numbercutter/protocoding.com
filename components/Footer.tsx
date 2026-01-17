@@ -18,7 +18,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4">
           <div className="col-span-2 md:col-span-1 p-8 cell material">
             <Link href="/" className="inline-block mb-4">
-              <Image src="/logo.svg" alt="Protocoding" width={100} height={20} className="h-4 w-auto" />
+              <Image src="/logo_horizontal.svg" alt="Protocoding" width={140} height={32} className="h-5 w-auto invert" />
             </Link>
             <p className="text-[11px] text-gray-400 mb-4">Building software that matters.</p>
             <div className="space-y-2">

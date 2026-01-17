@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
 const CATEGORIES = [
-  { id: 'all', label: 'All Industries', count: 6 },
+  { id: 'all', label: 'All Industries', count: 24 },
   { id: 'fintech', label: 'Fintech', count: 4 },
   { id: 'healthcare', label: 'Healthcare', count: 4 },
   { id: 'ecommerce', label: 'E-Commerce', count: 4 },
@@ -53,13 +53,31 @@ const USE_CASES = [
   { category: 'ai', title: 'Computer Vision', desc: 'Image classification, OCR, visual inspection.' },
 ];
 
+const ITEMS_PER_PAGE = 6;
+
 export default function Services() {
   const [activeCategory, setActiveCategory] = useState('all');
+  const [page, setPage] = useState(0);
   
-  // Limit to 6 items when showing all, show all when filtered
-  const filteredCases = activeCategory === 'all' 
-    ? USE_CASES.slice(0, 6) 
+  // Get filtered items
+  const allFilteredCases = activeCategory === 'all' 
+    ? USE_CASES 
     : USE_CASES.filter(c => c.category === activeCategory);
+  
+  // Calculate pagination
+  const totalPages = Math.ceil(allFilteredCases.length / ITEMS_PER_PAGE);
+  const startIndex = page * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const visibleCases = allFilteredCases.slice(startIndex, endIndex);
+  
+  // Reset page when category changes
+  const handleCategoryChange = (catId: string) => {
+    setActiveCategory(catId);
+    setPage(0);
+  };
+
+  const canGoPrev = page > 0;
+  const canGoNext = page < totalPages - 1;
 
   return (
     <section className="section-row md:min-h-screen">
@@ -91,7 +109,7 @@ export default function Services() {
               {CATEGORIES.map((cat) => (
                 <button
                   key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
+                  onClick={() => handleCategoryChange(cat.id)}
                   className={`
                     flex items-center justify-between gap-4 px-4 lg:px-6 py-3 lg:py-4 text-left transition-all whitespace-nowrap
                     border-b border-transparent lg:border-black/[0.08] last:border-b-0
@@ -111,10 +129,10 @@ export default function Services() {
           </div>
 
           {/* Right content - use cases grid */}
-          <div className="flex-1">
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+          <div className="flex-1 flex flex-col">
+            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 content-start">
               <AnimatePresence mode="popLayout">
-                {filteredCases.map((useCase, i) => (
+                {visibleCases.map((useCase, i) => (
                   <motion.div
                     key={`${useCase.category}-${useCase.title}`}
                     initial={{ opacity: 0, scale: 0.98 }}
@@ -137,6 +155,50 @@ export default function Services() {
                 ))}
               </AnimatePresence>
             </div>
+
+            {/* Pagination controls - only show if more than one page */}
+            {totalPages > 1 && (
+              <div className="border-t border-black/[0.08] p-4 material-inset flex items-center justify-between">
+                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.15em]">
+                  {startIndex + 1}–{Math.min(endIndex, allFilteredCases.length)} of {allFilteredCases.length}
+                </span>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setPage(p => p - 1)}
+                    disabled={!canGoPrev}
+                    className={`p-2 transition-all ${
+                      canGoPrev 
+                        ? 'text-gray-900 hover:bg-gray-100' 
+                        : 'text-gray-300 cursor-not-allowed'
+                    }`}
+                  >
+                    <ChevronLeft size={16} />
+                  </button>
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: totalPages }).map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setPage(i)}
+                        className={`w-2 h-2 transition-all ${
+                          page === i ? 'bg-accent' : 'bg-gray-200 hover:bg-gray-300'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => setPage(p => p + 1)}
+                    disabled={!canGoNext}
+                    className={`p-2 transition-all ${
+                      canGoNext 
+                        ? 'text-gray-900 hover:bg-gray-100' 
+                        : 'text-gray-300 cursor-not-allowed'
+                    }`}
+                  >
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

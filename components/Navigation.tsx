@@ -48,7 +48,8 @@ export default function Navigation() {
   const textMuted = isDarkMode ? 'text-white/60' : 'text-[var(--text-muted)]';
   const borderColor = isDarkMode ? 'border-white/[0.08]' : 'border-black/[0.08]';
   const gutterBg = isDarkMode ? 'bg-[#1f1f1f]' : 'bg-[#ebe8e4]';
-  const logoSrc = isDarkMode ? '/logo_offwhite.svg' : '/logo.svg';
+  // Use horizontal logo with text - invert for light mode
+  const logoSrc = '/logo_horizontal.svg';
 
   return (
     <>
@@ -67,7 +68,13 @@ export default function Navigation() {
           <div className="h-full flex md:grid md:grid-cols-12">
             <div className={`flex items-center px-4 md:px-6 md:col-span-3 md:border-r ${borderColor}`}>
               <Link href="/" className="flex items-center gap-3">
-                <Image src={logoSrc} alt="Protocoding" width={120} height={24} className="h-5 w-auto" />
+                <Image 
+                  src={logoSrc} 
+                  alt="Protocoding" 
+                  width={160} 
+                  height={36} 
+                  className={`h-6 w-auto ${isDarkMode ? '' : 'invert'}`}
+                />
               </Link>
             </div>
 
@@ -115,7 +122,7 @@ export default function Navigation() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-white z-50">
             <div className="flex justify-between items-center h-14 px-4 border-b border-black/[0.08]">
               <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
-                <Image src="/logo.svg" alt="Protocoding" width={120} height={24} className="h-5 w-auto" />
+                <Image src="/logo_horizontal.svg" alt="Protocoding" width={160} height={36} className="h-6 w-auto invert" />
               </Link>
               <button onClick={() => setIsMobileMenuOpen(false)}><X size={20} /></button>
             </div>
