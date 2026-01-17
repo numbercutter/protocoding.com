@@ -4,24 +4,24 @@ import { motion } from 'framer-motion';
 
 const WORK_ITEMS = [
   {
-    category: 'Full-Stack Build',
-    title: 'Series A Fintech Platform',
-    description: 'Built a complete trading platform from scratch in 4 months. React, Node, PostgreSQL.',
-  },
-  {
     category: 'AI Integration',
-    title: 'Document Processing Pipeline',
-    description: 'Automated 80% of manual document review with custom AI models.',
+    title: 'Aivre Appraisal Automation',
+    description: 'Built an AI-powered tool that simplifies and speeds up the appraisal process. React, Node, custom ML.',
   },
   {
-    category: 'Fractional Team',
-    title: 'Healthcare Startup Scale',
-    description: 'Embedded 3 engineers to ship their mobile app on time.',
+    category: 'Full-Stack Build',
+    title: 'Lit Financial Platform',
+    description: 'Modern mortgage platform helping people find homes at rates they deserve. React, Contentful, Express.',
+  },
+  {
+    category: 'AI + Product',
+    title: 'What\'s What Chat Interface',
+    description: 'Sophisticated GPT-4 powered chat for young professionals seeking career and life guidance.',
   },
   {
     category: 'Go-to-Market',
-    title: 'MVP in 12 Weeks',
-    description: 'Took founder from napkin sketch to paying customers.',
+    title: 'Poser AI Imagery',
+    description: 'Launched platform for lifelike AI models posed in diverse scenes. Webflow, FLUX integration.',
   },
 ];
 
@@ -196,7 +196,7 @@ export default function FeaturedWork() {
           <div className="text-center">
             <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">20+</p>
             <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500">
-              Projects delivered across fintech, healthcare, and enterprise
+              Projects delivered across AI, fintech, and consumer products
             </p>
           </div>
         </div>
