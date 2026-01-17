@@ -137,11 +137,11 @@ export default function JobApplicationModal({ isOpen, onClose, jobTitle }: JobAp
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           onClick={(e) => e.stopPropagation()}
-          className="w-full max-w-2xl mx-auto my-8"
+          className="w-full max-w-2xl mx-auto my-4 md:my-8 max-h-[90vh] overflow-y-auto"
         >
           <div className="relative bg-[var(--dark-bg)] border border-white/10">
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-white/10">
+            <div className="flex items-center justify-between p-4 md:p-6 border-b border-white/10">
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mb-1">Apply Now</p>
                 <h2 className="text-xl font-bold text-white">{jobTitle}</h2>
@@ -155,7 +155,7 @@ export default function JobApplicationModal({ isOpen, onClose, jobTitle }: JobAp
             </div>
 
             {/* Content */}
-            <div className="p-6">
+            <div className="p-4 md:p-6">
               {submitSuccess ? (
                 <div className="text-center py-12">
                   <div className="w-16 h-16 bg-accent/20 flex items-center justify-center mx-auto mb-4">
@@ -165,7 +165,7 @@ export default function JobApplicationModal({ isOpen, onClose, jobTitle }: JobAp
                   <p className="text-white/50">Thank you for your interest. We&apos;ll be in touch soon.</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
                   {/* Name row */}
                   <div className="grid grid-cols-2 gap-4">
                     <div>
@@ -244,7 +244,7 @@ export default function JobApplicationModal({ isOpen, onClose, jobTitle }: JobAp
                     </label>
                     <div
                       className={`border-2 border-dashed ${isDragOver ? 'border-accent bg-accent/5' : 'border-white/10'} 
-                                p-6 text-center hover:border-white/20 transition-all cursor-pointer`}
+                                p-4 md:p-6 text-center hover:border-white/20 transition-all cursor-pointer`}
                       onDragOver={handleDragOver}
                       onDragLeave={handleDragLeave}
                       onDrop={handleDrop}

@@ -3,9 +3,80 @@ import './globals.css';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
+const title = 'Protocoding - Next Generation AI Software Development';
+const description = 'Protocoding is a boutique software development firm that partners with businesses to design and deliver customized software and AI solutions.';
+const siteUrl = 'https://www.protocoding.com';
+
 export const metadata: Metadata = {
-  title: 'Protocoding - Next Generation AI Software Development',
-  description: 'Protocoding is a boutique software development firm that partners with businesses to design and deliver customized software and AI solutions.',
+  title: {
+    default: title,
+    template: '%s | Protocoding',
+  },
+  description: description,
+  metadataBase: new URL(siteUrl),
+  
+  // Robots & indexing
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  
+  // Open Graph (Facebook, LinkedIn, etc.)
+  openGraph: {
+    type: 'website',
+    url: siteUrl,
+    title: title,
+    description: description,
+    siteName: 'Protocoding',
+    locale: 'en_US',
+    images: [
+      {
+        url: `${siteUrl}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Protocoding - AI Software Development Company',
+      },
+    ],
+  },
+  
+  // Twitter Card
+  twitter: {
+    card: 'summary_large_image',
+    title: title,
+    description: description,
+    images: [`${siteUrl}/og-image.png`],
+  },
+  
+  // Icons
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+  
+  // Web app manifest
+  manifest: '/site.webmanifest',
+  
+  // Additional SEO
+  keywords: ['software development', 'AI development', 'full-stack engineering', 'fractional development', 'startup development', 'web development', 'mobile development', 'AI integration'],
+  authors: [{ name: 'Protocoding' }],
+  creator: 'Protocoding',
+  publisher: 'Protocoding',
+  
+  // Verification (add your IDs when ready)
+  // verification: {
+  //   google: 'your-google-verification-code',
+  // },
 };
 
 export default function RootLayout({
@@ -19,6 +90,9 @@ export default function RootLayout({
         <Navigation />
         <main className="pt-14">{children}</main>
         <Footer />
+        {/* Add Google Analytics when ready:
+        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
+        */}
       </body>
     </html>
   );

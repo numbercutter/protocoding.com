@@ -42,7 +42,7 @@ const PROJECTS = [
 
 export default function Portfolio() {
   return (
-    <section className="section-row min-h-[80vh] md:min-h-screen bg-[var(--light-bg)]">
+    <section className="section-row md:min-h-screen bg-[var(--light-bg)]">
       {/* Left gutter */}
       <div className="gutter-left" />
       

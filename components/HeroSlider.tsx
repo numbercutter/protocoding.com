@@ -96,7 +96,7 @@ function LogoMarquee() {
 
 export default function HeroSlider() {
   return (
-    <section className="section-row min-h-[80vh] md:min-h-screen">
+    <section className="section-row md:min-h-screen">
       {/* Left gutter - matches accent */}
       <div className="gutter-left !bg-accent relative overflow-hidden">
         <div 
@@ -121,7 +121,7 @@ export default function HeroSlider() {
         />
         
         {/* === MAIN CONTENT BLOCK === */}
-        <div className="flex-1 flex flex-col justify-center px-5 py-6 pt-16 md:p-10 lg:p-16 relative z-10">
+        <div className="md:flex-1 flex flex-col justify-center px-5 py-8 pt-20 md:p-10 lg:p-16 relative z-10">
           
           {/* Overline - simple label, not a button */}
           <motion.div

@@ -35,8 +35,18 @@ export default function Difference() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return; // Skip scroll handling on mobile
+    
     const handleScroll = () => {
       if (!containerRef.current) return;
       
@@ -45,14 +55,12 @@ export default function Difference() {
       const viewportHeight = window.innerHeight;
       const scrollableHeight = containerHeight - viewportHeight;
       
-      // Calculate progress through this section
       const scrolled = -rect.top;
       const rawProgress = scrolled / scrollableHeight;
       const clampedProgress = Math.max(0, Math.min(1, rawProgress));
       
       setProgress(clampedProgress);
       
-      // Determine active panel
       const panelProgress = clampedProgress * FEATURES.length;
       const newIndex = Math.min(Math.floor(panelProgress), FEATURES.length - 1);
       setActiveIndex(newIndex);
@@ -61,18 +69,47 @@ export default function Difference() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMobile]);
 
   const activeFeature = FEATURES[activeIndex];
 
+  // Mobile: Simple stacked layout
+  if (isMobile) {
+    return (
+      <section className="section-row bg-[var(--dark-bg)]">
+        <div className="gutter-left !bg-[#1f1f1f]" />
+        
+        <div className="material-dark p-6 py-12">
+          {/* Header */}
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-2">Why Us</p>
+          <h2 className="text-xl font-bold text-white tracking-tight mb-8">
+            The Protocoding <span className="text-accent">Difference</span>
+          </h2>
+          
+          {/* Stacked features */}
+          <div className="space-y-6">
+            {FEATURES.map((feature) => (
+              <div key={feature.num} className="border-l-2 border-accent pl-4">
+                <span className="text-xs font-bold text-white/30 tracking-widest">{feature.num}</span>
+                <h3 className="text-lg font-bold text-white mt-1 mb-2">{feature.title}</h3>
+                <p className="text-sm text-white/50 leading-relaxed">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <div className="gutter-right !bg-[#1f1f1f]" />
+      </section>
+    );
+  }
+
+  // Desktop: Scroll-hijack layout
   return (
-    // Container height = viewport + extra scroll space for each panel
     <div 
       ref={containerRef} 
       className="relative"
       style={{ height: `${100 + (FEATURES.length - 1) * 100}vh` }}
     >
-      {/* Sticky inner container */}
       <div className="sticky top-0 h-screen section-row">
         <div className="gutter-left" />
         
@@ -91,6 +128,7 @@ export default function Difference() {
               priority={false}
             />
           </div>
+          
           {/* Left navigation */}
           <div className="hidden lg:flex flex-col justify-center p-8 lg:p-10 border-r border-white/[0.08]">
             <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-4">Why Us</p>
@@ -128,23 +166,6 @@ export default function Difference() {
 
           {/* Right content - animated panel */}
           <div className="flex-1 flex flex-col lg:flex-row items-center p-8 lg:p-16 overflow-hidden">
-            {/* Mobile header */}
-            <div className="lg:hidden mb-8 w-full">
-              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-2">Why Us</p>
-              <h2 className="text-xl font-bold text-white tracking-tight">
-                The Protocoding <span className="text-accent">Difference</span>
-              </h2>
-              {/* Mobile progress dots */}
-              <div className="flex gap-2 mt-4">
-                {FEATURES.map((_, i) => (
-                  <div 
-                    key={i}
-                    className={`h-1 flex-1 transition-all duration-300 ${i === activeIndex ? 'bg-accent' : 'bg-white/10'}`}
-                  />
-                ))}
-              </div>
-            </div>
-
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
@@ -154,14 +175,10 @@ export default function Difference() {
                 transition={{ duration: 0.3 }}
                 className="max-w-2xl"
               >
-                {/* Number */}
                 <span className="text-6xl lg:text-8xl font-bold text-white/10 tracking-tight block mb-6">{activeFeature.num}</span>
-
-                {/* Title & description */}
                 <h3 className="text-2xl lg:text-4xl font-bold text-white mb-6 tracking-tight">{activeFeature.title}</h3>
                 <p className="text-lg text-white/40 leading-relaxed mb-10">{activeFeature.description}</p>
 
-                {/* Details grid */}
                 <div className="grid grid-cols-2 gap-4">
                   {activeFeature.details.map((detail) => (
                     <div key={detail} className="flex items-center gap-3 text-sm text-white/50">
