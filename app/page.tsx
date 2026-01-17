@@ -4,6 +4,7 @@ import FeaturedWork from '@/components/FeaturedWork';
 import Difference from '@/components/Difference';
 import Services from '@/components/Services';
 import Process from '@/components/Process';
+import Portfolio from '@/components/Portfolio';
 import CTA from '@/components/CTA';
 
 export default function Home() {
@@ -32,7 +33,10 @@ export default function Home() {
       <div className="relative z-[6] md:sticky md:top-0 md:pb-[20vh] md:shadow-[0_-20px_60px_rgba(0,0,0,0.1)]">
         <Process />
       </div>
-      <div className="relative z-[7] md:sticky md:top-0 md:shadow-[0_-20px_60px_rgba(0,0,0,0.2)]">
+      <div className="relative z-[7] md:sticky md:top-0 md:pb-[20vh] md:shadow-[0_-20px_60px_rgba(0,0,0,0.1)]">
+        <Portfolio />
+      </div>
+      <div className="relative z-[8] md:sticky md:top-0 md:shadow-[0_-20px_60px_rgba(0,0,0,0.2)]">
         <CTA />
       </div>
     </div>

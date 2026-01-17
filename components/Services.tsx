@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
@@ -53,11 +53,27 @@ const USE_CASES = [
   { category: 'ai', title: 'Computer Vision', desc: 'Image classification, OCR, visual inspection.' },
 ];
 
-const ITEMS_PER_PAGE = 6;
+// Responsive items per page
+const ITEMS_MOBILE = 6;
+const ITEMS_DESKTOP = 12;
 
 export default function Services() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [page, setPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(ITEMS_DESKTOP);
+  
+  // Detect screen size for responsive pagination
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const newItemsPerPage = window.innerWidth < 768 ? ITEMS_MOBILE : ITEMS_DESKTOP;
+      setItemsPerPage(newItemsPerPage);
+      setPage(0); // Reset to first page on resize
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
   
   // Get filtered items
   const allFilteredCases = activeCategory === 'all' 
@@ -65,9 +81,9 @@ export default function Services() {
     : USE_CASES.filter(c => c.category === activeCategory);
   
   // Calculate pagination
-  const totalPages = Math.ceil(allFilteredCases.length / ITEMS_PER_PAGE);
-  const startIndex = page * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const totalPages = Math.ceil(allFilteredCases.length / itemsPerPage);
+  const startIndex = page * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
   const visibleCases = allFilteredCases.slice(startIndex, endIndex);
   
   // Reset page when category changes

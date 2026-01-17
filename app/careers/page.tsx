@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
+import JobsList from './JobsList';
 
 export const metadata: Metadata = {
   title: 'Careers - Protocoding',
@@ -9,25 +10,87 @@ export const metadata: Metadata = {
 
 const JOBS = [
   {
-    title: 'Senior Full-Stack Engineer',
-    location: 'Remote (US)',
-    type: 'Full Time',
-    salary: '$150k-$200k',
-    description: 'Build end-to-end features for our clients using React, Node.js, and PostgreSQL. Work directly with founders and product teams.',
+    title: 'Software Engineer (Frontend)',
+    location: 'Remote',
+    type: 'Part Time · Contract',
+    compensation: 'Hourly (based on interview)',
+    postedAgo: '8 months ago',
+    description: 'We\'re looking for a passionate Frontend Software Engineer to join our innovative team at Protocoding. As a Frontend Engineer, you\'ll be at the forefront of creating exceptional user experiences and working with cutting-edge web technologies.',
+    responsibilities: [
+      'Building modern, responsive web applications using React and Next.js',
+      'Implementing pixel-perfect UI designs with a focus on performance and accessibility',
+      'Collaborating with designers and backend engineers to deliver seamless user experiences',
+    ],
+    requirements: [
+      '3+ years of experience with modern JavaScript and React',
+      'Strong proficiency in Next.js, TypeScript, and modern frontend tooling',
+      'Experience with state management solutions (Redux, Zustand, etc.)',
+      'Understanding of web performance optimization and SEO best practices',
+    ],
+    preferred: [
+      'Experience with testing frameworks (Jest, React Testing Library)',
+      'Familiarity with CI/CD pipelines and deployment workflows',
+      'Understanding of design systems and component libraries',
+      'Experience with animation libraries (Framer Motion, GSAP)',
+    ],
   },
   {
-    title: 'AI/ML Engineer',
-    location: 'Remote (US)',
-    type: 'Full Time',
-    salary: '$160k-$220k',
-    description: 'Integrate LLMs and ML models into production applications. Experience with OpenAI, LangChain, and vector databases required.',
+    title: 'Modern PHP/Drupal Developer',
+    location: 'Remote',
+    type: 'Part Time · Contract',
+    compensation: 'Hourly (based on interview)',
+    postedAgo: '8 months ago',
+    description: 'We\'re looking for a skilled Drupal Developer with a modern PHP background to join our growing team. You\'ll be responsible for building and maintaining robust, scalable web applications, collaborating with designers and front-end engineers.',
+    responsibilities: [
+      'Develop and maintain Drupal-based web applications with clean, modern PHP',
+      'Create and customize modules, themes, and templates in Drupal 9/10',
+      'Integrate RESTful APIs and third-party services',
+      'Work with front-end developers to deliver responsive, performant user experiences',
+      'Participate in weekly client meetings for updates, demos, and feedback',
+      'Perform code reviews, troubleshoot bugs, and maintain project documentation',
+    ],
+    requirements: [
+      'Minimum of 3+ years of experience with Drupal (preferably 9 or 10)',
+      'Strong understanding of modern PHP, OOP, and Composer-based workflows',
+      'Experience with Drupal theming and module development',
+      'Familiarity with MySQL or other relational databases',
+      'Strong communication skills; able to participate in client-facing meetings',
+      'Self-driven and comfortable working remotely in a fast-paced environment',
+    ],
+    preferred: [
+      'Experience with headless Drupal and front-end frameworks (e.g., React, Vue)',
+      'Familiarity with Docker, GitHub Actions, or other CI/CD tools',
+      'Understanding of decoupled CMS architectures',
+      'Familiarity with hosting platforms like Pantheon, Acquia, or Platform.sh',
+    ],
   },
   {
-    title: 'Product Designer',
-    location: 'Remote (US)',
-    type: 'Full Time',
-    salary: '$120k-$160k',
-    description: 'Design intuitive user experiences for web and mobile applications. Strong portfolio and Figma skills required.',
+    title: 'React Native Developer',
+    location: 'Remote',
+    type: 'Part Time · Contract',
+    compensation: 'Hourly (based on interview)',
+    postedAgo: '8 months ago',
+    description: 'Build and maintain cross-platform mobile apps using React Native. Work closely with designers and backend teams to deliver polished mobile experiences.',
+    responsibilities: [
+      'Develop and maintain cross-platform mobile apps using React Native',
+      'Integrate with backend APIs and handle state management using Redux',
+      'Work closely with designers to implement responsive, user-friendly UI/UX',
+      'Participate in weekly client meetings for progress updates and feedback',
+      'Review and merge PRs and help maintain code quality across the team',
+    ],
+    requirements: [
+      'Minimum 2+ years of experience with React Native',
+      'Solid understanding of JavaScript/TypeScript and mobile app architecture',
+      'Experience using Redux or similar state management libraries',
+      'Comfortable integrating REST or GraphQL APIs',
+      'Strong communication skills; able to join client meetings',
+    ],
+    preferred: [
+      'Familiarity with Expo, Firebase, or native modules',
+      'Experience deploying to App Store and Google Play',
+      'Understanding of CI/CD for mobile apps',
+      'Experience with design tools (Figma, Zeplin)',
+    ],
   },
 ];
 
@@ -55,14 +118,14 @@ const BENEFITS = [
 ];
 
 const PERKS = [
-  'Competitive salary',
-  'Unlimited PTO',
-  'Remote-first',
-  'Health & dental',
-  '401(k) match',
-  'Learning stipend',
-  'Home office budget',
-  'Team retreats',
+  'Remote-First',
+  'Flexible Hours',
+  'Contract Work',
+  'Startup Culture',
+  'Diverse Projects',
+  'Growth Potential',
+  'Direct Client Work',
+  'Skill Development',
 ];
 
 const VALUES = [
@@ -168,42 +231,21 @@ export default function CareersPage() {
         <div className="gutter-right" />
       </div>
 
-      {/* Jobs list */}
-      {JOBS.map((job) => (
-        <div key={job.title} className="section-row">
-          <div className="gutter-left" />
-          <div className="material hover:material-elevated transition-all">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 lg:p-8">
-              <div className="lg:col-span-8">
-                <div className="flex flex-wrap items-center gap-3 mb-3">
-                  <span className="px-3 py-1 text-[9px] font-bold uppercase tracking-[0.15em] bg-gray-100 text-gray-600">
-                    {job.type}
-                  </span>
-                  <span className="px-3 py-1 text-[9px] font-bold uppercase tracking-[0.15em] bg-accent/20 text-accent">
-                    Remote
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{job.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed mb-4">{job.description}</p>
-                <div className="flex items-center gap-4 text-[10px] text-gray-400 font-bold">
-                  <span>{job.location}</span>
-                  <span>·</span>
-                  <span>{job.salary}</span>
-                </div>
-              </div>
-              <div className="lg:col-span-4 flex items-center lg:justify-end">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-black/80 text-xs font-bold tracking-wide uppercase hover:brightness-110 transition-all"
-                >
-                  Apply Now <ArrowUpRight size={12} />
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="gutter-right" />
+      {/* Jobs list - expanded format */}
+      <JobsList jobs={JOBS} />
+
+      {/* Company description */}
+      <div className="section-row-dark">
+        <div className="gutter-left" />
+        <div className="material-dark p-8 lg:p-12">
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-3">About Us</p>
+          <h2 className="text-xl lg:text-2xl font-bold text-white tracking-tight mb-4">Company Description</h2>
+          <p className="text-sm text-white/50 leading-relaxed max-w-2xl">
+            Protocoding is a full-service software consulting firm specializing in AI solutions for startups and enterprise clients. We focus on delivering high-quality, scalable solutions for businesses building out their tech teams or augmenting their existing capabilities.
+          </p>
         </div>
-      ))}
+        <div className="gutter-right" />
+      </div>
 
       {/* No role that fits */}
       <div className="section-row">

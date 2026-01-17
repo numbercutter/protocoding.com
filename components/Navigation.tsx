@@ -9,6 +9,7 @@ import Image from 'next/image';
 
 const NAV_ITEMS = [
   { label: 'SERVICES', href: '/services' },
+  { label: 'PORTFOLIO', href: '/portfolio' },
   { label: 'ABOUT', href: '/about' },
   { label: 'CAREERS', href: '/careers' },
   { label: 'PRICING', href: '/pricing' },
@@ -78,12 +79,12 @@ export default function Navigation() {
               </Link>
             </div>
 
-            <div className="hidden md:grid md:col-span-6 grid-cols-4">
+            <div className="hidden md:grid md:col-span-6 grid-cols-5">
               {NAV_ITEMS.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className={`flex items-center justify-center font-display text-[11px] font-bold tracking-[0.1em] border-r ${borderColor} ${textMuted} hover:opacity-100`}
+                  className={`flex items-center justify-center font-display text-[10px] font-bold tracking-[0.08em] border-r ${borderColor} ${textMuted} hover:opacity-100`}
                 >
                   {item.label}
                 </Link>

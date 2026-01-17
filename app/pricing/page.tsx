@@ -7,6 +7,72 @@ export const metadata: Metadata = {
   description: 'Simple, transparent pricing for software development services.',
 };
 
+// Blue textured block matching FeaturedWork style
+const BlueTexturedBlock = ({ 
+  children, 
+  className = '',
+  isGutter = false 
+}: { 
+  children?: React.ReactNode; 
+  className?: string;
+  isGutter?: boolean;
+}) => (
+  <div className={`relative overflow-hidden bg-accent ${className}`}>
+    {/* Base noise - fine grain */}
+    <div 
+      className="absolute inset-0 pointer-events-none opacity-[0.15] mix-blend-overlay"
+      style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+      }}
+    />
+    
+    {/* Secondary noise layer */}
+    <div 
+      className="absolute inset-0 pointer-events-none opacity-[0.08] mix-blend-soft-light"
+      style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+      }}
+    />
+    
+    {/* Top edge glare */}
+    <div 
+      className="absolute top-0 left-0 right-0 h-[1px] pointer-events-none"
+      style={{
+        background: 'linear-gradient(90deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 100%)',
+      }}
+    />
+    
+    {/* Inner shadow overlay for depth */}
+    <div 
+      className="absolute inset-0 pointer-events-none"
+      style={{
+        boxShadow: `
+          inset 0 1px 0 rgba(255,255,255,0.15),
+          inset 1px 0 0 rgba(255,255,255,0.1),
+          inset 0 -1px 0 rgba(0,0,0,0.08),
+          inset -1px 0 0 rgba(0,0,0,0.05),
+          inset 0 2px 8px rgba(0,0,0,0.04)
+        `,
+      }}
+    />
+    
+    {/* Subtle radial highlight */}
+    {!isGutter && (
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-30"
+        style={{
+          background: 'radial-gradient(ellipse at 0% 0%, rgba(255,255,255,0.15) 0%, transparent 50%)',
+        }}
+      />
+    )}
+    
+    {/* Content */}
+    <div className="relative z-10">
+      {children}
+    </div>
+  </div>
+);
+
 const TIERS = [
   {
     name: 'Starter',
@@ -105,19 +171,19 @@ const COMPARISON = [
 export default function PricingPage() {
   return (
     <>
-      {/* Hero section */}
-      <div className="section-row-dark">
-        <div className="gutter-left" />
-        <div className="material-dark p-8 pt-20 md:p-12 md:pt-12 lg:p-16 text-center">
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-4">Pricing</p>
-          <h1 className="text-3xl lg:text-5xl font-bold text-white tracking-tight mb-4">
-            Simple, transparent <span className="text-accent">pricing</span>
+      {/* Hero section - blue textured background */}
+      <div className="grid grid-cols-1 md:grid-cols-[80px_1fr_80px] lg:grid-cols-[100px_1fr_100px] xl:grid-cols-[120px_1fr_120px]">
+        <BlueTexturedBlock className="hidden md:block border-b border-black/10" isGutter={true} />
+        <BlueTexturedBlock className="p-8 pt-20 md:p-12 md:pt-12 lg:p-16 text-center border-b border-black/10">
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-black/40 mb-4">Pricing</p>
+          <h1 className="text-3xl lg:text-5xl font-bold text-black/90 tracking-tight mb-4">
+            Simple, transparent <span className="text-black">pricing</span>
           </h1>
-          <p className="text-lg text-white/40 max-w-2xl mx-auto">
+          <p className="text-lg text-black/50 max-w-2xl mx-auto">
             Choose the perfect plan for your project. All plans include dedicated support and full source code ownership.
           </p>
-        </div>
-        <div className="gutter-right" />
+        </BlueTexturedBlock>
+        <BlueTexturedBlock className="hidden md:block border-b border-black/10" isGutter={true} />
       </div>
 
       {/* Pricing cards */}
