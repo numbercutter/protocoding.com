@@ -62,15 +62,18 @@ function LogoMarquee() {
 
   useEffect(() => {
     if (containerRef.current && scrollerRef.current) {
+      // Duplicate items multiple times for seamless infinite loop
       const scrollerContent = Array.from(scrollerRef.current.children);
-      scrollerContent.forEach((item) => {
-        const duplicatedItem = item.cloneNode(true);
-        if (scrollerRef.current) {
-          scrollerRef.current.appendChild(duplicatedItem);
-        }
-      });
+      for (let i = 0; i < 3; i++) {
+        scrollerContent.forEach((item) => {
+          const duplicatedItem = item.cloneNode(true);
+          if (scrollerRef.current) {
+            scrollerRef.current.appendChild(duplicatedItem);
+          }
+        });
+      }
       containerRef.current.style.setProperty('--animation-direction', 'forwards');
-      containerRef.current.style.setProperty('--animation-duration', '30s');
+      containerRef.current.style.setProperty('--animation-duration', '60s');
       setStart(true);
     }
   }, []);
@@ -78,23 +81,27 @@ function LogoMarquee() {
   return (
     <div 
       ref={containerRef} 
-      className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]"
+      className="relative overflow-hidden"
     >
       <div 
         ref={scrollerRef} 
-        className={`flex min-w-full shrink-0 gap-12 md:gap-20 py-4 md:py-6 w-max flex-nowrap ${start ? 'animate-scroll' : ''} hover:[animation-play-state:paused]`}
+        className={`flex min-w-full shrink-0 gap-16 md:gap-24 py-4 md:py-6 w-max flex-nowrap ${start ? 'animate-scroll' : ''}`}
       >
         {COMPANIES.map((company) => (
           <div 
             key={company.name} 
-            className="w-20 h-12 md:w-28 md:h-16 flex justify-center items-center relative grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+            className="w-24 h-12 md:w-32 md:h-14 flex justify-center items-center"
           >
             <Image 
               src={company.logo} 
               alt={`${company.name} logo`} 
               width={112} 
-              height={64} 
-              className="object-contain" 
+              height={48} 
+              className="object-contain"
+              style={{
+                filter: 'brightness(0) contrast(1)',
+                mixBlendMode: 'multiply',
+              }}
             />
           </div>
         ))}
@@ -199,20 +206,23 @@ export default function HeroSlider() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="border-t border-black/10 relative z-10 bg-black/[0.03]"
+          className="border-t border-black/10 relative z-10"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(0,0,0,0.04), rgba(0,0,0,0.02))',
+            boxShadow: `
+              inset 0 1px 0 rgba(0,0,0,0.06),
+              inset 0 2px 4px rgba(0,0,0,0.03),
+              inset 0 -1px 0 rgba(255,255,255,0.08)
+            `
+          }}
         >
           {/* Texture overlay for marquee section */}
           <div 
-            className="absolute inset-0 pointer-events-none opacity-[0.06] mix-blend-overlay"
+            className="absolute inset-0 pointer-events-none opacity-[0.08] mix-blend-overlay"
             style={{
               backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
               backgroundSize: '200px 200px',
             }}
-          />
-          {/* Inner shadow */}
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{ boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.04)' }}
           />
           <LogoMarquee />
         </motion.div>
