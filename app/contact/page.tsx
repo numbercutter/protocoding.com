@@ -8,15 +8,24 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="material min-h-[85vh] flex items-center justify-center p-8">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-10">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400 mb-3">Contact</p>
-          <h1 className="text-2xl font-bold text-gray-900 tracking-tight mb-2">Book a demo</h1>
-          <p className="text-sm text-gray-500">Tell us about your project.</p>
+    <div className="section-row min-h-screen">
+      {/* Left gutter */}
+      <div className="gutter-left" />
+      
+      {/* Content */}
+      <div className="material flex items-center justify-center p-8">
+        <div className="w-full max-w-md">
+          <div className="text-center mb-10">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400 mb-3">Contact</p>
+            <h1 className="text-2xl font-bold text-gray-900 tracking-tight mb-2">Get a free assessment</h1>
+            <p className="text-sm text-gray-500">Tell us about your project.</p>
+          </div>
+          <ContactForm />
         </div>
-        <ContactForm />
       </div>
+      
+      {/* Right gutter */}
+      <div className="gutter-right" />
     </div>
   );
 }
