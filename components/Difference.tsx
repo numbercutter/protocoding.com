@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 const FEATURES = [
   {
@@ -75,7 +76,21 @@ export default function Difference() {
       <div className="sticky top-0 h-screen section-row">
         <div className="gutter-left" />
         
-        <div className="material-dark grid grid-cols-1 lg:grid-cols-[300px_1fr] h-full">
+        <div className="material-dark grid grid-cols-1 lg:grid-cols-[300px_1fr] h-full relative overflow-hidden">
+          {/* Subtle B&W workplace backdrop */}
+          <div className="absolute inset-0 pointer-events-none">
+            <Image
+              src="/workplace/-gjBJn7gW_wxkRb33nQIE.png"
+              alt=""
+              fill
+              className="object-cover grayscale opacity-[0.05]"
+              style={{
+                maskImage: 'radial-gradient(ellipse at 80% 50%, black 0%, transparent 70%)',
+                WebkitMaskImage: 'radial-gradient(ellipse at 80% 50%, black 0%, transparent 70%)'
+              }}
+              priority={false}
+            />
+          </div>
           {/* Left navigation */}
           <div className="hidden lg:flex flex-col justify-center p-8 lg:p-10 border-r border-white/[0.08]">
             <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-4">Why Us</p>

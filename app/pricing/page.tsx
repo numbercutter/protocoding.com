@@ -193,7 +193,7 @@ export default function PricingPage() {
           {TIERS.map((tier) => (
             <div
               key={tier.name}
-              className={`p-8 lg:p-10 cell ${tier.popular ? 'material-dark' : 'material hover:material-elevated'} transition-all`}
+              className={`p-6 md:p-8 lg:p-10 cell ${tier.popular ? 'material-dark' : 'material hover:material-elevated'} transition-all`}
             >
               {tier.popular && (
                 <span className="inline-block mb-4 px-3 py-1.5 text-[8px] font-bold uppercase tracking-[0.2em] bg-accent/20 text-accent">
@@ -241,8 +241,8 @@ export default function PricingPage() {
         <div className="gutter-right" />
       </div>
 
-      {/* Comparison header */}
-      <div className="section-row">
+      {/* Comparison header - hidden on mobile */}
+      <div className="section-row hidden md:grid">
         <div className="gutter-left" />
         <div className="material-elevated p-8 lg:p-12">
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">Compare Plans</p>
@@ -251,8 +251,8 @@ export default function PricingPage() {
         <div className="gutter-right" />
       </div>
 
-      {/* Comparison table header */}
-      <div className="section-row">
+      {/* Comparison table header - hidden on mobile */}
+      <div className="section-row hidden md:grid">
         <div className="gutter-left" />
         <div className="material-inset grid grid-cols-4">
           <div className="p-4 lg:p-6 cell">
@@ -271,9 +271,9 @@ export default function PricingPage() {
         <div className="gutter-right" />
       </div>
 
-      {/* Comparison rows */}
+      {/* Comparison rows - hidden on mobile */}
       {COMPARISON.map((row, index) => (
-        <div key={row.feature} className="section-row">
+        <div key={row.feature} className="section-row hidden md:grid">
           <div className="gutter-left" />
           <div className={`grid grid-cols-4 ${index % 2 === 0 ? 'material' : 'material-inset'}`}>
             <div className="p-4 lg:p-6 cell">
@@ -314,9 +314,9 @@ export default function PricingPage() {
       {/* FAQ header */}
       <div className="section-row-dark">
         <div className="gutter-left" />
-        <div className="material-dark p-8 lg:p-12">
+        <div className="material-dark p-6 md:p-8 lg:p-12">
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-3">FAQ</p>
-          <h2 className="text-2xl lg:text-3xl font-bold text-white tracking-tight">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-tight">
             Frequently asked <span className="text-accent">questions</span>
           </h2>
         </div>
@@ -328,7 +328,7 @@ export default function PricingPage() {
         <div className="gutter-left" />
         <div className="material-dark grid grid-cols-1 md:grid-cols-2">
           {FAQS.map((faq, index) => (
-            <div key={faq.question} className="p-8 cell-dark">
+            <div key={faq.question} className="p-6 md:p-8 cell-dark">
               <span className="text-2xl font-bold text-white/10 block mb-3">
                 {String(index + 1).padStart(2, '0')}
               </span>
@@ -343,14 +343,14 @@ export default function PricingPage() {
       {/* CTA */}
       <div className="section-row">
         <div className="gutter-left" />
-        <div className="material-inset p-8 lg:p-12 text-center">
-          <h3 className="text-xl font-bold text-gray-900 mb-3">Still have questions?</h3>
+        <div className="material-inset p-6 md:p-8 lg:p-12 text-center">
+          <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3">Still have questions?</h3>
           <p className="text-sm text-gray-500 mb-6 max-w-md mx-auto">
             Let&apos;s hop on a call and discuss your project. We&apos;ll give you a free assessment with clear scope and honest pricing.
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-black/80 text-sm font-bold tracking-wide uppercase hover:brightness-110 transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-accent text-black/80 text-xs md:text-sm font-bold tracking-wide uppercase hover:brightness-110 transition-all"
           >
             Get Free Assessment <ArrowUpRight size={14} />
           </Link>

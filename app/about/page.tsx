@@ -75,9 +75,9 @@ export default function AboutPage() {
         <div className="material">
           <div className="grid grid-cols-2 md:grid-cols-4">
             {VALUES.map((v) => (
-              <div key={v.title} className="p-8 text-center cell material-inset hover:material transition-all">
-                <span className="text-3xl font-bold text-gray-200 tracking-tight block mb-3">{v.num}</span>
-                <h3 className="text-xs font-bold text-gray-900 uppercase tracking-[0.2em]">{v.title}</h3>
+              <div key={v.title} className="p-5 md:p-8 text-center cell material-inset hover:material transition-all">
+                <span className="text-2xl md:text-3xl font-bold text-gray-200 tracking-tight block mb-2 md:mb-3">{v.num}</span>
+                <h3 className="text-[10px] md:text-xs font-bold text-gray-900 uppercase tracking-[0.2em]">{v.title}</h3>
               </div>
             ))}
           </div>
@@ -88,9 +88,9 @@ export default function AboutPage() {
       {/* Team header */}
       <div className="section-row">
         <div className="gutter-left" />
-        <div className="material-elevated p-8 lg:p-12">
+        <div className="material-elevated p-6 md:p-8 lg:p-12">
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">Our Team</p>
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">The people behind Protocoding</h2>
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">The people behind Protocoding</h2>
         </div>
         <div className="gutter-right" />
       </div>

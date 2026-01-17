@@ -103,11 +103,11 @@ export default function Services() {
       {/* Content */}
       <div className="material flex flex-col">
         {/* Header */}
-        <div className="p-8 lg:p-12 material-elevated border-b border-black/[0.08]">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <div className="p-6 md:p-8 lg:p-12 material-elevated border-b border-black/[0.08]">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 md:gap-6">
             <div>
               <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">What We Build</p>
-              <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 tracking-tight">
+              <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-gray-900 tracking-tight">
                 Shipped across every industry
               </h2>
             </div>

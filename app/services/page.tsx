@@ -106,9 +106,9 @@ export default function ServicesPage() {
       {/* Services header */}
       <div className="section-row">
         <div className="gutter-left" />
-        <div className="material-elevated p-8 lg:p-12">
+        <div className="material-elevated p-6 md:p-8 lg:p-12">
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">What We Do</p>
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">End-to-end development services</h2>
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">End-to-end development services</h2>
         </div>
         <div className="gutter-right" />
       </div>
@@ -117,7 +117,7 @@ export default function ServicesPage() {
       {SERVICES.map((service, index) => (
         <div key={service.title} className="section-row">
           <div className="gutter-left" />
-          <div className={`${index % 2 === 0 ? 'material' : 'material-inset'} p-8 lg:p-12`}>
+          <div className={`${index % 2 === 0 ? 'material' : 'material-inset'} p-6 md:p-8 lg:p-12`}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
               {/* Left - Info */}
               <div>
@@ -160,9 +160,9 @@ export default function ServicesPage() {
       {/* Process section header */}
       <div className="section-row-dark">
         <div className="gutter-left" />
-        <div className="material-dark p-8 lg:p-12">
+        <div className="material-dark p-6 md:p-8 lg:p-12">
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-3">How We Work</p>
-          <h2 className="text-2xl lg:text-3xl font-bold text-white tracking-tight">A process built for results</h2>
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-tight">A process built for results</h2>
         </div>
         <div className="gutter-right" />
       </div>
@@ -170,14 +170,14 @@ export default function ServicesPage() {
       {/* Process steps */}
       <div className="section-row-dark">
         <div className="gutter-left" />
-        <div className="material-dark grid grid-cols-1 md:grid-cols-4">
+        <div className="material-dark grid grid-cols-2 md:grid-cols-4">
           {[
             { num: '01', title: 'Discovery', desc: 'We learn about your business, goals, and technical requirements.' },
             { num: '02', title: 'Planning', desc: 'We scope the work, define milestones, and provide transparent pricing.' },
             { num: '03', title: 'Building', desc: 'Our team delivers in weekly sprints with regular demos and updates.' },
             { num: '04', title: 'Support', desc: 'We launch together and provide ongoing support and iteration.' },
           ].map((step) => (
-            <div key={step.title} className="p-8 cell-dark hover:bg-white/[0.02] transition-colors">
+            <div key={step.title} className="p-5 md:p-8 cell-dark hover:bg-white/[0.02] transition-colors">
               <span className="text-3xl font-bold text-white/20 block mb-4">{step.num}</span>
               <h3 className="text-sm font-bold text-white uppercase tracking-[0.15em] mb-3">{step.title}</h3>
               <p className="text-xs text-white/40 leading-relaxed">{step.desc}</p>
@@ -192,7 +192,7 @@ export default function ServicesPage() {
         <div className="gutter-left" />
         <Link
           href="/contact"
-          className="material-inset flex items-center justify-center gap-2 p-8 text-sm font-bold text-gray-900 hover:material transition-all uppercase tracking-[0.2em]"
+          className="material-inset flex items-center justify-center gap-2 p-6 md:p-8 text-xs md:text-sm font-bold text-gray-900 hover:material transition-all uppercase tracking-[0.2em]"
         >
           Get a Free Assessment <ArrowUpRight size={14} />
         </Link>

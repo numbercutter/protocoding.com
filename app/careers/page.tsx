@@ -171,9 +171,9 @@ export default function CareersPage() {
       {/* Why work with us header */}
       <div className="section-row">
         <div className="gutter-left" />
-        <div className="material-elevated p-8 lg:p-12">
+        <div className="material-elevated p-6 md:p-8 lg:p-12">
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">Why Work With Us</p>
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">Benefits that matter</h2>
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">Benefits that matter</h2>
         </div>
         <div className="gutter-right" />
       </div>
@@ -181,9 +181,9 @@ export default function CareersPage() {
       {/* Benefits grid */}
       <div className="section-row">
         <div className="gutter-left" />
-        <div className="material grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        <div className="material grid grid-cols-2 lg:grid-cols-4">
           {BENEFITS.map((benefit) => (
-            <div key={benefit.title} className="p-8 cell material-inset hover:material transition-all">
+            <div key={benefit.title} className="p-5 md:p-8 cell material-inset hover:material transition-all">
               <span className="text-3xl font-bold text-gray-200 tracking-tight block mb-4">{benefit.num}</span>
               <h3 className="text-sm font-bold text-gray-900 uppercase tracking-[0.15em] mb-3">{benefit.title}</h3>
               <p className="text-xs text-gray-500 leading-relaxed">{benefit.description}</p>
@@ -196,9 +196,9 @@ export default function CareersPage() {
       {/* Our Values header */}
       <div className="section-row-dark">
         <div className="gutter-left" />
-        <div className="material-dark p-8 lg:p-12">
+        <div className="material-dark p-6 md:p-8 lg:p-12">
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-3">Our Values</p>
-          <h2 className="text-2xl lg:text-3xl font-bold text-white tracking-tight">What we believe in</h2>
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-tight">What we believe in</h2>
         </div>
         <div className="gutter-right" />
       </div>
@@ -206,9 +206,9 @@ export default function CareersPage() {
       {/* Values grid */}
       <div className="section-row-dark">
         <div className="gutter-left" />
-        <div className="material-dark grid grid-cols-1 md:grid-cols-4">
+        <div className="material-dark grid grid-cols-2 md:grid-cols-4">
           {VALUES.map((value) => (
-            <div key={value.title} className="p-8 cell-dark hover:bg-white/[0.02] transition-colors">
+            <div key={value.title} className="p-5 md:p-8 cell-dark hover:bg-white/[0.02] transition-colors">
               <span className="text-3xl font-bold text-white/20 block mb-4">{value.num}</span>
               <h3 className="text-sm font-bold text-white uppercase tracking-[0.15em] mb-3">{value.title}</h3>
               <p className="text-xs text-white/40 leading-relaxed">{value.desc}</p>
@@ -221,9 +221,9 @@ export default function CareersPage() {
       {/* Open roles header */}
       <div className="section-row">
         <div className="gutter-left" />
-        <div className="material-elevated p-8 lg:p-12">
+        <div className="material-elevated p-6 md:p-8 lg:p-12">
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">Open Roles</p>
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">Current opportunities</h2>
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">Current opportunities</h2>
           <p className="text-sm text-gray-500 mt-3 max-w-xl">
             We&apos;re always looking for talented people. If you don&apos;t see a role that fits, reach out anyway.
           </p>
@@ -250,14 +250,14 @@ export default function CareersPage() {
       {/* No role that fits */}
       <div className="section-row">
         <div className="gutter-left" />
-        <div className="material-inset p-8 lg:p-12 text-center">
-          <h3 className="text-lg font-bold text-gray-900 mb-3">Don&apos;t see a role that fits?</h3>
+        <div className="material-inset p-6 md:p-8 lg:p-12 text-center">
+          <h3 className="text-base md:text-lg font-bold text-gray-900 mb-3">Don&apos;t see a role that fits?</h3>
           <p className="text-sm text-gray-500 mb-6 max-w-md mx-auto">
             We&apos;re always interested in meeting talented people. Send us your info and we&apos;ll keep you in mind for future opportunities.
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold text-gray-900 border border-gray-200 hover:bg-gray-50 transition-all uppercase tracking-[0.1em]"
+            className="inline-flex items-center gap-2 px-5 py-2.5 md:px-6 md:py-3 text-xs md:text-sm font-bold text-gray-900 border border-gray-200 hover:bg-gray-50 transition-all uppercase tracking-[0.1em]"
           >
             Get in Touch <ArrowUpRight size={14} />
           </Link>
@@ -270,7 +270,7 @@ export default function CareersPage() {
         <div className="gutter-left" />
         <Link
           href="/about"
-          className="material flex items-center justify-center gap-2 p-8 text-sm font-bold text-gray-900 hover:material-elevated transition-all uppercase tracking-[0.2em]"
+          className="material flex items-center justify-center gap-2 p-6 md:p-8 text-xs md:text-sm font-bold text-gray-900 hover:material-elevated transition-all uppercase tracking-[0.2em]"
         >
           Meet the Team <ArrowUpRight size={14} />
         </Link>

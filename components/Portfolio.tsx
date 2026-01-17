@@ -77,7 +77,7 @@ export default function Portfolio() {
               transition={{ delay: i * 0.05 }}
               className="cell"
             >
-              <Link href={`/portfolio/${project.slug}`} className="group relative block h-full min-h-[200px] md:min-h-[240px] overflow-hidden">
+              <Link href={`/portfolio/${project.slug}`} className="group relative block h-full min-h-[220px] md:min-h-[260px] overflow-hidden">
                 {/* Full background image */}
                 <Image
                   src={project.image}
@@ -86,31 +86,31 @@ export default function Portfolio() {
                   className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                 />
                 
-                {/* Gradient overlay for text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 group-hover:from-black/70 group-hover:via-black/20 transition-all duration-500" />
+                {/* Gradient overlay for text readability - stronger on mobile */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20 md:from-black/80 md:via-black/30 md:to-black/10 group-hover:from-black/70 group-hover:via-black/20 transition-all duration-500" />
                 
                 {/* Content overlay */}
-                <div className="absolute inset-0 p-5 lg:p-6 flex flex-col justify-end">
+                <div className="absolute inset-0 p-4 md:p-5 lg:p-6 flex flex-col justify-end">
                   {/* Tags row */}
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span className="text-[10px] font-bold text-white/60">{project.year}</span>
+                  <div className="flex flex-wrap items-center gap-1.5 md:gap-2 mb-2 md:mb-3">
+                    <span className="text-[10px] font-bold text-white/70">{project.year}</span>
                     {project.tags.map((tag) => (
-                      <span key={tag} className="px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider bg-white/10 backdrop-blur-sm text-white/80 border border-white/10">
+                      <span key={tag} className="px-1.5 md:px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider bg-white/20 backdrop-blur-sm text-white/90 border border-white/20">
                         {tag}
                       </span>
                     ))}
                   </div>
                   
                   {/* Title & description */}
-                  <h3 className="text-lg lg:text-xl font-bold text-white mb-1.5 group-hover:text-accent transition-colors">
+                  <h3 className="text-xl md:text-lg lg:text-xl font-bold text-white mb-1 md:mb-1.5 group-hover:text-white transition-colors drop-shadow-sm">
                     {project.title}
                   </h3>
-                  <p className="text-xs text-white/60 leading-relaxed line-clamp-2 mb-4 max-w-sm">
+                  <p className="text-sm md:text-xs text-white/80 md:text-white/60 leading-relaxed line-clamp-2 mb-3 md:mb-4 max-w-sm">
                     {project.description}
                   </p>
                   
                   {/* View link */}
-                  <div className="flex items-center gap-1.5 text-[10px] font-bold text-white/80 group-hover:text-accent group-hover:gap-2 transition-all">
+                  <div className="flex items-center gap-1.5 text-[11px] md:text-[10px] font-bold text-white/80 md:text-white/60 group-hover:text-white group-hover:gap-2 transition-all">
                     View Project <ArrowUpRight size={12} />
                   </div>
                 </div>

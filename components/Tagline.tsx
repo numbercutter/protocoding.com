@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function Tagline() {
   return (
@@ -9,8 +10,23 @@ export default function Tagline() {
       <div className="gutter-left" />
       
       {/* Content */}
-      <div className="material-elevated flex items-center">
-        <div className="p-10 lg:p-20 w-full">
+      <div className="material-elevated flex items-center relative overflow-hidden">
+        {/* Subtle B&W workplace backdrop - right side fade */}
+        <div className="absolute right-0 top-0 bottom-0 w-[60%] pointer-events-none hidden lg:block">
+          <Image
+            src="/workplace/V79aX3fjufGxqBPGNmHiA.png"
+            alt=""
+            fill
+            className="object-cover object-left grayscale opacity-[0.06]"
+            style={{ 
+              maskImage: 'linear-gradient(to right, transparent 0%, black 40%)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 40%)'
+            }}
+            priority={false}
+          />
+        </div>
+        
+        <div className="p-10 lg:p-20 w-full relative z-10">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

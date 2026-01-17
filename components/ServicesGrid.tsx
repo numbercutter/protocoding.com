@@ -20,7 +20,7 @@ export default function ServicesGrid() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: i * 0.05 }}
-          className="group p-8 cell material hover:material-elevated"
+          className="group p-5 md:p-8 cell material hover:material-elevated"
         >
           {/* Number */}
           <span className="text-[10px] font-bold tracking-[0.3em] text-accent mb-5 block">{s.num}</span>

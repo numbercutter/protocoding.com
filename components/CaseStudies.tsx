@@ -17,9 +17,9 @@ export default function CaseStudies() {
       
       {/* Content */}
       <div className="material-elevated flex flex-col">
-        <div className="p-10 lg:p-12 material border-b border-black/[0.08]">
+        <div className="p-6 md:p-10 lg:p-12 material border-b border-black/[0.08]">
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-3">Case Studies</p>
-          <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Recent work</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">Recent work</h2>
         </div>
 
         <div className="flex-1 grid grid-cols-1 md:grid-cols-3">
@@ -30,7 +30,7 @@ export default function CaseStudies() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group p-10 cell material hover:material-elevated cursor-pointer flex flex-col"
+              className="group p-6 md:p-10 cell material hover:material-elevated cursor-pointer flex flex-col"
             >
               <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-accent mb-4">{c.cat}</p>
               <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-accent">{c.title}</h3>

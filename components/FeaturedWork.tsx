@@ -123,9 +123,9 @@ export default function FeaturedWork() {
       {/* Top separator - neutral with gutters */}
       <section className="section-row">
         <div className="gutter-left" />
-        <div className="material-elevated p-8 lg:p-12">
+        <div className="material-elevated p-6 md:p-8 lg:p-12">
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">Featured Work</p>
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">
             What your team does best, amplified.
           </h2>
           <p className="mt-3 text-sm text-gray-500 max-w-lg">
@@ -192,9 +192,9 @@ export default function FeaturedWork() {
       {/* Bottom separator - more prominent with extra padding */}
       <section className="section-row flex-1">
         <div className="gutter-left" />
-        <div className="material-inset p-10 lg:p-16 flex items-center justify-center">
+        <div className="material-inset p-8 md:p-10 lg:p-16 flex items-center justify-center">
           <div className="text-center">
-            <p className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">20+</p>
+            <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">20+</p>
             <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500">
               Projects delivered across fintech, healthcare, and enterprise
             </p>
