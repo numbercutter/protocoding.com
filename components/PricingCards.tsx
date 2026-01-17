@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Check, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
 const TIERS = [
@@ -22,16 +22,16 @@ export default function PricingCards() {
           className={`p-8 cell ${tier.popular ? 'material-dark' : 'material hover:material-elevated'}`}
         >
           {tier.popular && (
-            <span className="inline-block mb-4 px-3 py-1.5 text-[8px] font-bold uppercase tracking-[0.2em] bg-accent/20 text-accent">Popular</span>
+            <span className="inline-block mb-4 px-3 py-1.5 text-[8px] font-bold uppercase tracking-[0.3em] bg-accent/20 text-accent">Popular</span>
           )}
-          <h3 className={`text-xs font-bold mb-2 ${tier.popular ? 'text-white/40' : 'text-[var(--text-muted)]'}`}>{tier.name}</h3>
-          <div className={`text-3xl font-bold mb-2 tracking-tight ${tier.popular ? 'text-white' : 'text-[var(--text-primary)]'}`}>{tier.price}</div>
-          <p className={`text-[10px] mb-6 ${tier.popular ? 'text-white/20' : 'text-[var(--text-muted)]'}`}>{tier.desc}</p>
+          <h3 className={`text-[10px] font-bold uppercase tracking-[0.3em] mb-2 ${tier.popular ? 'text-white/40' : 'text-gray-400'}`}>{tier.name}</h3>
+          <div className={`text-3xl font-bold mb-2 tracking-tight ${tier.popular ? 'text-white' : 'text-gray-900'}`}>{tier.price}</div>
+          <p className={`text-[10px] mb-6 ${tier.popular ? 'text-white/20' : 'text-gray-400'}`}>{tier.desc}</p>
 
           <ul className="space-y-3 mb-8">
             {tier.features.map((f) => (
-              <li key={f} className={`flex items-center gap-3 text-[11px] font-semibold ${tier.popular ? 'text-white/50' : 'text-[var(--text-muted)]'}`}>
-                <Check size={10} className={tier.popular ? 'text-accent' : 'text-[var(--text-muted)]'} /> {f}
+              <li key={f} className={`flex items-center gap-3 text-[11px] font-semibold ${tier.popular ? 'text-white/50' : 'text-gray-500'}`}>
+                <span className={`w-1 h-1 ${tier.popular ? 'bg-accent' : 'bg-gray-300'}`} /> {f}
               </li>
             ))}
           </ul>
@@ -40,8 +40,8 @@ export default function PricingCards() {
             href={`/contact?plan=${tier.name}`}
             className={`flex items-center justify-center gap-2 w-full py-4 text-xs font-bold tracking-wide ${
               tier.popular 
-                ? 'bg-accent text-[var(--text-primary)] hover:brightness-110' 
-                : 'material-inset text-[var(--text-primary)] hover:material'
+                ? 'bg-accent text-black/80 hover:brightness-110' 
+                : 'material-inset text-gray-900 hover:material'
             }`}
           >
             Get Assessment <ArrowUpRight size={10} />

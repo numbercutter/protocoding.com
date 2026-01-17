@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import { Target, Users, Rocket, Heart } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
@@ -7,10 +6,10 @@ import { ArrowUpRight } from 'lucide-react';
 export const metadata: Metadata = { title: 'About - Protocoding', description: 'Meet the team behind Protocoding.' };
 
 const VALUES = [
-  { icon: Target, title: 'Excellence' },
-  { icon: Users, title: 'Collaboration' },
-  { icon: Rocket, title: 'Innovation' },
-  { icon: Heart, title: 'Integrity' },
+  { num: '01', title: 'Excellence' },
+  { num: '02', title: 'Collaboration' },
+  { num: '03', title: 'Innovation' },
+  { num: '04', title: 'Integrity' },
 ];
 
 const TEAM = [
@@ -59,7 +58,7 @@ export default function AboutPage() {
       <div className="section-row-dark">
         <div className="gutter-left" />
         <div className="material-dark p-8 pt-20 md:p-12 md:pt-12 lg:p-16">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mb-4">About</p>
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-4">About</p>
           <h1 className="text-3xl lg:text-5xl font-bold text-white tracking-tight mb-4">
             Building software that <span className="text-accent">matters</span>
           </h1>
@@ -77,10 +76,8 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 md:grid-cols-4">
             {VALUES.map((v) => (
               <div key={v.title} className="p-8 text-center cell material-inset hover:material transition-all">
-                <div className="w-12 h-12 mx-auto material flex items-center justify-center mb-4">
-                  <v.icon size={20} className="text-gray-500" />
-                </div>
-                <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider">{v.title}</h3>
+                <span className="text-3xl font-bold text-gray-200 tracking-tight block mb-3">{v.num}</span>
+                <h3 className="text-xs font-bold text-gray-900 uppercase tracking-[0.2em]">{v.title}</h3>
               </div>
             ))}
           </div>
@@ -92,7 +89,7 @@ export default function AboutPage() {
       <div className="section-row">
         <div className="gutter-left" />
         <div className="material-elevated p-8 lg:p-12">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-3">Our Team</p>
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">Our Team</p>
           <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">The people behind Protocoding</h2>
         </div>
         <div className="gutter-right" />
@@ -114,7 +111,7 @@ export default function AboutPage() {
                   />
                 </div>
                 <h3 className="text-lg font-bold text-gray-900 mb-1">{member.name}</h3>
-                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-accent mb-4">{member.role}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent mb-4">{member.role}</p>
                 <p className="text-xs text-gray-500 leading-relaxed">{member.bio}</p>
               </div>
             ))}
@@ -126,7 +123,7 @@ export default function AboutPage() {
       {/* CTA */}
       <div className="section-row">
         <div className="gutter-left" />
-        <Link href="/careers" className="material-inset flex items-center justify-center gap-2 p-8 text-sm font-bold text-gray-900 hover:material transition-all uppercase tracking-wider">
+        <Link href="/careers" className="material-inset flex items-center justify-center gap-2 p-8 text-sm font-bold text-gray-900 hover:material transition-all uppercase tracking-[0.2em]">
           Join our team <ArrowUpRight size={14} />
         </Link>
         <div className="gutter-right" />

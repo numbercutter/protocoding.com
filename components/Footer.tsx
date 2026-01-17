@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Mail, MapPin } from 'lucide-react';
 
 const LINKS = {
   Product: [{ label: 'Services', href: '/services' }, { label: 'Pricing', href: '/pricing' }],
@@ -23,18 +22,18 @@ export default function Footer() {
             </Link>
             <p className="text-[11px] text-gray-400 mb-4">Building software that matters.</p>
             <div className="space-y-2">
-              <a href="mailto:hello@protocoding.com" className="flex items-center gap-2 text-[10px] text-gray-400 hover:text-gray-600 font-bold">
-                <Mail size={10} /> hello@protocoding.com
+              <a href="mailto:hello@protocoding.com" className="block text-[10px] text-gray-400 hover:text-gray-600 font-bold">
+                hello@protocoding.com
               </a>
-              <div className="flex items-center gap-2 text-[10px] text-gray-400 font-bold">
-                <MapPin size={10} /> San Francisco, CA
-              </div>
+              <p className="text-[10px] text-gray-400 font-bold">
+                San Francisco, CA
+              </p>
             </div>
           </div>
 
           {Object.entries(LINKS).map(([title, links]) => (
             <div key={title} className="p-8 cell material">
-              <h3 className="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">{title}</h3>
+              <h3 className="text-[9px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-4">{title}</h3>
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>

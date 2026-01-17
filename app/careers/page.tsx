@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { MapPin, ArrowUpRight, Check } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata: Metadata = { title: 'Careers - Protocoding', description: 'Join our team.' };
@@ -22,7 +22,7 @@ export default function CareersPage() {
       <div className="material flex flex-col">
         {/* Header */}
         <div className="p-10 lg:p-12 material-elevated border-b border-black/[0.08]">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400 mb-3">Careers</p>
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">Careers</p>
           <h1 className="text-2xl font-bold text-gray-900 tracking-tight mb-2">Join our team</h1>
           <p className="text-sm text-gray-500 max-w-xl">We&apos;re building something special.</p>
         </div>
@@ -31,7 +31,9 @@ export default function CareersPage() {
         <div className="grid grid-cols-3 md:grid-cols-6">
           {BENEFITS.map((b) => (
             <div key={b} className="p-4 cell material-inset">
-              <p className="text-[10px] text-gray-600 font-semibold flex items-center gap-1.5"><Check size={9} className="text-gray-400" /> {b}</p>
+              <p className="text-[10px] text-gray-600 font-semibold flex items-center gap-2">
+                <span className="w-1 h-1 bg-accent" /> {b}
+              </p>
             </div>
           ))}
         </div>
@@ -42,12 +44,13 @@ export default function CareersPage() {
             <div className="col-span-8 p-6">
               <h3 className="text-sm font-bold text-gray-900 mb-1.5">{job.title}</h3>
               <div className="flex items-center gap-4 text-[10px] text-gray-400 font-medium">
-                <span className="flex items-center gap-1.5"><MapPin size={10} /> {job.location}</span>
+                <span>{job.location}</span>
+                <span>·</span>
                 <span>{job.salary}</span>
               </div>
             </div>
             <div className="col-span-4 flex items-center justify-end p-6">
-              <Link href="/contact" className="flex items-center gap-1.5 px-4 py-2 material-dark text-white text-[10px] font-bold hover:opacity-90 transition-all shadow-lg">
+              <Link href="/contact" className="flex items-center gap-1.5 px-4 py-2 bg-accent text-black/80 text-[10px] font-bold hover:brightness-110 transition-all">
                 Apply <ArrowUpRight size={10} />
               </Link>
             </div>
@@ -55,7 +58,7 @@ export default function CareersPage() {
         ))}
 
         {/* CTA */}
-        <Link href="/contact" className="flex items-center justify-center gap-2 p-8 material-inset hover:material text-sm font-bold text-gray-900 transition-all uppercase tracking-wider border-t border-black/[0.08]">
+        <Link href="/contact" className="flex items-center justify-center gap-2 p-8 material-inset hover:material text-sm font-bold text-gray-900 transition-all uppercase tracking-[0.2em] border-t border-black/[0.08]">
           Reach out <ArrowUpRight size={14} />
         </Link>
       </div>
