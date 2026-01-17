@@ -1,17 +1,65 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
-const SERVICES = [
-  { num: '01', title: 'Fractional Development', desc: 'Embed senior engineers with your team. Scale up or down as needed—no long-term commitments.' },
-  { num: '02', title: 'AI Integration', desc: 'Add AI capabilities to your existing products. LLMs, automation, computer vision, and more.' },
-  { num: '03', title: 'Full-Stack Engineering', desc: 'End-to-end development from architecture to deployment. Web, mobile, APIs, and infrastructure.' },
-  { num: '04', title: 'Go-to-Market', desc: 'Product design, MVP development, and launch strategy. Take your idea from concept to customers.' },
+const CATEGORIES = [
+  { id: 'all', label: 'All Industries', count: 24 },
+  { id: 'fintech', label: 'Fintech', count: 4 },
+  { id: 'healthcare', label: 'Healthcare', count: 4 },
+  { id: 'ecommerce', label: 'E-Commerce', count: 4 },
+  { id: 'enterprise', label: 'Enterprise', count: 4 },
+  { id: 'saas', label: 'SaaS', count: 4 },
+  { id: 'ai', label: 'AI Integration', count: 4 },
+];
+
+const USE_CASES = [
+  // Fintech
+  { category: 'fintech', title: 'Trading Platform Build', desc: 'Real-time trading interfaces with WebSocket integrations.' },
+  { category: 'fintech', title: 'Payment Processing', desc: 'Stripe, Plaid, and custom payment gateway integrations.' },
+  { category: 'fintech', title: 'Risk Assessment AI', desc: 'ML models for credit scoring and fraud detection.' },
+  { category: 'fintech', title: 'Regulatory Reporting', desc: 'Automated compliance reports for SEC, FINRA.' },
+  
+  // Healthcare
+  { category: 'healthcare', title: 'Patient Portal', desc: 'HIPAA-compliant web and mobile applications.' },
+  { category: 'healthcare', title: 'EHR Integration', desc: 'HL7 FHIR connectors to Epic, Cerner systems.' },
+  { category: 'healthcare', title: 'Medical Document AI', desc: 'Extract structured data from clinical notes.' },
+  { category: 'healthcare', title: 'Telehealth Platform', desc: 'Video consultation with scheduling.' },
+  
+  // E-Commerce
+  { category: 'ecommerce', title: 'Headless Commerce', desc: 'Shopify, BigCommerce with React storefronts.' },
+  { category: 'ecommerce', title: 'Inventory Automation', desc: 'Real-time sync across warehouses.' },
+  { category: 'ecommerce', title: 'Product Recommendations', desc: 'Personalized recommendations with AI.' },
+  { category: 'ecommerce', title: 'Checkout Optimization', desc: 'A/B tested flows with fraud prevention.' },
+  
+  // Enterprise
+  { category: 'enterprise', title: 'Legacy Migration', desc: 'Modernize monoliths to microservices.' },
+  { category: 'enterprise', title: 'Internal Tools', desc: 'Admin dashboards and workflow automation.' },
+  { category: 'enterprise', title: 'SSO & Identity', desc: 'Okta, Auth0, Azure AD integrations.' },
+  { category: 'enterprise', title: 'Data Pipelines', desc: 'ETL workflows and real-time analytics.' },
+  
+  // SaaS
+  { category: 'saas', title: 'MVP Development', desc: 'Idea to launched product in 8-12 weeks.' },
+  { category: 'saas', title: 'Multi-Tenant Architecture', desc: 'Scalable infrastructure with tenant isolation.' },
+  { category: 'saas', title: 'API Platform', desc: 'RESTful and GraphQL APIs with SDKs.' },
+  { category: 'saas', title: 'Usage Analytics', desc: 'Product analytics and feature flags.' },
+  
+  // AI Integration
+  { category: 'ai', title: 'LLM Integration', desc: 'OpenAI, Anthropic models in your product.' },
+  { category: 'ai', title: 'Document Processing', desc: 'Extract and summarize documents at scale.' },
+  { category: 'ai', title: 'Conversational AI', desc: 'Chatbots with RAG and knowledge bases.' },
+  { category: 'ai', title: 'Computer Vision', desc: 'Image classification, OCR, visual inspection.' },
 ];
 
 export default function Services() {
+  const [activeCategory, setActiveCategory] = useState('all');
+  
+  const filteredCases = activeCategory === 'all' 
+    ? USE_CASES 
+    : USE_CASES.filter(c => c.category === activeCategory);
+
   return (
     <section className="section-row md:min-h-screen">
       {/* Left gutter */}
@@ -20,37 +68,96 @@ export default function Services() {
       {/* Content */}
       <div className="material flex flex-col">
         {/* Header */}
-        <div className="p-10 lg:p-12 material-elevated border-b border-black/[0.08]">
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">Services</p>
-          <h2 className="text-3xl font-bold text-gray-900 tracking-tight">How we work with you</h2>
+        <div className="p-8 lg:p-12 material-elevated border-b border-black/[0.08]">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">What We Build</p>
+              <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 tracking-tight">
+                Shipped across every industry
+              </h2>
+            </div>
+            <p className="text-sm text-gray-500 max-w-sm leading-relaxed">
+              From Series A startups to Fortune 500 enterprises. Here are the types of projects we deliver.
+            </p>
+          </div>
         </div>
 
-        {/* Grid */}
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2">
-          {SERVICES.map((service, i) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group p-10 lg:p-12 cell material hover:material-elevated cursor-pointer flex flex-col justify-center"
-            >
-              {/* Number */}
-              <span className="text-[10px] font-bold tracking-[0.3em] text-accent mb-6">{service.num}</span>
-              
-              <h3 className="text-lg font-bold text-gray-900 mb-3">{service.title}</h3>
-              <p className="text-sm text-gray-500 mb-6 leading-relaxed">{service.desc}</p>
-              <span className="text-[10px] font-bold text-gray-400 group-hover:text-accent flex items-center gap-1 uppercase tracking-[0.2em]">
-                Learn more <ArrowUpRight size={10} />
-              </span>
-            </motion.div>
-          ))}
+        {/* Main content area */}
+        <div className="flex-1 grid grid-cols-1 lg:grid-cols-[240px_1fr]">
+          {/* Left sidebar - categories */}
+          <div className="border-b lg:border-b-0 lg:border-r border-black/[0.08] p-4 lg:p-0">
+            <div className="flex lg:flex-col gap-2 lg:gap-0 overflow-x-auto lg:overflow-visible">
+              {CATEGORIES.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={`
+                    flex items-center justify-between gap-4 px-4 lg:px-6 py-3 lg:py-4 text-left transition-all whitespace-nowrap
+                    border-b border-transparent lg:border-black/[0.08] last:border-b-0
+                    ${activeCategory === cat.id 
+                      ? 'bg-accent text-black/80' 
+                      : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+                    }
+                  `}
+                >
+                  <span className="text-xs font-bold">{cat.label}</span>
+                  <span className={`text-[10px] font-bold ${activeCategory === cat.id ? 'text-black/40' : 'text-gray-300'}`}>
+                    {cat.count}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Right content - use cases grid */}
+          <div className="flex-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+              <AnimatePresence mode="popLayout">
+                {filteredCases.map((useCase, i) => (
+                  <motion.div
+                    key={`${useCase.category}-${useCase.title}`}
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.2, delay: i * 0.02 }}
+                    layout
+                    className="group p-6 lg:p-8 cell material hover:material-elevated cursor-pointer flex flex-col"
+                  >
+                    <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-accent mb-3">
+                      {CATEGORIES.find(c => c.id === useCase.category)?.label}
+                    </span>
+                    <h3 className="text-sm font-bold text-gray-900 mb-2 group-hover:text-accent transition-colors">
+                      {useCase.title}
+                    </h3>
+                    <p className="text-xs text-gray-500 leading-relaxed flex-1">
+                      {useCase.desc}
+                    </p>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+          </div>
         </div>
 
-        <Link href="/services" className="flex items-center justify-center gap-2 p-5 material-inset text-xs font-bold text-gray-500 hover:text-accent uppercase tracking-[0.2em] border-t border-black/[0.08]">
-          View all services <ArrowUpRight size={12} />
-        </Link>
+        {/* Bottom CTA */}
+        <div className="border-t border-black/[0.08] p-6 lg:p-8 material-inset flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-8">
+            <div className="text-center md:text-left">
+              <span className="text-2xl font-bold text-gray-900">50+</span>
+              <span className="text-xs text-gray-400 ml-2">projects shipped</span>
+            </div>
+            <div className="text-center md:text-left">
+              <span className="text-2xl font-bold text-gray-900">6</span>
+              <span className="text-xs text-gray-400 ml-2">industries served</span>
+            </div>
+          </div>
+          <Link 
+            href="/contact" 
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white text-xs font-bold tracking-wide hover:bg-gray-800 transition-all"
+          >
+            Start a Project <ArrowUpRight size={12} />
+          </Link>
+        </div>
       </div>
       
       {/* Right gutter */}

@@ -25,13 +25,103 @@ const WORK_ITEMS = [
   },
 ];
 
-const NoiseTexture = () => (
+// Premium textured block with glare edges like Hebbia
+const TexturedBlock = ({ 
+  children, 
+  className = '',
+  isGutter = false 
+}: { 
+  children?: React.ReactNode; 
+  className?: string;
+  isGutter?: boolean;
+}) => (
   <div 
-    className="absolute inset-0 opacity-[0.12] pointer-events-none mix-blend-overlay"
+    className={`relative overflow-hidden ${className}`}
     style={{
-      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+      background: `linear-gradient(135deg, 
+        rgba(105, 193, 208, 1) 0%, 
+        rgba(95, 178, 192, 1) 50%,
+        rgba(85, 163, 176, 1) 100%
+      )`,
     }}
-  />
+  >
+    {/* Base noise - fine grain */}
+    <div 
+      className="absolute inset-0 pointer-events-none opacity-[0.15] mix-blend-overlay"
+      style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+      }}
+    />
+    
+    {/* Secondary noise layer - larger grain for depth */}
+    <div 
+      className="absolute inset-0 pointer-events-none opacity-[0.08] mix-blend-soft-light"
+      style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+      }}
+    />
+    
+    {/* Top edge glare - thin bright line */}
+    <div 
+      className="absolute top-0 left-0 right-0 h-[1px] pointer-events-none"
+      style={{
+        background: 'linear-gradient(90deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 100%)',
+      }}
+    />
+    
+    {/* Left edge glare - thin bright line */}
+    <div 
+      className="absolute top-0 left-0 bottom-0 w-[1px] pointer-events-none"
+      style={{
+        background: 'linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.05) 100%)',
+      }}
+    />
+    
+    {/* Bottom edge shadow - subtle dark line */}
+    <div 
+      className="absolute bottom-0 left-0 right-0 h-[1px] pointer-events-none"
+      style={{
+        background: 'linear-gradient(90deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.1) 100%)',
+      }}
+    />
+    
+    {/* Right edge shadow - subtle dark line */}
+    <div 
+      className="absolute top-0 right-0 bottom-0 w-[1px] pointer-events-none"
+      style={{
+        background: 'linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.12) 100%)',
+      }}
+    />
+    
+    {/* Inner shadow overlay for depth */}
+    <div 
+      className="absolute inset-0 pointer-events-none"
+      style={{
+        boxShadow: `
+          inset 0 1px 0 rgba(255,255,255,0.15),
+          inset 1px 0 0 rgba(255,255,255,0.1),
+          inset 0 -1px 0 rgba(0,0,0,0.08),
+          inset -1px 0 0 rgba(0,0,0,0.05),
+          inset 0 2px 8px rgba(0,0,0,0.04)
+        `,
+      }}
+    />
+    
+    {/* Subtle radial highlight in corner */}
+    {!isGutter && (
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-30"
+        style={{
+          background: 'radial-gradient(ellipse at 0% 0%, rgba(255,255,255,0.15) 0%, transparent 50%)',
+        }}
+      />
+    )}
+    
+    {/* Content */}
+    <div className="relative z-10">
+      {children}
+    </div>
+  </div>
 );
 
 export default function FeaturedWork() {
@@ -52,7 +142,7 @@ export default function FeaturedWork() {
         <div className="gutter-right" />
       </section>
 
-      {/* Colored work blocks - 2x2 grid with proper gutters on outside edges */}
+      {/* Colored work blocks - 2x2 grid with premium texturing */}
       <div className="grid grid-cols-1 md:grid-cols-2">
         {WORK_ITEMS.map((item, i) => {
           const isLeftColumn = i % 2 === 0;
@@ -74,28 +164,32 @@ export default function FeaturedWork() {
             >
               {/* Left gutter - only for left column items */}
               {isLeftColumn && (
-                <div className="hidden md:block bg-accent relative border-b border-black/10">
-                  <NoiseTexture />
-                </div>
+                <TexturedBlock 
+                  className="hidden md:block border-b border-black/10" 
+                  isGutter={true}
+                />
               )}
               
-              {/* Content block - reduced padding for shorter height */}
-              <div className={`
-                bg-accent p-6 lg:p-8 relative group hover:brightness-105 cursor-pointer 
-                border-b border-black/10
-                ${isLeftColumn ? 'md:border-r border-black/10' : 'md:border-l border-black/10'}
-              `}>
-                <NoiseTexture />
-                <p className="relative text-[9px] font-bold uppercase tracking-[0.3em] text-black/40 mb-3">{item.category}</p>
-                <h3 className="relative text-lg font-bold text-black/90 mb-2 group-hover:text-black">{item.title}</h3>
-                <p className="relative text-sm text-black/50 leading-relaxed">{item.description}</p>
-              </div>
+              {/* Content block */}
+              <TexturedBlock 
+                className={`
+                  p-6 lg:p-8 group cursor-pointer 
+                  border-b border-black/10
+                  ${isLeftColumn ? 'md:border-r border-black/10' : 'md:border-l border-black/10'}
+                  hover:brightness-[1.03] transition-all duration-200
+                `}
+              >
+                <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/50 mb-3">{item.category}</p>
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-white/90">{item.title}</h3>
+                <p className="text-sm text-white/60 leading-relaxed">{item.description}</p>
+              </TexturedBlock>
 
               {/* Right gutter - only for right column items */}
               {!isLeftColumn && (
-                <div className="hidden md:block bg-accent relative border-b border-black/10">
-                  <NoiseTexture />
-                </div>
+                <TexturedBlock 
+                  className="hidden md:block border-b border-black/10"
+                  isGutter={true}
+                />
               )}
             </motion.div>
           );
