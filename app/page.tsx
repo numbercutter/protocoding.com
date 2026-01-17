@@ -1,7 +1,8 @@
 import HeroSlider from '@/components/HeroSlider';
 import Tagline from '@/components/Tagline';
+import FeaturedWork from '@/components/FeaturedWork';
+import Difference from '@/components/Difference';
 import Services from '@/components/Services';
-import CaseStudies from '@/components/CaseStudies';
 import Process from '@/components/Process';
 import CTA from '@/components/CTA';
 
@@ -16,15 +17,19 @@ export default function Home() {
         <Tagline />
       </div>
       <div className="relative z-[3] md:sticky md:top-0 md:shadow-[0_-20px_60px_rgba(0,0,0,0.1)]">
-        <Services />
+        <FeaturedWork />
       </div>
-      <div className="relative z-[4] md:sticky md:top-0 md:shadow-[0_-20px_60px_rgba(0,0,0,0.1)]">
-        <CaseStudies />
+      {/* Difference has internal scroll-driven sticky - not in sticky stack */}
+      <div className="relative z-[4]">
+        <Difference />
       </div>
       <div className="relative z-[5] md:sticky md:top-0 md:shadow-[0_-20px_60px_rgba(0,0,0,0.1)]">
+        <Services />
+      </div>
+      <div className="relative z-[6] md:sticky md:top-0 md:shadow-[0_-20px_60px_rgba(0,0,0,0.1)]">
         <Process />
       </div>
-      <div className="relative z-[6] md:sticky md:top-0 md:shadow-[0_-20px_60px_rgba(0,0,0,0.2)]">
+      <div className="relative z-[7] md:sticky md:top-0 md:shadow-[0_-20px_60px_rgba(0,0,0,0.2)]">
         <CTA />
       </div>
     </div>

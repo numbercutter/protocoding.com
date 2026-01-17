@@ -59,7 +59,7 @@ export default function Navigation() {
         className={`fixed top-0 left-0 right-0 z-50 ${navBg} border-b ${borderColor}`}
       >
         {/* Mobile: no gutters, Desktop: with gutters */}
-        <div className="h-14 md:grid md:grid-cols-[56px_1fr_56px] lg:grid-cols-[72px_1fr_72px]">
+        <div className="h-14 md:grid md:grid-cols-[80px_1fr_80px] lg:grid-cols-[100px_1fr_100px] xl:grid-cols-[120px_1fr_120px]">
           {/* Left gutter - hidden on mobile */}
           <div className={`hidden md:block ${gutterBg} border-r ${borderColor}`} />
           
@@ -103,7 +103,7 @@ export default function Navigation() {
         initial={false}
         animate={{ y: !showFullNav ? 0 : -60, opacity: !showFullNav ? 1 : 0 }}
         transition={{ duration: 0.2, ease: 'easeOut' }}
-        className="fixed top-0 right-0 md:right-[56px] lg:right-[72px] z-50 p-3"
+        className="fixed top-0 right-0 md:right-[80px] lg:right-[100px] xl:right-[120px] z-50 p-3"
       >
         <Link href="/contact" className="flex items-center gap-2 px-5 py-3 bg-accent text-[var(--text-primary)] text-[12px] font-bold tracking-wide hover:brightness-110 shadow-xl">
           Free Assessment <ArrowUpRight size={12} />
