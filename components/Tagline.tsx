@@ -33,7 +33,7 @@ export default function Tagline() {
             viewport={{ once: true }}
             className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-4"
           >
-            What We Do
+            What We Build
           </motion.p>
 
           <motion.h2
@@ -43,7 +43,7 @@ export default function Tagline() {
             transition={{ delay: 0.1 }}
             className="text-[clamp(1.75rem,6vw,4.5rem)] font-bold text-gray-900 leading-[1.05] tracking-tighter max-w-5xl"
           >
-            Fractional dev. <span className="text-accent">AI integration.</span> Full-stack builds. Go-to-market.
+            <span className="text-accent">AI applications.</span> Custom platforms. Intelligent integrations.
           </motion.h2>
 
           <motion.p
@@ -53,7 +53,7 @@ export default function Tagline() {
             transition={{ delay: 0.2 }}
             className="mt-5 md:mt-8 text-base md:text-xl text-gray-500 max-w-xl leading-relaxed"
           >
-            We embed with your team or build from scratch. Product design, engineering, and consulting—whatever you need to ship.
+            From multi-agent systems to full-stack platforms, we design and deliver software that transforms how businesses operate.
           </motion.p>
         </div>
       </div>

@@ -3,8 +3,8 @@ import './globals.css';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
-const title = 'Protocoding - Next Generation AI Software Development';
-const description = 'Protocoding is a boutique software development firm that partners with businesses to design and deliver customized software and AI solutions.';
+const title = 'Protocoding - AI Development Studio';
+const description = 'Protocoding is an AI development studio that designs and builds intelligent software applications, custom platforms, and AI integrations for businesses.';
 const siteUrl = 'https://www.protocoding.com';
 
 export const metadata: Metadata = {
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
         url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: 'Protocoding - AI Software Development Company',
+        alt: 'Protocoding - AI Development Studio',
       },
     ],
   },
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest',
   
   // Additional SEO
-  keywords: ['software development', 'AI development', 'full-stack engineering', 'fractional development', 'startup development', 'web development', 'mobile development', 'AI integration'],
+  keywords: ['AI development', 'AI development studio', 'intelligent software', 'custom platforms', 'AI integration', 'multi-agent AI', 'software development', 'full-stack engineering'],
   authors: [{ name: 'Protocoding' }],
   creator: 'Protocoding',
   publisher: 'Protocoding',
