@@ -6,7 +6,6 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
 const CATEGORIES = [
-  { id: 'all', label: 'All Solutions', count: 24 },
   { id: 'fintech', label: 'Financial Services', count: 4 },
   { id: 'healthcare', label: 'Healthcare', count: 4 },
   { id: 'ecommerce', label: 'E-Commerce', count: 4 },
@@ -58,7 +57,7 @@ const ITEMS_MOBILE = 6;
 const ITEMS_DESKTOP = 12;
 
 export default function Services() {
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeCategory, setActiveCategory] = useState('fintech');
   const [page, setPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(ITEMS_DESKTOP);
   
@@ -76,9 +75,7 @@ export default function Services() {
   }, []);
   
   // Get filtered items
-  const allFilteredCases = activeCategory === 'all' 
-    ? USE_CASES 
-    : USE_CASES.filter(c => c.category === activeCategory);
+  const allFilteredCases = USE_CASES.filter(c => c.category === activeCategory);
   
   // Calculate pagination
   const totalPages = Math.ceil(allFilteredCases.length / itemsPerPage);
