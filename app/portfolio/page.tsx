@@ -95,7 +95,7 @@ export default function PortfolioPage() {
         <div className="material grid grid-cols-2 md:grid-cols-4">
           {[
             { value: '20+', label: 'Projects Delivered' },
-            { value: '4', label: 'Industries' },
+            { value: '6+', label: 'Industries Served' },
             { value: '100%', label: 'Client Satisfaction' },
             { value: '2024', label: 'Latest Work' },
           ].map((stat) => (

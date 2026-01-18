@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import AnimatedCounter from './AnimatedCounter';
 
 // Animation variants for work items
 const cardVariants = {
@@ -19,26 +18,26 @@ const cardVariants = {
   },
 };
 
-const WORK_ITEMS = [
+const INDUSTRY_CAPABILITIES = [
   {
-    category: 'AI Integration',
-    title: 'Aivre Appraisal Automation',
-    description: 'Built an AI-powered tool that simplifies and speeds up the appraisal process. React, Node, custom ML.',
+    category: 'Healthcare',
+    title: 'AI-Powered Clinical Intelligence',
+    description: 'HIPAA-compliant diagnostic assistants, patient risk prediction, and automated medical coding that reduces administrative burden by 60%.',
   },
   {
-    category: 'Full-Stack Build',
-    title: 'Lit Financial Platform',
-    description: 'Modern mortgage platform helping people find homes at rates they deserve. React, Contentful, Express.',
+    category: 'Financial Services',
+    title: 'Intelligent Risk & Compliance',
+    description: 'Real-time fraud detection, automated loan underwriting, and regulatory reporting systems that cut processing time from days to minutes.',
   },
   {
-    category: 'AI + Product',
-    title: 'What\'s What Chat Interface',
-    description: 'Sophisticated GPT-4 powered chat for young professionals seeking career and life guidance.',
+    category: 'Real Estate',
+    title: 'Smart Property Valuations',
+    description: 'ML-powered appraisal automation, predictive market analytics, and transaction management that accelerates closings by 40%.',
   },
   {
-    category: 'Go-to-Market',
-    title: 'Poser AI Imagery',
-    description: 'Launched platform for lifelike AI models posed in diverse scenes. Webflow, FLUX integration.',
+    category: 'E-Commerce & SaaS',
+    title: 'Personalization at Scale',
+    description: 'AI recommendation engines, dynamic pricing optimization, and automated customer support that drives 25%+ conversion lifts.',
   },
 ];
 
@@ -141,12 +140,12 @@ export default function FeaturedWork() {
       <section className="section-row">
         <div className="gutter-left" />
         <div className="material-elevated p-6 md:p-8 lg:p-12">
-          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-gray-500 mb-3">Featured Work</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-gray-500 mb-3">How We Can Help</p>
           <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">
-            What your team does best, amplified.
+            AI that actually works for your industry.
           </h2>
           <p className="mt-3 text-sm text-gray-600 max-w-lg">
-            We don&apos;t replace your team. We extend it with senior engineers who ship.
+            From healthcare compliance to fintech scale—we build intelligent systems tailored to how your business actually operates.
           </p>
         </div>
         <div className="gutter-right" />
@@ -154,7 +153,7 @@ export default function FeaturedWork() {
 
       {/* Colored work blocks - 2x2 grid with premium texturing */}
       <div className="grid grid-cols-1 md:grid-cols-2">
-        {WORK_ITEMS.map((item, i) => {
+        {INDUSTRY_CAPABILITIES.map((item, i) => {
           const isLeftColumn = i % 2 === 0;
           
           return (
@@ -212,17 +211,17 @@ export default function FeaturedWork() {
         <div className="gutter-left" />
         <div className="material-inset p-8 md:p-10 lg:p-16 flex items-center justify-center">
           <motion.div 
-            className="text-center"
+            className="text-center max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
           >
-            <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">
-              <AnimatedCounter end={20} suffix="+" duration={1.5} />
+            <p className="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 tracking-tight mb-3">
+              Your industry, your workflows, your AI.
             </p>
-            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-gray-600">
-              Projects delivered across AI, fintech, and consumer products
+            <p className="text-sm text-gray-600 leading-relaxed">
+              We don&apos;t sell one-size-fits-all solutions. Every integration is built around how your team actually works—not how software vendors wish you did.
             </p>
           </motion.div>
         </div>

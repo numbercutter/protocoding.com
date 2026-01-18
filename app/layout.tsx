@@ -96,6 +96,41 @@ export const metadata: Metadata = {
   // },
 };
 
+// Organization schema for site-wide SEO
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Protocoding',
+  url: siteUrl,
+  logo: `${siteUrl}/brand/logo_color.svg`,
+  description: description,
+  email: 'hello@protocoding.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'San Francisco',
+    addressRegion: 'CA',
+    addressCountry: 'US',
+  },
+  sameAs: [
+    // Add your social media URLs here when ready
+    // 'https://linkedin.com/company/protocoding',
+    // 'https://twitter.com/protocoding',
+  ],
+};
+
+// WebSite schema for sitelinks search box
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Protocoding',
+  url: siteUrl,
+  description: description,
+  publisher: {
+    '@type': 'Organization',
+    name: 'Protocoding',
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -103,6 +138,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${dmSans.variable} ${plusJakartaSans.variable}`}>
+      <head>
+        {/* JSON-LD structured data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+      </head>
       <body>
         <ScrollProgress />
         <Navigation />

@@ -1,13 +1,15 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowUpRight, ArrowLeft } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { INSIGHTS, INSIGHT_SLUGS, TOPIC_LABELS } from '@/lib/data/insights';
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
+const siteUrl = 'https://www.protocoding.com';
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -64,8 +66,44 @@ export default async function InsightPage({ params }: Props) {
     .map((insightSlug) => INSIGHTS[insightSlug])
     .filter(Boolean);
 
+  // JSON-LD structured data for SEO
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: insight.title,
+    description: insight.description,
+    image: insight.heroImage ? `${siteUrl}${insight.heroImage}` : `${siteUrl}/og-image.png`,
+    datePublished: insight.publishedAt,
+    dateModified: insight.publishedAt,
+    author: {
+      '@type': 'Person',
+      name: insight.author.name,
+      jobTitle: insight.author.role,
+      url: `${siteUrl}/about`,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Protocoding',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/brand/logo_color.svg`,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${siteUrl}/insights/${slug}`,
+    },
+    keywords: insight.tags.join(', '),
+  };
+
   return (
     <>
+      {/* JSON-LD structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Hero section */}
       <div className="section-row-dark">
         <div className="gutter-left" />
