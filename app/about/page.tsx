@@ -87,7 +87,7 @@ export default function AboutPage() {
               <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">The Founders</p>
               <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight mb-4">Ryan & Jordan Lesson</h2>
               <p className="text-sm text-gray-500 leading-relaxed">
-                Ryan spent over a decade at Microsoft and Walmart Global Tech, leading teams and shipping enterprise software. He got Jordan into coding when they were younger, and Jordan ran with it. Sold his first app in high school. We saw the same gap from different angles: too many agencies out there delivering mediocre work at premium prices. We knew we could do better.
+                Ryan spent over a decade at Microsoft and Walmart Global Tech, leading teams and shipping enterprise software. Jordan started coding young and sold his first app in high school. They saw the same gap from different angles: too many agencies delivering mediocre work at premium prices. They started Protocoding to do it better.
               </p>
             </div>
             <div className="flex gap-4">
