@@ -6,51 +6,51 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
 const CATEGORIES = [
-  { id: 'all', label: 'All Industries', count: 24 },
-  { id: 'fintech', label: 'Fintech', count: 4 },
+  { id: 'all', label: 'All Solutions', count: 24 },
+  { id: 'fintech', label: 'Financial Services', count: 4 },
   { id: 'healthcare', label: 'Healthcare', count: 4 },
   { id: 'ecommerce', label: 'E-Commerce', count: 4 },
-  { id: 'enterprise', label: 'Enterprise', count: 4 },
-  { id: 'saas', label: 'SaaS', count: 4 },
-  { id: 'ai', label: 'AI Integration', count: 4 },
+  { id: 'realestate', label: 'Real Estate', count: 4 },
+  { id: 'saas', label: 'SaaS & Startups', count: 4 },
+  { id: 'manufacturing', label: 'Manufacturing', count: 4 },
 ];
 
 const USE_CASES = [
-  // Fintech
-  { category: 'fintech', title: 'Trading Platform Build', desc: 'Real-time trading interfaces with WebSocket integrations.' },
-  { category: 'fintech', title: 'Payment Processing', desc: 'Stripe, Plaid, and custom payment gateway integrations.' },
-  { category: 'fintech', title: 'Risk Assessment AI', desc: 'ML models for credit scoring and fraud detection.' },
-  { category: 'fintech', title: 'Regulatory Reporting', desc: 'Automated compliance reports for SEC, FINRA.' },
+  // Financial Services
+  { category: 'fintech', title: 'Cut loan processing from weeks to hours', desc: 'ML models that analyze 50+ risk factors and make underwriting decisions in seconds. Not days.' },
+  { category: 'fintech', title: 'Catch fraud before it hits your books', desc: 'Real-time transaction monitoring that flags suspicious patterns before losses occur.' },
+  { category: 'fintech', title: 'Eliminate manual compliance reporting', desc: 'SEC, FINRA, SOX reports that generate themselves from your existing data.' },
+  { category: 'fintech', title: 'Launch digital banking features faster', desc: 'Plaid, Stripe, custom payment rails. Drop them in without touching your core systems.' },
   
   // Healthcare
-  { category: 'healthcare', title: 'Patient Portal', desc: 'HIPAA-compliant web and mobile applications.' },
-  { category: 'healthcare', title: 'EHR Integration', desc: 'HL7 FHIR connectors to Epic, Cerner systems.' },
-  { category: 'healthcare', title: 'Medical Document AI', desc: 'Extract structured data from clinical notes.' },
-  { category: 'healthcare', title: 'Telehealth Platform', desc: 'Video consultation with scheduling.' },
+  { category: 'healthcare', title: 'Free clinicians from documentation', desc: 'AI scribes that pull structured data from notes. Providers get 2+ hours back every day.' },
+  { category: 'healthcare', title: 'Reduce missed diagnoses with AI triage', desc: 'Clinical decision support that surfaces relevant patient history and suggests workups.' },
+  { category: 'healthcare', title: 'Connect siloed health systems', desc: 'HL7 FHIR integrations that unify data from Epic, Cerner, and legacy EHRs.' },
+  { category: 'healthcare', title: 'Scale telehealth without more staff', desc: 'AI handles intake, scheduling, and follow-up. Your team focuses on actual care.' },
   
   // E-Commerce
-  { category: 'ecommerce', title: 'Headless Commerce', desc: 'Shopify, BigCommerce with React storefronts.' },
-  { category: 'ecommerce', title: 'Inventory Automation', desc: 'Real-time sync across warehouses.' },
-  { category: 'ecommerce', title: 'Product Recommendations', desc: 'Personalized recommendations with AI.' },
-  { category: 'ecommerce', title: 'Checkout Optimization', desc: 'A/B tested flows with fraud prevention.' },
+  { category: 'ecommerce', title: 'Personalize every customer touchpoint', desc: 'Recommendations that adapt in real-time. We see 25%+ higher cart values.' },
+  { category: 'ecommerce', title: 'Stop losing sales to checkout friction', desc: 'One-click flows with fraud prevention that approves more and declines less.' },
+  { category: 'ecommerce', title: 'Automate inventory across all channels', desc: 'Real-time sync across 10+ platforms. No more stockouts or overselling.' },
+  { category: 'ecommerce', title: 'Turn browsers into buyers with AI chat', desc: 'Answers questions, completes purchases. Works at 3am when you don\'t.' },
   
-  // Enterprise
-  { category: 'enterprise', title: 'Legacy Migration', desc: 'Modernize monoliths to microservices.' },
-  { category: 'enterprise', title: 'Internal Tools', desc: 'Admin dashboards and workflow automation.' },
-  { category: 'enterprise', title: 'SSO & Identity', desc: 'Okta, Auth0, Azure AD integrations.' },
-  { category: 'enterprise', title: 'Data Pipelines', desc: 'ETL workflows and real-time analytics.' },
+  // Real Estate
+  { category: 'realestate', title: 'Appraise properties in minutes', desc: 'ML models that analyze comps, market trends, and property data. Instant valuations.' },
+  { category: 'realestate', title: 'Close deals 40% faster', desc: 'Digital transaction management. No more paper pushing and endless email chains.' },
+  { category: 'realestate', title: 'Predict market trends first', desc: 'Dashboards that surface opportunities from MLS and economic data before your competition.' },
+  { category: 'realestate', title: 'Automate tenant screening', desc: 'Background checks, income verification, lease generation. One workflow, start to finish.' },
   
-  // SaaS
-  { category: 'saas', title: 'MVP Development', desc: 'Idea to launched product in 8-12 weeks.' },
-  { category: 'saas', title: 'Multi-Tenant Architecture', desc: 'Scalable infrastructure with tenant isolation.' },
-  { category: 'saas', title: 'API Platform', desc: 'RESTful and GraphQL APIs with SDKs.' },
-  { category: 'saas', title: 'Usage Analytics', desc: 'Product analytics and feature flags.' },
+  // SaaS & Startups
+  { category: 'saas', title: 'Go from idea to MVP in 8 weeks', desc: 'Architecture that scales from day one. Build once, never rebuild.' },
+  { category: 'saas', title: 'Reduce churn with predictive analytics', desc: 'ML flags at-risk accounts before they cancel. Retention jumps 20%+.' },
+  { category: 'saas', title: 'Ship features 2x faster', desc: 'Embedded engineers who slot into your team and your workflows.' },
+  { category: 'saas', title: 'Handle 10x traffic without 10x costs', desc: 'Infrastructure that scales elastically. Pay for what you use.' },
   
-  // AI Integration
-  { category: 'ai', title: 'LLM Integration', desc: 'OpenAI, Anthropic models in your product.' },
-  { category: 'ai', title: 'Document Processing', desc: 'Extract and summarize documents at scale.' },
-  { category: 'ai', title: 'Conversational AI', desc: 'Chatbots with RAG and knowledge bases.' },
-  { category: 'ai', title: 'Computer Vision', desc: 'Image classification, OCR, visual inspection.' },
+  // Manufacturing
+  { category: 'manufacturing', title: 'Predict equipment failures early', desc: 'IoT sensors + ML models. Maintenance happens when it matters, not on arbitrary schedules.' },
+  { category: 'manufacturing', title: 'Catch defects humans miss', desc: 'Computer vision inspection at production speed. Quality issues get caught, not shipped.' },
+  { category: 'manufacturing', title: 'Optimize supply chain in real-time', desc: 'Demand forecasting that cuts carrying costs 15-30%.' },
+  { category: 'manufacturing', title: 'Digitize paper-based processes', desc: 'Tablets replace clipboards. Data gets captured and actually drives decisions.' },
 ];
 
 // Responsive items per page
@@ -106,13 +106,13 @@ export default function Services() {
         <div className="p-6 md:p-8 lg:p-12 material-elevated border-b border-black/[0.08]">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 md:gap-6">
             <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-gray-500 mb-3">What We Build</p>
+              <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-gray-500 mb-3">Your Industry, Solved</p>
               <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-gray-900 tracking-tight">
-                Shipped across every industry
+                Real problems we solve every day
               </h2>
             </div>
             <p className="text-sm text-gray-600 max-w-sm leading-relaxed">
-              From Series A startups to Fortune 500 enterprises. Here are the types of projects we deliver.
+              Not hypotheticals. These are the exact workflows we automate and the outcomes we deliver for teams like yours.
             </p>
           </div>
         </div>
@@ -220,21 +220,14 @@ export default function Services() {
 
         {/* Bottom CTA */}
         <div className="border-t border-black/[0.08] p-6 lg:p-8 material-inset flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-8">
-            <div className="text-center md:text-left">
-              <span className="text-2xl font-bold text-gray-900">50+</span>
-              <span className="text-sm text-gray-500 ml-2">projects shipped</span>
-            </div>
-            <div className="text-center md:text-left">
-              <span className="text-2xl font-bold text-gray-900">6</span>
-              <span className="text-sm text-gray-500 ml-2">industries served</span>
-            </div>
-          </div>
+          <p className="text-sm text-gray-600 max-w-md text-center md:text-left">
+            <span className="font-bold text-gray-900">Don&apos;t see your use case?</span> We&apos;ve likely solved something similar. Let&apos;s talk about what&apos;s slowing your team down.
+          </p>
           <Link 
             href="/contact" 
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white text-xs font-bold tracking-wide hover:bg-gray-800 transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white text-xs font-bold tracking-wide hover:bg-gray-800 transition-all whitespace-nowrap"
           >
-            Start a Project <ArrowUpRight size={12} />
+            Tell Us Your Challenge <ArrowUpRight size={12} />
           </Link>
         </div>
       </div>

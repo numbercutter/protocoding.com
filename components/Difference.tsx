@@ -26,7 +26,7 @@ const FEATURES = [
   {
     num: '04',
     title: 'Quality Obsessed',
-    description: 'We don\'t cut corners. Every project gets the attention it deserves—from architecture decisions to pixel-perfect implementation and thorough testing.',
+    description: 'We don\'t cut corners. Every project gets the attention it deserves. Architecture decisions, pixel-perfect implementation, thorough testing. All of it.',
     details: ['Comprehensive testing', 'CI/CD pipelines', 'Documentation standards', 'Long-term maintainability'],
   },
 ];

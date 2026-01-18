@@ -21,23 +21,23 @@ const cardVariants = {
 const INDUSTRY_CAPABILITIES = [
   {
     category: 'Healthcare',
-    title: 'AI-Powered Clinical Intelligence',
-    description: 'HIPAA-compliant diagnostic assistants, patient risk prediction, and automated medical coding that reduces administrative burden by 60%.',
+    title: 'Clinical AI That Ships',
+    description: 'We build HIPAA-compliant tools that actually get used. Diagnostic assistants, risk scoring, medical coding. The stuff that gives clinicians their time back.',
   },
   {
     category: 'Financial Services',
-    title: 'Intelligent Risk & Compliance',
-    description: 'Real-time fraud detection, automated loan underwriting, and regulatory reporting systems that cut processing time from days to minutes.',
+    title: 'Risk & Compliance Automation',
+    description: 'Fraud detection that catches things before they hit your books. Underwriting that takes minutes instead of days. Compliance reports that write themselves.',
   },
   {
     category: 'Real Estate',
-    title: 'Smart Property Valuations',
-    description: 'ML-powered appraisal automation, predictive market analytics, and transaction management that accelerates closings by 40%.',
+    title: 'Faster Closings, Better Data',
+    description: 'Appraisals in minutes. Market predictions that actually pan out. Transaction management that cuts weeks off your timeline.',
   },
   {
     category: 'E-Commerce & SaaS',
-    title: 'Personalization at Scale',
-    description: 'AI recommendation engines, dynamic pricing optimization, and automated customer support that drives 25%+ conversion lifts.',
+    title: 'Convert More, Churn Less',
+    description: 'Recommendations that know what customers want before they do. Checkout flows that stop losing sales. Support that handles itself at 3am.',
   },
 ];
 
@@ -145,7 +145,7 @@ export default function FeaturedWork() {
             AI that actually works for your industry.
           </h2>
           <p className="mt-3 text-sm text-gray-600 max-w-lg">
-            From healthcare compliance to fintech scale—we build intelligent systems tailored to how your business actually operates.
+            Healthcare compliance. Fintech scale. Whatever your industry throws at you. We build systems that fit how you actually work.
           </p>
         </div>
         <div className="gutter-right" />
@@ -221,7 +221,7 @@ export default function FeaturedWork() {
               Your industry, your workflows, your AI.
             </p>
             <p className="text-sm text-gray-600 leading-relaxed">
-              We don&apos;t sell one-size-fits-all solutions. Every integration is built around how your team actually works—not how software vendors wish you did.
+              No cookie-cutter solutions. We build around how your team actually works, not how some software vendor thinks you should.
             </p>
           </motion.div>
         </div>

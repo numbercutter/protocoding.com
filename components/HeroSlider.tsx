@@ -35,10 +35,10 @@ const itemVariants = {
 
 // Company logos for the marquee
 const COMPANIES = [
-  { name: 'DGB', logo: '/clients/dgb.png' },
-  { name: 'LIT Financial', logo: '/clients/litfinancial.png' },
-  { name: 'Poser', logo: '/clients/poser.png' },
-  { name: 'WhatsWhat', logo: '/clients/whatswhat.png' },
+  { name: 'DGB', logo: '/clients/dgb.png', invert: true },
+  { name: 'LIT Financial', logo: '/clients/litfinancial.png', invert: true },
+  { name: 'Poser', logo: '/clients/poser.png', invert: true },
+  { name: 'WhatsWhat', logo: '/clients/whatswhat.png', invert: false }, // Already white
 ];
 
 // Logo Marquee component - dark mode version
@@ -64,7 +64,7 @@ function LogoMarquee() {
               alt={`${company.name} logo`} 
               width={112} 
               height={48} 
-              className="object-contain opacity-30 hover:opacity-50 transition-opacity invert"
+              className={`object-contain opacity-30 hover:opacity-50 transition-opacity ${company.invert ? 'invert' : ''}`}
               loading="lazy"
             />
           </div>
@@ -80,7 +80,7 @@ function LogoMarquee() {
               alt="" 
               width={112} 
               height={48} 
-              className="object-contain opacity-30 hover:opacity-50 transition-opacity invert"
+              className={`object-contain opacity-30 hover:opacity-50 transition-opacity ${company.invert ? 'invert' : ''}`}
               loading="lazy"
               aria-hidden="true"
             />

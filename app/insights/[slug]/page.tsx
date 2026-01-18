@@ -147,14 +147,15 @@ export default async function InsightPage({ params }: Props) {
         <div className="section-row">
           <div className="gutter-left" />
           <div className="material overflow-hidden">
-            <Image
-              src={insight.heroImage}
-              alt={insight.title}
-              width={1200}
-              height={675}
-              className="w-full h-auto"
-              priority
-            />
+            <div className="relative h-64 md:h-80 lg:h-96">
+              <Image
+                src={insight.heroImage}
+                alt={insight.title}
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
           </div>
           <div className="gutter-right" />
         </div>
