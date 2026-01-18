@@ -52,11 +52,11 @@ const TexturedBlock = ({
   isGutter?: boolean;
 }) => (
   <div 
-    className={`relative overflow-hidden bg-accent ${className}`}
+    className={`relative overflow-hidden bg-[#ebe8e4] ${className}`}
   >
     {/* Base noise - fine grain */}
     <div 
-      className="absolute inset-0 pointer-events-none opacity-[0.15] mix-blend-overlay"
+      className="absolute inset-0 pointer-events-none opacity-[0.4] mix-blend-overlay"
       style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
       }}
@@ -64,7 +64,7 @@ const TexturedBlock = ({
     
     {/* Secondary noise layer - larger grain for depth */}
     <div 
-      className="absolute inset-0 pointer-events-none opacity-[0.08] mix-blend-soft-light"
+      className="absolute inset-0 pointer-events-none opacity-[0.15] mix-blend-multiply"
       style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
       }}
@@ -74,7 +74,7 @@ const TexturedBlock = ({
     <div 
       className="absolute top-0 left-0 right-0 h-[1px] pointer-events-none"
       style={{
-        background: 'linear-gradient(90deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 100%)',
+        background: 'linear-gradient(90deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.1) 100%)',
       }}
     />
     
@@ -82,7 +82,7 @@ const TexturedBlock = ({
     <div 
       className="absolute top-0 left-0 bottom-0 w-[1px] pointer-events-none"
       style={{
-        background: 'linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.05) 100%)',
+        background: 'linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.05) 100%)',
       }}
     />
     
@@ -90,7 +90,7 @@ const TexturedBlock = ({
     <div 
       className="absolute bottom-0 left-0 right-0 h-[1px] pointer-events-none"
       style={{
-        background: 'linear-gradient(90deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.1) 100%)',
+        background: 'linear-gradient(90deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.05) 100%)',
       }}
     />
     
@@ -98,7 +98,7 @@ const TexturedBlock = ({
     <div 
       className="absolute top-0 right-0 bottom-0 w-[1px] pointer-events-none"
       style={{
-        background: 'linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.12) 100%)',
+        background: 'linear-gradient(180deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.08) 100%)',
       }}
     />
     
@@ -107,11 +107,11 @@ const TexturedBlock = ({
       className="absolute inset-0 pointer-events-none"
       style={{
         boxShadow: `
-          inset 0 1px 0 rgba(255,255,255,0.15),
-          inset 1px 0 0 rgba(255,255,255,0.1),
-          inset 0 -1px 0 rgba(0,0,0,0.08),
-          inset -1px 0 0 rgba(0,0,0,0.05),
-          inset 0 2px 8px rgba(0,0,0,0.04)
+          inset 0 1px 0 rgba(255,255,255,0.4),
+          inset 1px 0 0 rgba(255,255,255,0.2),
+          inset 0 -1px 0 rgba(0,0,0,0.04),
+          inset -1px 0 0 rgba(0,0,0,0.03),
+          inset 0 2px 8px rgba(0,0,0,0.03)
         `,
       }}
     />
@@ -121,7 +121,7 @@ const TexturedBlock = ({
       <div 
         className="absolute inset-0 pointer-events-none opacity-30"
         style={{
-          background: 'radial-gradient(ellipse at 0% 0%, rgba(255,255,255,0.15) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse at 0% 0%, rgba(255,255,255,0.5) 0%, transparent 50%)',
         }}
       />
     )}
@@ -152,59 +152,39 @@ export default function FeaturedWork() {
       </section>
 
       {/* Colored work blocks - 2x2 grid with premium texturing */}
-      <div className="grid grid-cols-1 md:grid-cols-2">
-        {INDUSTRY_CAPABILITIES.map((item, i) => {
-          const isLeftColumn = i % 2 === 0;
-          
-          return (
-            <motion.div
-              key={item.title}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.08 }}
-              className={`
-                grid 
-                ${isLeftColumn 
-                  ? 'grid-cols-1 md:grid-cols-[80px_1fr] lg:grid-cols-[100px_1fr] xl:grid-cols-[120px_1fr]' 
-                  : 'grid-cols-1 md:grid-cols-[1fr_80px] lg:grid-cols-[1fr_100px] xl:grid-cols-[1fr_120px]'
-                }
-              `}
-            >
-              {/* Left gutter - only for left column items */}
-              {isLeftColumn && (
-                <TexturedBlock 
-                  className="hidden md:block border-b border-black/10" 
-                  isGutter={true}
-                />
-              )}
-              
-              {/* Content block */}
-              <TexturedBlock 
-                className={`
-                  p-6 lg:p-8 group cursor-pointer 
-                  border-b border-black/10
-                  ${isLeftColumn ? 'md:border-r border-black/10' : 'md:border-l border-black/10'}
-                  hover:brightness-[1.03] transition-all duration-200
-                `}
+      <section className="section-row">
+        <div className="gutter-left" />
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          {INDUSTRY_CAPABILITIES.map((item, i) => {
+            const isLeftColumn = i % 2 === 0;
+            
+            return (
+              <motion.div
+                key={item.title}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.08 }}
               >
-                <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-black/50 mb-3">{item.category}</p>
-                <h3 className="text-lg font-bold text-black/90 mb-2 group-hover:text-black">{item.title}</h3>
-                <p className="text-sm text-black/70 leading-relaxed">{item.description}</p>
-              </TexturedBlock>
-
-              {/* Right gutter - only for right column items */}
-              {!isLeftColumn && (
                 <TexturedBlock 
-                  className="hidden md:block border-b border-black/10"
-                  isGutter={true}
-                />
-              )}
-            </motion.div>
-          );
-        })}
-      </div>
+                  className={`
+                    p-6 lg:p-8 group cursor-pointer 
+                    border-b border-black/10
+                    ${isLeftColumn ? 'md:border-r border-black/10' : ''}
+                    hover:bg-[#e2dfda] transition-all duration-200
+                  `}
+                >
+                  <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-black/40 mb-3">{item.category}</p>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-black">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.description}</p>
+                </TexturedBlock>
+              </motion.div>
+            );
+          })}
+        </div>
+        <div className="gutter-right" />
+      </section>
 
       {/* Bottom separator - more prominent with extra padding */}
       <section className="section-row flex-1">
