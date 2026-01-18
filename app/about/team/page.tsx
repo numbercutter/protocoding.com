@@ -174,7 +174,7 @@ export default function TeamPage() {
       <div className="section-row">
         <div className="gutter-left" />
         <Link
-          href="/contact"
+          href="/careers"
           className="material flex items-center justify-center gap-2 p-8 text-sm font-bold text-gray-900 hover:material-elevated transition-all uppercase tracking-[0.2em]"
         >
           Work With Us <ArrowUpRight size={14} />
