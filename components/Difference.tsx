@@ -81,7 +81,7 @@ export default function Difference() {
         
         <div className="material-dark p-6 py-12">
           {/* Header */}
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-2">Why Us</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-white/50 mb-2">Why Us</p>
           <h2 className="text-xl font-bold text-white tracking-tight mb-8">
             The Protocoding <span className="text-accent">Difference</span>
           </h2>
@@ -90,9 +90,9 @@ export default function Difference() {
           <div className="space-y-6">
             {FEATURES.map((feature) => (
               <div key={feature.num} className="border-l-2 border-accent pl-4">
-                <span className="text-xs font-bold text-white/30 tracking-widest">{feature.num}</span>
+                <span className="text-xs font-bold text-white/50 tracking-widest">{feature.num}</span>
                 <h3 className="text-lg font-bold text-white mt-1 mb-2">{feature.title}</h3>
-                <p className="text-sm text-white/50 leading-relaxed">{feature.description}</p>
+                <p className="text-sm text-white/70 leading-relaxed">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -117,7 +117,7 @@ export default function Difference() {
           {/* Subtle B&W workplace backdrop */}
           <div className="absolute inset-0 pointer-events-none">
             <Image
-              src="/workplace/-gjBJn7gW_wxkRb33nQIE.png"
+              src="/workplace/assessment.png"
               alt=""
               fill
               className="object-cover grayscale opacity-[0.05]"
@@ -131,7 +131,7 @@ export default function Difference() {
           
           {/* Left navigation */}
           <div className="hidden lg:flex flex-col justify-center p-8 lg:p-10 border-r border-white/[0.08]">
-            <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-4">Why Us</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-white/50 mb-4">Why Us</p>
             <h2 className="text-2xl font-bold text-white tracking-tight mb-10">
               The Protocoding<br />
               <span className="text-accent">Difference</span>
@@ -145,11 +145,11 @@ export default function Difference() {
                     px-4 py-3 text-sm font-semibold transition-all duration-300 flex items-center gap-4
                     ${activeIndex === index 
                       ? 'bg-accent text-black/80' 
-                      : 'text-white/30'
+                      : 'text-white/50'
                     }
                   `}
                 >
-                  <span className="text-[10px] font-bold tracking-[0.3em]">{feature.num}</span>
+                  <span className="text-[11px] font-bold tracking-[0.3em]">{feature.num}</span>
                   {feature.title}
                 </div>
               ))}
@@ -169,19 +169,19 @@ export default function Difference() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -40 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
                 className="max-w-2xl"
               >
-                <span className="text-6xl lg:text-8xl font-bold text-white/10 tracking-tight block mb-6">{activeFeature.num}</span>
+                <span className="text-6xl lg:text-8xl font-bold text-white/15 tracking-tight block mb-6">{activeFeature.num}</span>
                 <h3 className="text-2xl lg:text-4xl font-bold text-white mb-6 tracking-tight">{activeFeature.title}</h3>
-                <p className="text-lg text-white/40 leading-relaxed mb-10">{activeFeature.description}</p>
+                <p className="text-lg text-white/60 leading-relaxed mb-10">{activeFeature.description}</p>
 
                 <div className="grid grid-cols-2 gap-4">
                   {activeFeature.details.map((detail) => (
-                    <div key={detail} className="flex items-center gap-3 text-sm text-white/50">
+                    <div key={detail} className="flex items-center gap-3 text-sm text-white/70">
                       <span className="w-1.5 h-1.5 bg-accent flex-shrink-0" />
                       {detail}
                     </div>

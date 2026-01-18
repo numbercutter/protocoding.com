@@ -7,10 +7,10 @@ import Image from 'next/image';
 
 // Company logos for the marquee
 const COMPANIES = [
-  { name: 'DGB', logo: '/dgb.png' },
-  { name: 'LIT Financial', logo: '/litfinancial.png' },
-  { name: 'Poser', logo: '/poser.png' },
-  { name: 'WhatsWhat', logo: '/whatswhat.png' },
+  { name: 'DGB', logo: '/clients/dgb.png' },
+  { name: 'LIT Financial', logo: '/clients/litfinancial.png' },
+  { name: 'Poser', logo: '/clients/poser.png' },
+  { name: 'WhatsWhat', logo: '/clients/whatswhat.png' },
 ];
 
 // Logo Marquee component - dark mode version
@@ -59,7 +59,7 @@ export default function HeroSlider() {
         {/* Workplace photo - fades in from right - z-0 */}
         <div className="absolute right-0 top-0 bottom-0 w-[70%] pointer-events-none hidden md:block z-0">
           <Image
-            src="/workplace/V79aX3fjufGxqBPGNmHiA.png"
+            src="/workplace/discovery.png"
             alt=""
             fill
             className="object-cover object-left opacity-[0.15]"
@@ -85,9 +85,9 @@ export default function HeroSlider() {
           
           {/* Overline */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.05 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="flex items-center gap-3 mb-6 md:mb-8"
           >
             <div className="w-8 md:w-12 h-[2px] bg-accent" />
@@ -97,9 +97,9 @@ export default function HeroSlider() {
           </motion.div>
           
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
             className="text-[clamp(2.25rem,7vw,4.5rem)] font-bold text-white leading-[1.05] tracking-tight max-w-3xl"
           >
             Building the future with{' '}
@@ -107,19 +107,19 @@ export default function HeroSlider() {
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-6 md:mt-8 text-base md:text-xl text-white/50 max-w-xl leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="mt-6 md:mt-8 text-base md:text-xl text-white/70 max-w-xl leading-relaxed"
           >
             We design and build AI-powered applications, custom platforms, and intelligent integrations that transform how businesses operate.
           </motion.p>
 
           {/* Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
             className="mt-8 md:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4"
           >
             <Link
@@ -132,7 +132,7 @@ export default function HeroSlider() {
             
             <Link
               href="/services"
-              className="group inline-flex items-center justify-center gap-2 px-7 py-4 border border-white/20 text-white/60 text-[11px] font-bold tracking-[0.12em] uppercase hover:border-white/40 hover:text-white transition-all"
+              className="group inline-flex items-center justify-center gap-2 px-7 py-4 border border-white/30 text-white/80 text-[11px] font-bold tracking-[0.12em] uppercase hover:border-white/50 hover:text-white transition-all"
             >
               Our services
               <span className="w-4 h-[1px] bg-current opacity-50 transition-all group-hover:w-6 group-hover:opacity-100" />

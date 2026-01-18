@@ -1,13 +1,63 @@
 import { NextResponse } from 'next/server';
+import { Resend } from 'resend';
+import { AdminNotificationEmail } from './admin-notification';
+import { CustomerConfirmationEmail } from './customer-confirmation';
+import { render } from '@react-email/render';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 interface ContactFormData {
   name: string;
   email: string;
-  phone?: string;
   company?: string;
-  projectScope: string;
-  timeline: string;
-  budget: string;
+  message: string;
+}
+
+async function sendEmails(data: ContactFormData) {
+  // Check field lengths for security
+  const maxLengthFields = ['name', 'email', 'company', 'message'] as const;
+  for (const field of maxLengthFields) {
+    const value = data[field];
+    if (value && value.length > 5000) {
+      throw new Error(`Field ${field} is too long`);
+    }
+  }
+
+  const [adminHtml, customerHtml] = await Promise.all([
+    render(
+      AdminNotificationEmail({
+        name: data.name,
+        email: data.email,
+        phone: '',
+        company: data.company || '',
+        projectScope: data.message,
+        timeline: '',
+        budget: ''
+      })
+    ),
+    render(
+      CustomerConfirmationEmail({
+        name: data.name,
+        timeline: '',
+        budget: ''
+      })
+    )
+  ]);
+
+  return Promise.all([
+    resend.emails.send({
+      from: 'Protocoding <contact@protocoding.com>',
+      to: ['ryan@protocoding.com', 'jordan@protocoding.com'],
+      subject: `New Project Inquiry from ${data.name}`,
+      html: adminHtml
+    }),
+    resend.emails.send({
+      from: 'Protocoding <contact@protocoding.com>',
+      to: data.email,
+      subject: 'Thank you for reaching out!',
+      html: customerHtml
+    })
+  ]);
 }
 
 export async function POST(request: Request) {
@@ -29,36 +79,25 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!data.projectScope || data.projectScope.length < 10) {
+    if (!data.message || data.message.length < 10) {
       return NextResponse.json(
-        { error: 'Project scope must be at least 10 characters' },
+        { error: 'Message must be at least 10 characters' },
         { status: 400 }
       );
     }
 
-    // Here you would typically:
-    // 1. Send an email notification using Resend
-    // 2. Store the submission in a database
-    // 3. Send a confirmation email to the user
-    
-    // For now, we'll just log the submission
+    // Log the submission
     console.log('New contact form submission:', {
       name: data.name,
       email: data.email,
-      phone: data.phone || 'Not provided',
       company: data.company || 'Not provided',
-      projectScope: data.projectScope,
-      timeline: data.timeline,
-      budget: data.budget,
+      message: data.message,
       submittedAt: new Date().toISOString(),
     });
 
-    // If Resend is configured, send emails
+    // Send emails if Resend is configured
     if (process.env.RESEND_API_KEY) {
-      // You can add Resend email logic here
-      // import { Resend } from 'resend';
-      // const resend = new Resend(process.env.RESEND_API_KEY);
-      // await resend.emails.send({...});
+      await sendEmails(data);
     }
 
     return NextResponse.json({ 

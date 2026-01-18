@@ -22,9 +22,10 @@
   --light-bg-elevated: #ffffff;
   --light-bg-inset: #f0f0f2;
   
-  /* Text */
+  /* Text - improved contrast */
   --text-primary: #111111;
-  --text-muted: #6b7280;
+  --text-muted: #4b5563; /* Darker for better readability */
+  --text-subtle: #6b7280; /* For less important text */
   
   /* Borders */
   --border: rgba(0, 0, 0, 0.1);
@@ -41,6 +42,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  font-size: 17px; /* Slightly larger base for better readability */
 }
 
 body {
@@ -48,6 +50,7 @@ body {
   color: var(--text-primary);
   font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
   letter-spacing: -0.01em;
+  line-height: 1.6; /* Improved line height for body text */
 }
 
 /* Headlines use Plus Jakarta Sans - clean digital geometric */

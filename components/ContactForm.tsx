@@ -26,7 +26,8 @@ export default function ContactForm() {
     if (!validate()) return;
     setIsSubmitting(true);
     try {
-      await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
+      const response = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
+      if (!response.ok) throw new Error('Failed to submit');
       setIsSuccess(true);
     } catch { setErrors({ message: 'Failed to submit' }); }
     finally { setIsSubmitting(false); }

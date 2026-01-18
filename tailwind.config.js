@@ -20,7 +20,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['DM Sans', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['Syne', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
       },
       spacing: {
         '18': '4.5rem',

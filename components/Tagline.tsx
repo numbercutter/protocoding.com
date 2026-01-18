@@ -14,7 +14,7 @@ export default function Tagline() {
         {/* Subtle B&W workplace backdrop - right side fade */}
         <div className="absolute right-0 top-0 bottom-0 w-[60%] pointer-events-none hidden lg:block">
           <Image
-            src="/workplace/V79aX3fjufGxqBPGNmHiA.png"
+            src="/workplace/discovery.png"
             alt=""
             fill
             className="object-cover object-left grayscale opacity-[0.06]"
@@ -30,28 +30,29 @@ export default function Tagline() {
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-4"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5 }}
+            className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-4"
           >
             What We Build
           </motion.p>
 
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="text-[clamp(1.75rem,6vw,4.5rem)] font-bold text-gray-900 leading-[1.05] tracking-tighter max-w-5xl"
           >
             <span className="text-accent">AI applications.</span> Custom platforms. Intelligent integrations.
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="mt-5 md:mt-8 text-base md:text-xl text-gray-500 max-w-xl leading-relaxed"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="mt-5 md:mt-8 text-base md:text-xl text-gray-600 max-w-xl leading-relaxed"
           >
             From multi-agent systems to full-stack platforms, we design and deliver software that transforms how businesses operate.
           </motion.p>

@@ -124,11 +124,11 @@ export default function FeaturedWork() {
       <section className="section-row">
         <div className="gutter-left" />
         <div className="material-elevated p-6 md:p-8 lg:p-12">
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">Featured Work</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-gray-500 mb-3">Featured Work</p>
           <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">
             What your team does best, amplified.
           </h2>
-          <p className="mt-3 text-sm text-gray-500 max-w-lg">
+          <p className="mt-3 text-sm text-gray-600 max-w-lg">
             We don&apos;t replace your team. We extend it with senior engineers who ship.
           </p>
         </div>
@@ -145,8 +145,8 @@ export default function FeaturedWork() {
               key={item.title}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
               className={`
                 grid 
                 ${isLeftColumn 
@@ -172,9 +172,9 @@ export default function FeaturedWork() {
                   hover:brightness-[1.03] transition-all duration-200
                 `}
               >
-                <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-black/40 mb-3">{item.category}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-black/50 mb-3">{item.category}</p>
                 <h3 className="text-lg font-bold text-black/90 mb-2 group-hover:text-black">{item.title}</h3>
-                <p className="text-sm text-black/50 leading-relaxed">{item.description}</p>
+                <p className="text-sm text-black/70 leading-relaxed">{item.description}</p>
               </TexturedBlock>
 
               {/* Right gutter - only for right column items */}
@@ -195,7 +195,7 @@ export default function FeaturedWork() {
         <div className="material-inset p-8 md:p-10 lg:p-16 flex items-center justify-center">
           <div className="text-center">
             <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">20+</p>
-            <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500">
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-gray-600">
               Projects delivered across AI, fintech, and consumer products
             </p>
           </div>

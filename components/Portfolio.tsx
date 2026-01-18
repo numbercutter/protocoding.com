@@ -52,14 +52,14 @@ export default function Portfolio() {
         <div className="p-5 lg:p-6 material-elevated border-b border-black/[0.08]">
           <div className="flex items-center justify-between gap-4">
             <div>
-              <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-1">Portfolio</p>
+              <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-gray-500 mb-1">Portfolio</p>
               <h2 className="text-lg lg:text-xl font-bold text-gray-900 tracking-tight">
                 Recent work
               </h2>
             </div>
             <Link 
               href="/portfolio"
-              className="inline-flex items-center gap-1.5 text-[9px] font-bold text-accent hover:gap-2 transition-all uppercase tracking-[0.1em]"
+              className="inline-flex items-center gap-1.5 text-[11px] font-bold text-accent hover:gap-2 transition-all uppercase tracking-[0.1em]"
             >
               View All <ArrowUpRight size={10} />
             </Link>
@@ -73,8 +73,8 @@ export default function Portfolio() {
               key={project.slug}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
               className="cell"
             >
               <Link href={`/portfolio/${project.slug}`} className="group relative block h-full min-h-[220px] md:min-h-[260px] overflow-hidden">
@@ -105,12 +105,12 @@ export default function Portfolio() {
                   <h3 className="text-xl md:text-lg lg:text-xl font-bold text-white mb-1 md:mb-1.5 group-hover:text-white transition-colors drop-shadow-sm">
                     {project.title}
                   </h3>
-                  <p className="text-sm md:text-xs text-white/80 md:text-white/60 leading-relaxed line-clamp-2 mb-3 md:mb-4 max-w-sm">
+                  <p className="text-sm md:text-sm text-white/90 md:text-white/80 leading-relaxed line-clamp-2 mb-3 md:mb-4 max-w-sm">
                     {project.description}
                   </p>
                   
                   {/* View link */}
-                  <div className="flex items-center gap-1.5 text-[11px] md:text-[10px] font-bold text-white/80 md:text-white/60 group-hover:text-white group-hover:gap-2 transition-all">
+                  <div className="flex items-center gap-1.5 text-[11px] md:text-[11px] font-bold text-white/90 md:text-white/80 group-hover:text-white group-hover:gap-2 transition-all">
                     View Project <ArrowUpRight size={12} />
                   </div>
                 </div>
@@ -122,7 +122,7 @@ export default function Portfolio() {
         {/* Bottom CTA */}
         <Link 
           href="/portfolio"
-          className="material-inset flex items-center justify-center gap-2 py-4 text-[9px] font-bold text-gray-900 hover:bg-gray-100 transition-all uppercase tracking-[0.15em] border-t border-black/[0.08]"
+          className="material-inset flex items-center justify-center gap-2 py-4 text-[11px] font-bold text-gray-900 hover:bg-gray-100 transition-all uppercase tracking-[0.15em] border-t border-black/[0.08]"
         >
           Explore All Case Studies <ArrowUpRight size={10} />
         </Link>

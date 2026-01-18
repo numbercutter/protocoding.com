@@ -3,17 +3,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-
-const NAV_ITEMS = [
-  { label: 'SERVICES', href: '/services' },
-  { label: 'PORTFOLIO', href: '/portfolio' },
-  { label: 'ABOUT', href: '/about' },
-  { label: 'CAREERS', href: '/careers' },
-  { label: 'PRICING', href: '/pricing' },
-];
+import { NAV_CONFIG, isDropdown, NavEntry, NavDropdown } from '@/lib/data/navigation';
 
 // Pages with dark hero
 const DARK_HERO_PAGES = ['/'];
@@ -21,12 +14,131 @@ const DARK_HERO_PAGES = ['/'];
 // Noise texture SVG data URL
 const NOISE_TEXTURE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
 
+function DropdownMenu({ dropdown, isOpen, onClose, onEnter, textMuted, borderColor }: { 
+  dropdown: NavDropdown; 
+  isOpen: boolean; 
+  onClose: () => void;
+  onEnter: () => void;
+  textMuted: string;
+  borderColor: string;
+}) {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.15 }}
+          className="absolute top-full left-0 w-[320px] bg-white shadow-xl border border-black/[0.08] z-50"
+          onMouseEnter={onEnter}
+        >
+          {/* Header */}
+          {dropdown.href && (
+            <Link
+              href={dropdown.href}
+              className="block px-5 py-3 text-[10px] font-bold uppercase tracking-[0.15em] text-gray-400 hover:text-accent border-b border-black/[0.05]"
+              onClick={onClose}
+            >
+              View All {dropdown.label} →
+            </Link>
+          )}
+          
+          {/* Items */}
+          <div className="py-2">
+            {dropdown.items.map((item, index) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="block px-5 py-3 hover:bg-gray-50 transition-colors group"
+                onClick={onClose}
+              >
+                <span className="text-sm font-bold text-gray-900 group-hover:text-accent transition-colors">
+                  {item.label}
+                </span>
+                {item.description && (
+                  <span className="block text-xs text-gray-400 mt-0.5">{item.description}</span>
+                )}
+              </Link>
+            ))}
+          </div>
+          
+          {/* Featured */}
+          {dropdown.featured && (
+            <div className="border-t border-black/[0.05] p-4 bg-gray-50/50">
+              <Link href={dropdown.featured.href} className="block group" onClick={onClose}>
+                <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-accent mb-1">Featured</p>
+                <p className="text-sm font-bold text-gray-900 group-hover:text-accent transition-colors">{dropdown.featured.title}</p>
+                <p className="text-xs text-gray-400 mt-1">{dropdown.featured.description}</p>
+              </Link>
+            </div>
+          )}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+function MobileDropdown({ dropdown, isOpen, onToggle, onClose }: {
+  dropdown: NavDropdown;
+  isOpen: boolean;
+  onToggle: () => void;
+  onClose: () => void;
+}) {
+  return (
+    <div>
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center justify-between py-4 px-4 font-display text-[13px] font-bold tracking-[0.1em] uppercase text-[var(--text-primary)] border-b border-black/[0.08] hover:bg-gray-50"
+      >
+        {dropdown.label}
+        <ChevronDown size={16} className={`transform transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+      
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden bg-gray-50"
+          >
+            {dropdown.href && (
+              <Link
+                href={dropdown.href}
+                className="block py-3 px-6 text-xs font-bold text-accent uppercase tracking-[0.1em] border-b border-black/[0.05]"
+                onClick={onClose}
+              >
+                View All →
+              </Link>
+            )}
+            {dropdown.items.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="block py-3 px-6 text-sm text-gray-600 border-b border-black/[0.05] last:border-b-0"
+                onClick={onClose}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function Navigation() {
   const [isAtTop, setIsAtTop] = useState(true);
   const [isScrollingUp, setIsScrollingUp] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
   const lastScrollY = useRef(0);
   const pathname = usePathname();
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   const hasDarkHero = DARK_HERO_PAGES.includes(pathname);
   const showFullNav = isAtTop || isScrollingUp;
@@ -45,17 +157,37 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Cleanup dropdown timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (dropdownTimeoutRef.current) {
+        clearTimeout(dropdownTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleDropdownEnter = (label: string) => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+    }
+    setOpenDropdown(label);
+  };
+
+  const handleDropdownLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setOpenDropdown(null);
+    }, 150);
+  };
+
   const navBg = isOnDarkHero 
     ? 'bg-transparent' 
     : 'bg-white/95 backdrop-blur-sm';
   
-  // On dark hero: use light text
   const textColor = isOnDarkHero ? 'text-white' : 'text-[var(--text-primary)]';
-  const textMuted = isOnDarkHero ? 'text-white/60' : 'text-[var(--text-muted)]';
+  const textMuted = isOnDarkHero ? 'text-white/80' : 'text-gray-600';
   const borderColor = isOnDarkHero ? 'border-white/10' : 'border-black/[0.08]';
   const gutterBg = isOnDarkHero ? 'bg-[#0f0f12]' : 'bg-[#ebe8e4]';
-  // Use horizontal logo with text
-  const logoSrc = '/logo_horizontal.svg';
+  const logoSrc = '/brand/logo_horizontal.svg';
 
   return (
     <>
@@ -65,9 +197,8 @@ export default function Navigation() {
         transition={{ duration: 0.2, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-50 ${navBg} border-b ${borderColor}`}
       >
-        {/* Mobile: no gutters, Desktop: with gutters */}
         <div className="h-14 md:grid md:grid-cols-[80px_1fr_80px] lg:grid-cols-[100px_1fr_100px] xl:grid-cols-[120px_1fr_120px]">
-          {/* Left gutter - hidden on mobile */}
+          {/* Left gutter */}
           <div className={`hidden md:block ${gutterBg} border-r ${borderColor}`} />
           
           {/* Nav content */}
@@ -85,18 +216,44 @@ export default function Navigation() {
               </Link>
             </div>
 
-            {/* Nav links - each is its own textured block */}
-            <div className="hidden md:grid md:col-span-6 grid-cols-5">
-              {NAV_ITEMS.map((item, index) => (
-                <Link
+            {/* Nav links with dropdowns */}
+            <div className="hidden md:grid md:col-span-6 grid-cols-4">
+              {NAV_CONFIG.map((item) => (
+                <div
                   key={item.label}
-                  href={item.href}
-                  className={`flex items-center justify-center font-display text-[10px] font-bold tracking-[0.08em] border-r ${borderColor} ${textMuted} hover:opacity-100 relative overflow-hidden group`}
+                  className="relative"
+                  onMouseEnter={() => isDropdown(item) && handleDropdownEnter(item.label)}
+                  onMouseLeave={handleDropdownLeave}
                 >
-                  {/* Hover state */}
-                  <div className="absolute inset-0 bg-black/[0.03] opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <span className="relative z-10">{item.label}</span>
-                </Link>
+                  {isDropdown(item) ? (
+                    <>
+                      <Link
+                        href={item.href || '#'}
+                        className={`flex items-center justify-center gap-1 h-full font-display text-[11px] font-bold tracking-[0.08em] border-r ${borderColor} ${textMuted} hover:opacity-100 relative overflow-hidden group`}
+                      >
+                        <div className="absolute inset-0 bg-black/[0.03] opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <span className="relative z-10">{item.label}</span>
+                        <ChevronDown size={10} className={`relative z-10 transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`} />
+                      </Link>
+                      <DropdownMenu
+                        dropdown={item}
+                        isOpen={openDropdown === item.label}
+                        onClose={() => setOpenDropdown(null)}
+                        onEnter={() => handleDropdownEnter(item.label)}
+                        textMuted={textMuted}
+                        borderColor={borderColor}
+                      />
+                    </>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className={`flex items-center justify-center font-display text-[11px] font-bold tracking-[0.08em] h-full border-r ${borderColor} ${textMuted} hover:opacity-100 relative overflow-hidden group`}
+                    >
+                      <div className="absolute inset-0 bg-black/[0.03] opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <span className="relative z-10">{item.label}</span>
+                    </Link>
+                  )}
+                </div>
               ))}
             </div>
 
@@ -112,7 +269,7 @@ export default function Navigation() {
             </div>
           </div>
           
-          {/* Right gutter - hidden on mobile */}
+          {/* Right gutter */}
           <div className={`hidden md:block ${gutterBg} border-l ${borderColor}`} />
         </div>
       </motion.nav>
@@ -128,39 +285,46 @@ export default function Navigation() {
         </Link>
       </motion.div>
 
+      {/* Mobile menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-white z-50">
-            {/* Mobile menu header - textured */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-white z-50 overflow-y-auto">
             <div className="flex justify-between items-center h-14 px-4 border-b border-black/[0.08] relative overflow-hidden">
               <div 
                 className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-overlay"
                 style={{ backgroundImage: NOISE_TEXTURE, backgroundSize: '200px 200px' }}
               />
               <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="relative z-10">
-                <Image src="/logo_horizontal.svg" alt="Protocoding" width={180} height={40} className="h-8 w-auto invert" />
+                <Image src="/brand/logo_horizontal.svg" alt="Protocoding" width={180} height={40} className="h-8 w-auto invert" />
               </Link>
               <button onClick={() => setIsMobileMenuOpen(false)} className="relative z-10"><X size={20} /></button>
             </div>
             
-            {/* Mobile nav items - each is a textured block */}
-            {NAV_ITEMS.map((item, index) => (
-              <Link 
-                key={item.label} 
-                href={item.href} 
-                className="block py-4 px-4 font-display text-[13px] font-bold tracking-[0.1em] uppercase text-[var(--text-primary)] border-b border-black/[0.08] hover:bg-gray-50 relative overflow-hidden" 
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <div 
-                  className="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay"
-                  style={{ backgroundImage: NOISE_TEXTURE, backgroundSize: '200px 200px' }}
+            {NAV_CONFIG.map((item) => (
+              isDropdown(item) ? (
+                <MobileDropdown
+                  key={item.label}
+                  dropdown={item}
+                  isOpen={openMobileDropdown === item.label}
+                  onToggle={() => setOpenMobileDropdown(openMobileDropdown === item.label ? null : item.label)}
+                  onClose={() => setIsMobileMenuOpen(false)}
                 />
-                <div className={`absolute inset-0 ${index % 2 === 0 ? 'bg-black/[0.01]' : 'bg-transparent'}`} />
-                <span className="relative z-10">{item.label}</span>
-              </Link>
+              ) : (
+                <Link 
+                  key={item.label} 
+                  href={item.href} 
+                  className="block py-4 px-4 font-display text-[13px] font-bold tracking-[0.1em] uppercase text-[var(--text-primary)] border-b border-black/[0.08] hover:bg-gray-50 relative overflow-hidden" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <div 
+                    className="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay"
+                    style={{ backgroundImage: NOISE_TEXTURE, backgroundSize: '200px 200px' }}
+                  />
+                  <span className="relative z-10">{item.label}</span>
+                </Link>
+              )
             ))}
             
-            {/* Mobile CTA - textured block */}
             <div className="p-4">
               <div className="relative overflow-hidden">
                 <div 

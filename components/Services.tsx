@@ -106,12 +106,12 @@ export default function Services() {
         <div className="p-6 md:p-8 lg:p-12 material-elevated border-b border-black/[0.08]">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 md:gap-6">
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">What We Build</p>
+              <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-gray-500 mb-3">What We Build</p>
               <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-gray-900 tracking-tight">
                 Shipped across every industry
               </h2>
             </div>
-            <p className="text-sm text-gray-500 max-w-sm leading-relaxed">
+            <p className="text-sm text-gray-600 max-w-sm leading-relaxed">
               From Series A startups to Fortune 500 enterprises. Here are the types of projects we deliver.
             </p>
           </div>
@@ -131,12 +131,12 @@ export default function Services() {
                     border-b border-transparent lg:border-black/[0.08] last:border-b-0
                     ${activeCategory === cat.id 
                       ? 'bg-accent text-black/80' 
-                      : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                     }
                   `}
                 >
                   <span className="text-xs font-bold">{cat.label}</span>
-                  <span className={`text-[10px] font-bold ${activeCategory === cat.id ? 'text-black/40' : 'text-gray-300'}`}>
+                  <span className={`text-[11px] font-bold ${activeCategory === cat.id ? 'text-black/50' : 'text-gray-400'}`}>
                     {cat.count}
                   </span>
                 </button>
@@ -151,20 +151,20 @@ export default function Services() {
                 {visibleCases.map((useCase, i) => (
                   <motion.div
                     key={`${useCase.category}-${useCase.title}`}
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.2, delay: i * 0.02 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3, delay: i * 0.02 }}
                     layout
                     className="group p-6 lg:p-8 cell material hover:material-elevated cursor-pointer flex flex-col"
                   >
-                    <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-accent mb-3">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent mb-3">
                       {CATEGORIES.find(c => c.id === useCase.category)?.label}
                     </span>
                     <h3 className="text-sm font-bold text-gray-900 mb-2 group-hover:text-accent transition-colors">
                       {useCase.title}
                     </h3>
-                    <p className="text-xs text-gray-500 leading-relaxed flex-1">
+                    <p className="text-sm text-gray-600 leading-relaxed flex-1">
                       {useCase.desc}
                     </p>
                   </motion.div>
@@ -175,7 +175,7 @@ export default function Services() {
             {/* Pagination controls - only show if more than one page */}
             {totalPages > 1 && (
               <div className="border-t border-black/[0.08] p-4 material-inset flex items-center justify-between">
-                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.15em]">
+                <span className="text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">
                   {startIndex + 1}–{Math.min(endIndex, allFilteredCases.length)} of {allFilteredCases.length}
                 </span>
                 <div className="flex items-center gap-2">
@@ -223,11 +223,11 @@ export default function Services() {
           <div className="flex items-center gap-8">
             <div className="text-center md:text-left">
               <span className="text-2xl font-bold text-gray-900">50+</span>
-              <span className="text-xs text-gray-400 ml-2">projects shipped</span>
+              <span className="text-sm text-gray-500 ml-2">projects shipped</span>
             </div>
             <div className="text-center md:text-left">
               <span className="text-2xl font-bold text-gray-900">6</span>
-              <span className="text-xs text-gray-400 ml-2">industries served</span>
+              <span className="text-sm text-gray-500 ml-2">industries served</span>
             </div>
           </div>
           <Link 

@@ -1,71 +1,25 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+import { SERVICES, SERVICE_CATEGORIES, getServicesByCategory, getFeaturedServices, ServiceCategory } from '@/lib/data/services';
 
 export const metadata: Metadata = {
   title: 'Services - Protocoding',
-  description: 'Full-stack development, AI integrations, and software consulting services.',
+  description: 'AI integration, software engineering, and technical consulting services. From LLM integration to full-stack development.',
 };
-
-const SERVICES = [
-  {
-    num: '01',
-    title: 'Fractional Development',
-    subtitle: 'Scale your team on demand',
-    description: 'Embedded senior engineers who integrate seamlessly with your existing team. No long-term contracts, no recruitment headaches.',
-    features: ['Embedded engineers', 'Weekly sprints', 'Flexible scaling', 'No lock-in contracts'],
-    technologies: ['React', 'Node.js', 'Python', 'AWS', 'PostgreSQL'],
-  },
-  {
-    num: '02',
-    title: 'AI Integration',
-    subtitle: 'Make your product intelligent',
-    description: 'From LLM integrations to custom ML pipelines, we bring AI capabilities to your existing products without the complexity.',
-    features: ['LLM integration', 'Document processing', 'Chatbots & RAG', 'Computer vision'],
-    technologies: ['OpenAI', 'Anthropic', 'LangChain', 'Pinecone', 'HuggingFace'],
-  },
-  {
-    num: '03',
-    title: 'Full-Stack Engineering',
-    subtitle: 'End-to-end product builds',
-    description: 'Complete product development from architecture to deployment. Web apps, mobile apps, APIs, and everything in between.',
-    features: ['Web applications', 'Mobile apps', 'API development', 'Cloud infrastructure'],
-    technologies: ['Next.js', 'React Native', 'GraphQL', 'Docker', 'Kubernetes'],
-  },
-  {
-    num: '04',
-    title: 'Go-to-Market',
-    subtitle: 'From idea to launch',
-    description: 'MVP development and product strategy for founders and startups. Go from napkin sketch to paying customers in 8-12 weeks.',
-    features: ['MVP builds', 'Product strategy', 'Launch support', 'Iteration cycles'],
-    technologies: ['Rapid prototyping', 'User testing', 'Analytics', 'Growth tools'],
-  },
-  {
-    num: '05',
-    title: 'Software Consulting',
-    subtitle: 'Expert guidance when you need it',
-    description: 'Architecture reviews, technical strategy, and roadmap planning. Get the guidance you need to make the right technology decisions.',
-    features: ['Architecture review', 'Tech strategy', 'Team augmentation', 'Code audits'],
-    technologies: ['System design', 'Best practices', 'Security review', 'Performance'],
-  },
-  {
-    num: '06',
-    title: 'Product Design',
-    subtitle: 'User-centered experiences',
-    description: 'UX research, UI design, and prototyping that creates products users actually want to use. Design that converts.',
-    features: ['UX research', 'UI design', 'Prototyping', 'Design systems'],
-    technologies: ['Figma', 'User testing', 'A/B testing', 'Analytics'],
-  },
-];
 
 const STATS = [
   { value: '50+', label: 'Projects Delivered' },
   { value: '100%', label: 'Client Satisfaction' },
   { value: '6', label: 'Industries Served' },
-  { value: '5yrs', label: 'Average Experience' },
+  { value: '5yrs', label: 'Avg. Experience' },
 ];
 
+const CATEGORY_ORDER: ServiceCategory[] = ['ai', 'engineering', 'product', 'consulting'];
+
 export default function ServicesPage() {
+  const featuredServices = getFeaturedServices();
+
   return (
     <>
       {/* Hero section */}
@@ -74,10 +28,10 @@ export default function ServicesPage() {
         <div className="material-dark p-8 pt-20 md:p-12 md:pt-12 lg:p-16">
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-4">Services</p>
           <h1 className="text-3xl lg:text-5xl font-bold text-white tracking-tight mb-4">
-            Software development <span className="text-accent">that scales</span>
+            AI-first software <span className="text-accent">development</span>
           </h1>
           <p className="text-lg text-white/40 max-w-2xl mb-8">
-            We build exceptional digital experiences by combining cutting-edge AI with world-class software engineering.
+            We build intelligent software systems by combining cutting-edge AI with world-class engineering. From LLM integration to enterprise platforms.
           </p>
           <Link
             href="/contact"
@@ -103,59 +57,104 @@ export default function ServicesPage() {
         <div className="gutter-right" />
       </div>
 
-      {/* Services header */}
-      <div className="section-row">
-        <div className="gutter-left" />
-        <div className="material-elevated p-6 md:p-8 lg:p-12">
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">What We Do</p>
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">End-to-end development services</h2>
-        </div>
-        <div className="gutter-right" />
-      </div>
+      {/* Featured Services */}
+      {featuredServices.length > 0 && (
+        <>
+          <div className="section-row">
+            <div className="gutter-left" />
+            <div className="material-elevated p-6 md:p-8 lg:p-12">
+              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent mb-3">Featured</p>
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">AI-powered solutions</h2>
+            </div>
+            <div className="gutter-right" />
+          </div>
 
-      {/* Services grid */}
-      {SERVICES.map((service, index) => (
-        <div key={service.title} className="section-row">
-          <div className="gutter-left" />
-          <div className={`${index % 2 === 0 ? 'material' : 'material-inset'} p-6 md:p-8 lg:p-12`}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-              {/* Left - Info */}
-              <div>
-                <span className="text-4xl font-bold text-gray-200 tracking-tight block mb-4">{service.num}</span>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
-                <p className="text-sm font-bold text-accent uppercase tracking-[0.1em] mb-4">{service.subtitle}</p>
-                <p className="text-sm text-gray-500 leading-relaxed mb-6">{service.description}</p>
-                
-                {/* Features */}
-                <div className="grid grid-cols-2 gap-3">
-                  {service.features.map((feature) => (
-                    <div key={feature} className="flex items-center gap-2 text-xs text-gray-600 font-medium">
-                      <span className="w-1.5 h-1.5 bg-accent" />
-                      {feature}
-                    </div>
-                  ))}
-                </div>
+          <div className="section-row">
+            <div className="gutter-left" />
+            <div className="material grid grid-cols-1 md:grid-cols-2">
+              {featuredServices.map((service, index) => (
+                <Link
+                  key={service.slug}
+                  href={`/services/${service.slug}`}
+                  className={`group p-6 lg:p-8 cell ${index % 2 === 0 ? 'material' : 'material-inset'} hover:material-elevated transition-all`}
+                >
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent mb-3">
+                    {SERVICE_CATEGORIES[service.category].title}
+                  </p>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-accent transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 leading-relaxed mb-4">{service.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {service.technologies.slice(0, 4).map((tech) => (
+                      <span key={tech} className="px-2 py-1 text-[9px] font-bold uppercase tracking-[0.05em] bg-gray-100 text-gray-500">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-gray-400 group-hover:text-accent transition-colors">
+                    Learn more <ArrowUpRight size={12} />
+                  </span>
+                </Link>
+              ))}
+            </div>
+            <div className="gutter-right" />
+          </div>
+        </>
+      )}
+
+      {/* Services by Category */}
+      {CATEGORY_ORDER.map((categoryKey, categoryIndex) => {
+        const category = SERVICE_CATEGORIES[categoryKey];
+        const services = getServicesByCategory(categoryKey);
+        const isDark = categoryIndex % 2 === 1;
+
+        return (
+          <div key={categoryKey}>
+            {/* Category header */}
+            <div className={isDark ? 'section-row-dark' : 'section-row'}>
+              <div className="gutter-left" />
+              <div className={`${isDark ? 'material-dark' : 'material-elevated'} p-6 md:p-8 lg:p-12`}>
+                <p className={`text-[10px] font-bold uppercase tracking-[0.3em] ${isDark ? 'text-white/30' : 'text-gray-400'} mb-3`}>
+                  {category.title}
+                </p>
+                <h2 className={`text-xl md:text-2xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                  {category.description}
+                </h2>
               </div>
+              <div className="gutter-right" />
+            </div>
 
-              {/* Right - Technologies */}
-              <div className="flex flex-col justify-end">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">Technologies</p>
-                <div className="flex flex-wrap gap-2">
-                  {service.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.1em] text-gray-500 bg-gray-100 hover:bg-gray-200 transition-colors"
-                    >
-                      {tech}
+            {/* Services in category */}
+            <div className={isDark ? 'section-row-dark' : 'section-row'}>
+              <div className="gutter-left" />
+              <div className={`${isDark ? 'material-dark' : 'material'} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3`}>
+                {services.map((service, index) => (
+                  <Link
+                    key={service.slug}
+                    href={`/services/${service.slug}`}
+                    className={`group p-6 ${isDark ? 'cell-dark hover:bg-white/[0.02]' : `cell ${index % 2 === 0 ? 'material' : 'material-inset'} hover:material-elevated`} transition-all`}
+                  >
+                    <h3 className={`text-base font-bold mb-1 group-hover:text-accent transition-colors ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                      {service.title}
+                    </h3>
+                    <p className={`text-xs mb-3 ${isDark ? 'text-accent' : 'text-accent'} font-bold uppercase tracking-[0.1em]`}>
+                      {service.subtitle}
+                    </p>
+                    <p className={`text-xs leading-relaxed mb-4 ${isDark ? 'text-white/40' : 'text-gray-500'}`}>
+                      {service.description}
+                    </p>
+                    <span className={`inline-flex items-center gap-1 text-xs font-bold group-hover:text-accent transition-colors ${isDark ? 'text-white/30' : 'text-gray-400'}`}>
+                      Learn more <ArrowUpRight size={12} />
                     </span>
-                  ))}
-                </div>
+                  </Link>
+                ))}
               </div>
+              <div className="gutter-right" />
             </div>
           </div>
-          <div className="gutter-right" />
-        </div>
-      ))}
+        );
+      })}
 
       {/* Process section header */}
       <div className="section-row-dark">

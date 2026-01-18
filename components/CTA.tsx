@@ -16,7 +16,7 @@ export default function CTA() {
         {/* Subtle B&W workplace backdrop - warm outdoor scene */}
         <div className="absolute inset-0 pointer-events-none">
           <Image
-            src="/workplace/UviL3ToyQfjYbdiQHAjvI.png"
+            src="/workplace/ship.png"
             alt=""
             fill
             className="object-cover grayscale opacity-[0.06]"
@@ -32,37 +32,38 @@ export default function CTA() {
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/20 mb-6 md:mb-8"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5 }}
+            className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 mb-6 md:mb-8"
           >
             Let&apos;s talk
           </motion.p>
 
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="text-[clamp(2rem,7vw,5rem)] font-bold text-white leading-[1] tracking-tighter mb-6 md:mb-8"
           >
             Need dev help? <span className="text-accent">Let&apos;s figure it out.</span>
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-base md:text-lg text-white/25 mb-10 md:mb-14 max-w-xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="text-base md:text-lg text-white/50 mb-10 md:mb-14 max-w-xl mx-auto"
           >
             Tell us what you&apos;re building. We&apos;ll give you a free assessment with a clear scope, timeline, and honest pricing.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className="flex flex-col sm:flex-row gap-0 justify-center"
           >
             <Link
@@ -73,7 +74,7 @@ export default function CTA() {
             </Link>
             <Link
               href="/services"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 md:px-10 md:py-5 text-white/40 text-[11px] font-bold tracking-[0.15em] uppercase border border-white/10 hover:bg-white/5 hover:text-white"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 md:px-10 md:py-5 text-white/70 text-[11px] font-bold tracking-[0.15em] uppercase border border-white/20 hover:bg-white/5 hover:text-white"
             >
               OUR SERVICES
             </Link>
