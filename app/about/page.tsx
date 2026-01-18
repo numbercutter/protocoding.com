@@ -5,7 +5,7 @@ import { ArrowUpRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'About - Protocoding',
-  description: 'How two brothers turned a passion for teaching code into a full-service software development studio.',
+  description: 'Protocoding was founded by Ryan and Jordan Lesson in 2017. A full-service software studio serving clients from startups to enterprise.',
 };
 
 const MILESTONES = [
@@ -45,10 +45,10 @@ export default function AboutPage() {
         <div className="material-dark p-8 pt-20 md:p-12 md:pt-12 lg:p-16">
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-4">About</p>
           <h1 className="text-3xl lg:text-5xl font-bold text-white tracking-tight mb-4">
-            Started with <span className="text-accent">tutorials</span>
+            Built by <span className="text-accent">engineers</span>
           </h1>
           <p className="text-lg text-white/40 max-w-2xl">
-            Two brothers who couldn&apos;t stop teaching eventually built something bigger. Here&apos;s how we went from YouTube videos to shipping production software.
+            Protocoding was founded by Ryan and Jordan Lesson in 2017. What started as a technical education platform evolved into a full-service software studio serving clients from startups to enterprise.
           </p>
         </div>
         <div className="gutter-right" />
