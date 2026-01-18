@@ -1,0 +1,115 @@
+{
+  "slug": "stop-building-mvps-start-building-experiments",
+  "title": "Stop Building MVPs, Start Building Experiments",
+  "subtitle": "Why the MVP mindset is killing your startup's chances",
+  "description": "Most startups waste months building elaborate MVPs that nobody wants. Here's how smart founders are using rapid experiments to find product-market fit faster and cheaper.",
+  "topic": "startups",
+  "content": [
+    {
+      "type": "paragraph",
+      "content": "Y'all are building MVPs wrong. I've watched dozens of startups spend 6-12 months crafting the \"perfect\" minimum viable product, only to launch it to crickets. They've got beautiful onboarding flows, polished UIs, and features nobody asked for. Meanwhile, their runway is burning and they still don't know if anyone actually wants what they're selling."
+    },
+    {
+      "type": "paragraph",
+      "content": "The MVP concept got hijacked somewhere along the way. What started as Eric Ries's idea of learning through rapid iteration became an excuse to build mini-products with half the features of the \"real\" version. Founders convince themselves they need user authentication, payment processing, and responsive design before they can validate their core hypothesis. That's not an MVP, that's just a smaller product that still takes forever to build."
+    },
+    {
+      "type": "heading",
+      "content": "The Experiment Mindset Changes Everything"
+    },
+    {
+      "type": "paragraph",
+      "content": "Real MVPs aren't products at all. They're experiments designed to test specific hypotheses about your market, your solution, and your business model. Each experiment should answer one critical question and take no more than two weeks to execute. If you're spending months on your MVP, you're not building an experiment, you're building a product without knowing if there's demand for it."
+    },
+    {
+      "type": "paragraph",
+      "content": "I worked with a healthcare startup that wanted to build an AI-powered diagnostic tool. Their original plan involved 8 months of development, FDA research, and integration with electronic health records. Instead, we convinced them to start with a simple experiment. They created a basic web form where doctors could input symptoms and get back AI-generated suggestions. No user accounts, no fancy interface, just the core value proposition. They had it running in two weeks."
+    },
+    {
+      "type": "paragraph",
+      "content": "That experiment taught them three critical things their elaborate MVP never would have. First, doctors were skeptical of AI diagnoses but loved AI-powered research assistance. Second, the real bottleneck wasn't generating suggestions but integrating with existing workflows. Third, the money wasn't in individual doctor subscriptions but in enterprise deals with hospital systems. None of these insights required building a full product."
+    },
+    {
+      "type": "heading",
+      "content": "What Real Experiments Look Like"
+    },
+    {
+      "type": "list",
+      "content": [
+        "Landing page experiments that test messaging and measure conversion rates before building anything",
+        "Wizard of Oz tests where humans manually provide the service you plan to automate",
+        "Concierge MVPs where you personally deliver the solution to understand the workflow",
+        "Feature fake-outs that gauge interest in functionality before developing it",
+        "Smoke tests using ads to validate demand for solutions that don't exist yet"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "Each type serves a different purpose and tests different assumptions. Landing pages validate demand and messaging. Wizard of Oz tests help you understand operational complexity. Concierge MVPs reveal the actual user journey. The key is matching your experiment type to your biggest unknown. Don't waste time building what you can simulate or fake."
+    },
+    {
+      "type": "paragraph",
+      "content": "One SaaS founder I know wanted to build automated social media scheduling. Instead of building the automation, he started with a concierge approach. He manually posted for 20 small businesses, charging them $50 per month. After three months, he learned that scheduling wasn't the real problem. The businesses couldn't create engaging content consistently. His manual service became a content creation agency, not a scheduling tool."
+    },
+    {
+      "type": "heading",
+      "content": "The Build Trap Is Real"
+    },
+    {
+      "type": "paragraph",
+      "content": "Engineers love building. It's what we do. But building feels like progress even when it isn't. You can spend months perfecting your authentication system while completely missing the fact that your target market doesn't trust your solution. Code is concrete and measurable. Market validation is messy and uncomfortable. Guess which one most technical founders choose?"
+    },
+    {
+      "type": "paragraph",
+      "content": "The build trap gets worse with technical founders because we underestimate how long things take and overestimate what we need to launch. We think about edge cases and security concerns and scalability challenges that don't matter if nobody wants the product. I've seen startups optimize database queries for user loads they'll never reach while ignoring basic usability problems that kill conversion."
+    },
+    {
+      "type": "quote",
+      "content": "The goal isn't to build something impressive. It's to build something people want."
+    },
+    {
+      "type": "paragraph",
+      "content": "You can always rebuild. You can't always get back the six months you spent building the wrong thing. Every day you spend coding instead of validating core assumptions is a day closer to running out of runway. The market doesn't care how elegant your architecture is if your solution doesn't solve a real problem people will pay for."
+    },
+    {
+      "type": "heading",
+      "content": "Speed Beats Perfection Every Time"
+    },
+    {
+      "type": "paragraph",
+      "content": "Fast experiments compound. Each one teaches you something that makes the next experiment smarter. Slow MVP development teaches you nothing until launch day, when it's often too late to pivot effectively. I'd rather see ten failed experiments in two months than one polished MVP that takes six months and fails anyway."
+    },
+    {
+      "type": "paragraph",
+      "content": "The startups that figure this out move differently. They're constantly testing assumptions, iterating on messaging, and refining their understanding of the market. By the time they build a real product, they already know it'll work because they've validated every major assumption separately. Their \"MVP\" is actually a confident bet, not a hopeful guess."
+    },
+    {
+      "type": "paragraph",
+      "content": "This approach works especially well for AI and data-heavy products where the technology is complex but the core value proposition can be tested simply. You don't need machine learning models to test if people want AI-powered insights. You can generate those insights manually and see if they change behavior. You don't need real-time processing to test if users value speed over accuracy. You can simulate different response times and measure user satisfaction."
+    },
+    {
+      "type": "heading",
+      "content": "How to Actually Do This"
+    },
+    {
+      "type": "paragraph",
+      "content": "Start with your riskiest assumption. Not your favorite feature or your most technically interesting challenge, but the thing that could kill your startup if you're wrong about it. Turn that assumption into a testable hypothesis with clear success metrics. Then design the simplest possible experiment to test it. If you can't test your assumption in two weeks or less, break it down further."
+    },
+    {
+      "type": "paragraph",
+      "content": "Document everything. Not just what worked, but what didn't and why. Failed experiments are as valuable as successful ones if you learn from them. Keep a running list of validated and invalidated assumptions. This becomes your foundation for making product decisions later. When you finally do build something substantial, you'll know exactly what to include and what to leave out."
+    },
+    {
+      "type": "paragraph",
+      "content": "Most importantly, resist the urge to build when you could test instead. Every time you think \"I need to build X before I can validate Y,\" challenge that assumption. Usually there's a way to test Y without building X. The goal is learning, not shipping. Shipping comes after you know what to ship. This mindset shift alone will save you months of wasted effort and thousands of dollars in development costs."
+    }
+  ],
+  "tags": [
+    "MVP",
+    "Startups",
+    "Product Development",
+    "Validation"
+  ],
+  "readTime": "6 min read",
+  "_writer": "ryan"
+}

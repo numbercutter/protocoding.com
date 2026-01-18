@@ -1,0 +1,118 @@
+{
+  "slug": "stop-building-features-nobody-asked-for-how-to-talk-to-users",
+  "title": "Stop Building Features Nobody Asked For",
+  "subtitle": "How to Actually Talk to Your Users (Before You Waste Six Months)",
+  "description": "Most product teams are building in a vacuum. Here's how to break the cycle of feature bloat and start shipping what users actually need.",
+  "topic": "startups",
+  "content": [
+    {
+      "type": "paragraph",
+      "content": "Your team just spent four months building a feature that nobody uses. The analytics show 3% adoption after two weeks, and your support tickets haven't decreased. Sound familiar? You're not alone. I've watched dozens of engineering teams burn through runway building elaborate solutions to problems that don't exist. The worst part? It's completely avoidable."
+    },
+    {
+      "type": "paragraph",
+      "content": "The pattern is always the same. Someone has a brilliant idea in a meeting. The team gets excited. You spend weeks architecting the perfect solution. You launch with fanfare, then... crickets. Meanwhile, your actual users are struggling with basic workflows you could fix in a day. The real kicker? They've been telling you about these problems all along. You just weren't listening."
+    },
+    {
+      "type": "heading",
+      "content": "The Build Trap is Real (and Expensive)"
+    },
+    {
+      "type": "paragraph",
+      "content": "Here's what actually happens when you build without talking to users first. Your team makes assumptions based on their own workflow. They solve edge cases that affect 2% of users while ignoring pain points that hit everyone. They add complexity where users want simplicity. By the time you realize the feature missed the mark, you've burned cash, time, and team morale."
+    },
+    {
+      "type": "paragraph",
+      "content": "I worked with a SaaS company that spent eight months building an advanced reporting dashboard. Beautiful charts, custom filters, real-time updates. Their users ignored it completely. Know what they actually wanted? A simple CSV export button. That's it. One button that took two hours to implement would have solved more problems than eight months of complex engineering."
+    },
+    {
+      "type": "paragraph",
+      "content": "The math is brutal when you break it down. Four engineers at $150K each, plus overhead, means you're burning roughly $50K per month. A six-month feature that nobody uses just cost you $300K. That's not including opportunity cost of what you could have built instead. Most startups can't afford to get this wrong more than once or twice."
+    },
+    {
+      "type": "heading",
+      "content": "Most User Research is Theater"
+    },
+    {
+      "type": "paragraph",
+      "content": "But here's the thing. Most teams think they're already talking to users. They send out surveys that nobody fills out. They schedule user interviews and ask leading questions that confirm their biases. They look at analytics dashboards but don't understand the story behind the numbers. This isn't user research, it's validation theater."
+    },
+    {
+      "type": "paragraph",
+      "content": "Real user research starts with admitting you don't know what users actually need. It means asking open-ended questions and shutting up long enough to hear the answers. It means watching how people actually use your product, not how you think they should use it. Most importantly, it means being willing to kill your favorite ideas when the data says they're wrong."
+    },
+    {
+      "type": "list",
+      "content": [
+        "Stop asking 'Would you use this feature?' and start asking 'What's the biggest pain point in your current workflow?'",
+        "Watch users navigate your product live instead of asking them to remember what they did last week",
+        "Talk to the people who stopped using your product, not just the ones who love it",
+        "Ask 'What would have to be true for you to recommend this to a colleague?' instead of 'Do you like our product?'"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "The difference is subtle but crucial. Leading questions give you the answers you want to hear. Open-ended questions give you the truth. And the truth is usually that your users' biggest problems are simpler and more fundamental than you think. They don't want more features. They want the existing ones to work better."
+    },
+    {
+      "type": "heading",
+      "content": "How to Actually Listen to Users"
+    },
+    {
+      "type": "paragraph",
+      "content": "Start with the people already using your product. Not the ones who love everything about it, but the ones who use it despite obvious friction points. These are your goldmine users. They're getting value but working around problems. Ask them to walk you through their typical workflow. Don't interrupt. Don't explain how it's supposed to work. Just watch and take notes."
+    },
+    {
+      "type": "paragraph",
+      "content": "Set up regular user calls, not formal interviews. Make it conversational. I like to start with 'What's been frustrating you lately?' and let them vent. The best insights come from stories, not survey responses. When they say something is 'fine,' dig deeper. Fine usually means 'I've given up trying to make this work better.' That's where you find the real problems."
+    },
+    {
+      "type": "paragraph",
+      "content": "Track behavior, not opinions. What people say they do and what they actually do are completely different things. Set up proper analytics to see where users drop off, what features they avoid, and where they spend the most time struggling. But combine this with context from conversations. The numbers tell you what's happening, but only users can tell you why."
+    },
+    {
+      "type": "quote",
+      "content": "Your users' biggest problems are usually simpler and more fundamental than you think. They don't want more features. They want the existing ones to work better."
+    },
+    {
+      "type": "heading",
+      "content": "Build Small, Test Fast, Actually Ship"
+    },
+    {
+      "type": "paragraph",
+      "content": "Once you understand the real problems, resist the urge to build the perfect solution. Start with the minimum viable fix. If users are struggling with data export, don't build a custom reporting engine. Add a CSV download button and see if that solves 80% of the problem. You can always make it fancier later if there's demand."
+    },
+    {
+      "type": "paragraph",
+      "content": "This is where most teams mess up. They identify the right problem but over-engineer the solution. Simple fixes feel too easy, so they add complexity that nobody asked for. The goal isn't to impress other developers. It's to make users' lives easier. Sometimes that means a boring solution that works better than a clever one that doesn't."
+    },
+    {
+      "type": "paragraph",
+      "content": "Ship these small fixes fast and measure the impact. Not just adoption rates, but actual outcomes. Did support tickets decrease? Are users completing their workflows faster? Are they using other parts of your product more because this friction is gone? These are the metrics that matter. If a simple fix moves the needle, you've found something worth expanding on."
+    },
+    {
+      "type": "heading",
+      "content": "Make This Process Stick"
+    },
+    {
+      "type": "paragraph",
+      "content": "The biggest challenge isn't learning to talk to users once. It's making user input a regular part of your development process. Set up systems that make this automatic. Schedule monthly user calls. Create a shared document where anyone can log user feedback. Make customer conversations part of your sprint planning."
+    },
+    {
+      "type": "paragraph",
+      "content": "Get your whole team talking to users, not just product managers. When engineers hear problems directly from users, they build better solutions. When designers see users struggle with their interfaces, they simplify faster. When executives hear customer pain points firsthand, they prioritize differently. User empathy can't be delegated."
+    },
+    {
+      "type": "paragraph",
+      "content": "But here's the most important part. You have to be willing to say no to features that sound cool but don't solve real problems. Just because you can build something doesn't mean you should. Your job isn't to ship features. It's to solve problems that people will pay you to solve. Everything else is just expensive distraction."
+    }
+  ],
+  "tags": [
+    "user-research",
+    "product-development",
+    "startup-strategy",
+    "feature-prioritization"
+  ],
+  "readTime": "6 min read",
+  "_writer": "ryan"
+}

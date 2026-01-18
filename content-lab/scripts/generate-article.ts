@@ -51,30 +51,68 @@ interface GeneratedArticle {
 const CONTENT_LAB_DIR = join(__dirname, "..");
 const ARTICLE_GEN_DIR = join(CONTENT_LAB_DIR, "article_generator");
 
-const WRITER_INFO: Record<string, { name: string; role: string; image: string; style: string }> = {
+const WRITER_INFO: Record<string, { name: string; role: string; image: string; style: string; voiceNotes: string }> = {
   jordan: {
     name: "Jordan Lesson",
     role: "Founder",
     image: "/team/jordan.png",
     style: "Technical depth, AI/ML focus, pragmatic engineering perspective, talks about infrastructure costs and data",
+    voiceNotes: `
+- Talks in flowing, connected thoughts. Uses "So I think..." and "I mean..." to bridge ideas
+- Comfortable with uncertainty: "we don't actually know", "who knows if they're actually"
+- Uses sports/competition metaphors: "survival of the fittest", "fight for market share", "throw a dart on the board blindfolded"
+- Gets excited about infrastructure and energy: nuclear power plants, fusion energy, data centers
+- Thinks long-term: "in the long run", "thinking as long term as possible"
+- Bridges AI to quantum computing and physics naturally
+- Says "a hundred percent", "first and foremost", "to kind of circle back"
+- Grounded optimism: acknowledges problems but sees paths forward`,
   },
   ryan: {
     name: "Ryan Lesson",
     role: "Founder", 
     image: "/team/ryan.png",
     style: "Direct, conversational, uses humor, practical business advice, says 'y'all', very honest about what works",
+    voiceNotes: `
+- Opens casually: "What's up y'all?", "So in today's video..."
+- Uses self-deprecating humor: "Take Adderall... I'm totally just kidding"
+- Very direct and blunt: "if you're not growing, you're dying", "let them go"
+- Repeats key points for emphasis: "Make sure you follow up. Following up is key here."
+- Real numbers and specifics: "five figure paychecks", "net 45 to collect", "100 hours"
+- Business wisdom from experience: "win-win-win", "snowball effect"
+- Admits harsh truths: "you failed by bringing them on", "the only one to blame is you"
+- Ends with principle: "just do the right thing"
+- Southern warmth with hard truths: caring but no-nonsense`,
   },
   mitch: {
     name: "Mitch Carrara",
     role: "Founding Software Engineer",
     image: "/team/mitch.png",
     style: "Philosophical, metaphor-rich, tech-meets-design thinking, big-picture perspective",
+    voiceNotes: `
+- Opens with unexpected hooks: "Yeah, it's real. I had a dream about a flying spider last night."
+- Uses physics metaphors for consciousness: "wave", "peaks and valleys", "oscillation", "frequency"
+- Speaks in poetic fragments: "within a breath, within a relaxed, positive state"
+- Big concepts made personal: "You're an architect for your reality"
+- Authentic and magnetic: "There's nothing more magnetic than someone who's being authentic"
+- Spiritual but practical: "design your reality", "self-audit", "logical structure"
+- Warns against seeking external validation: "try to convince other people"
+- Comfortable with not having answers: "I don't have a five year plan"
+- Talks about cutting things off: relationships, habits, the world
+- Ends with simplicity: "Just don't do a lot of the stuff you're currently doing"`,
   },
   raymond: {
-    name: "Raymond Chen",
+    name: "Raymond Spartz",
     role: "Engineering Lead",
     image: "/team/raymond.png",
     style: "Business-oriented, ROI-focused, executive communication style, practical frameworks",
+    voiceNotes: `
+- Clear structure: numbers points, clear transitions
+- ROI and metrics focused: quantifies everything
+- Executive communication: concise, actionable
+- Frameworks and models: likes systematic approaches
+- Risk-aware: acknowledges downsides before solutions
+- Professional tone but not stiff
+- Balances technical depth with business impact`,
   },
 };
 
@@ -133,12 +171,18 @@ function buildPrompt(brief: ArticleBrief): string {
 ## CRITICAL ANTI-AI RULES (FOLLOW EXACTLY)
 ${antiSlopRules}
 
-## WRITER VOICE
+## WRITER VOICE - THIS IS CRITICAL
 You are writing as ${writerInfo.name}, ${writerInfo.role} at Protocoding.
-Voice style: ${writerInfo.style}
 
-### Writer's actual voice samples (mimic this style):
+### Voice DNA (extracted from real conversations):
+${writerInfo.voiceNotes}
+
+### Style summary: ${writerInfo.style}
+
+### Writer's actual voice samples - STUDY THESE CAREFULLY:
 ${writerSamples || "No samples available - write in a natural, conversational tech professional voice"}
+
+IMPORTANT: The article should sound like ${writerInfo.name} wrote it, not like a generic AI. Use their specific phrases, sentence patterns, and thought flow from the samples above. If Jordan says "a hundred percent" and uses competition metaphors, use those. If Ryan says "y'all" and is blunt, be blunt. If Mitch uses consciousness/wave metaphors, use those.
 
 ## FRAMEWORK REFERENCE (for structure only)
 ${frameworkArticles || "Use a clear structure: hook intro, 3-5 main sections with headers, actionable conclusion"}

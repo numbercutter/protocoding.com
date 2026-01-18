@@ -20,33 +20,86 @@ interface ImageGenerationResult {
   images: Array<{ url: string }>;
 }
 
-// Design system colors from globals.css
-const BRAND_COLORS = {
-  accent: "#0D99FF", // Blue accent
-  dark: "#0f0f12",   // Dark background
-  light: "#ebe8e4",  // Light warm gray
-  elevated: "#1a1a1a",
+// Creative visual metaphors - extract core concept and make it visual
+const VISUAL_METAPHORS: Record<string, string[]> = {
+  // Failure/problems → broken, fragmented, falling
+  failure: ["shattered glass fragments floating in void", "bridge collapsing in slow motion", "dominos mid-fall", "cracked mirror reflecting chaos"],
+  // Success/solutions → rising, building, connecting  
+  success: ["seedling breaking through concrete", "puzzle pieces clicking together", "bridge forming from both sides", "sunrise over mountain peaks"],
+  // Speed/efficiency → motion blur, streamlined
+  speed: ["bullet train leaving light trails", "falcon diving", "racing yacht cutting through water", "supersonic jet cone"],
+  // Complexity → tangled, layered, dense
+  complexity: ["gordian knot", "dense forest canopy from below", "city intersection at night long exposure", "tangled headphones"],
+  // Simplicity → minimal, clean, singular
+  simplicity: ["single origami crane", "zen rock garden", "lone tree on horizon", "empty desk with single object"],
+  // Growth → organic, expanding, multiplying
+  growth: ["time lapse of plant growing", "fractal branching", "ripples expanding in water", "city skyline emerging from fog"],
+  // AI/automation → precise, mechanical but elegant
+  ai: ["clockwork mechanism with organic elements", "constellation forming a pattern", "weaving loom creating fabric", "chess pieces mid-game from above"],
+  // Data → flowing, organized, structured
+  data: ["library stacks infinite perspective", "card catalog drawers open", "filing system in motion", "river delta from satellite"],
+  // Integration → merging, blending, connecting
+  integration: ["two rivers merging", "puzzle completing", "handshake of different materials", "musical instruments mid-symphony"],
+  // Legacy/old → weathered, historical, transitioning
+  legacy: ["old lighthouse with modern beacon", "ancient tree with new growth", "vintage car with modern engine glimpse", "castle with glass extension"],
 };
 
-// Topic-specific visual concepts - NOT generic AI slop
-const TOPIC_CONCEPTS: Record<string, string> = {
-  ai: "neural pathway visualization, data streams, geometric node networks, circuit patterns",
-  engineering: "architectural blueprints, isometric system diagrams, code syntax patterns, infrastructure grids",
-  startups: "growth trajectories, launch vectors, momentum lines, scaling patterns",
-  trends: "trend lines, wave patterns, signal flows, emergence patterns",
-  "case-studies": "transformation diagrams, process flows, milestone markers, success metrics",
-};
+// Extract emotional/conceptual keywords from title
+function extractVisualConcept(title: string): string {
+  const titleLower = title.toLowerCase();
+  
+  // Map common article themes to visual metaphors
+  const themeMap: Array<[string[], keyof typeof VISUAL_METAPHORS]> = [
+    [["fail", "wrong", "mistake", "problem", "broken", "don't", "avoid", "stop"], "failure"],
+    [["success", "win", "achieve", "build", "create", "launch", "ship"], "success"],
+    [["fast", "quick", "speed", "efficient", "automate", "scale"], "speed"],
+    [["complex", "enterprise", "large", "system", "architecture"], "complexity"],
+    [["simple", "clean", "minimal", "focus", "essential"], "simplicity"],
+    [["grow", "scale", "expand", "evolve", "transform"], "growth"],
+    [["ai", "machine learning", "llm", "agent", "model", "intelligent"], "ai"],
+    [["data", "analytics", "metrics", "track", "measure"], "data"],
+    [["integrat", "connect", "unif", "merge", "api"], "integration"],
+    [["legacy", "moderniz", "migrat", "upgrad", "technical debt"], "legacy"],
+  ];
+  
+  for (const [keywords, theme] of themeMap) {
+    if (keywords.some(k => titleLower.includes(k))) {
+      const metaphors = VISUAL_METAPHORS[theme];
+      return metaphors[Math.floor(Math.random() * metaphors.length)];
+    }
+  }
+  
+  // Default to AI theme if no match
+  const aiMetaphors = VISUAL_METAPHORS.ai;
+  return aiMetaphors[Math.floor(Math.random() * aiMetaphors.length)];
+}
 
-// High-design style that matches Protocoding aesthetic
+// High-design style - cinematic, editorial, NOT generic tech
 const BASE_STYLE = `
-Minimalist technical illustration style.
-Color palette: deep charcoal (#0f0f12) background with electric blue (#0D99FF) accents and warm gray (#ebe8e4) highlights.
-Clean geometric shapes, precise lines, subtle gradients.
-Professional editorial quality like Stripe or Linear blog imagery.
-Abstract and conceptual - NO photorealistic elements.
-NO text, NO faces, NO people, NO hands.
-Sharp edges, high contrast, modern tech aesthetic.
-Subtle noise texture overlay for depth.
+STYLE: Cinematic editorial photography meets fine art. Think Wes Anderson color grading + architectural digest + movie poster composition.
+
+AVOID AT ALL COSTS:
+- Generic glowing orbs and nodes
+- Circuit board patterns
+- Abstract "tech" gradients
+- Floating 3D shapes
+- Neon grids
+- Binary code visuals
+- Generic "AI brain" imagery
+- Anything that looks like stock imagery
+
+INSTEAD USE:
+- Real-world objects as metaphors
+- Dramatic lighting (chiaroscuro, golden hour, blue hour)
+- Unexpected perspectives (bird's eye, worm's eye, dutch angle)
+- Rich textures (weathered wood, brushed metal, organic materials)
+- Bold color stories (2-3 colors max, high contrast)
+- Negative space for drama
+- Depth of field for focus
+
+COLOR: Deep charcoal shadows, warm amber highlights, single accent color (electric blue #0D99FF or warm coral)
+MOOD: Confident, contemplative, editorial
+QUALITY: 35mm film grain, cinematic color grade, professional lighting
 `;
 
 async function generateImage(title: string, topic: string, slug: string): Promise<string> {
@@ -55,29 +108,23 @@ async function generateImage(title: string, topic: string, slug: string): Promis
     throw new Error("FAL_API_KEY not set in environment");
   }
 
-  const topicConcept = TOPIC_CONCEPTS[topic] || TOPIC_CONCEPTS.ai;
+  // Extract a creative visual metaphor from the title
+  const visualMetaphor = extractVisualConcept(title);
   
-  // Extract key concepts from title for context
-  const titleKeywords = title.toLowerCase()
-    .replace(/[^a-z\s]/g, '')
-    .split(' ')
-    .filter(w => w.length > 4)
-    .slice(0, 3)
-    .join(', ');
-  
-  const prompt = `Technical illustration for article: "${title}".
+  const prompt = `Editorial hero image for article titled: "${title}"
 
-Visual concept: ${topicConcept}
-Key themes: ${titleKeywords}
+VISUAL CONCEPT: ${visualMetaphor}
 
 ${BASE_STYLE}
 
-16:9 aspect ratio, hero image composition with visual weight on left third.
+COMPOSITION: 16:9 cinematic frame. Subject positioned using rule of thirds. Clear focal point with intentional negative space. Depth through foreground/background separation.
+
+NO TEXT. NO WORDS. NO LETTERS. PURELY VISUAL.
 `;
 
   console.log(`\n🎨 Generating image with Fal AI (Flux Dev)...`);
   console.log(`   Title: ${title}`);
-  console.log(`   Topic: ${topic}`);
+  console.log(`   Visual metaphor: ${visualMetaphor}`);
   console.log(`   Resolution: 1536x864 (HD 16:9)`);
 
   // Use Flux Dev for higher quality (28 steps vs Schnell's 4)

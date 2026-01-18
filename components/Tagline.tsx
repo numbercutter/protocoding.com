@@ -60,26 +60,26 @@ export default function Tagline() {
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
           >
-            <motion.p
+          <motion.p
               variants={itemVariants}
-              className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-4"
-            >
-              What We Build
-            </motion.p>
+            className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-4"
+          >
+            What We Build
+          </motion.p>
 
-            <motion.h2
+          <motion.h2
               variants={itemVariants}
-              className="text-[clamp(1.75rem,6vw,4.5rem)] font-bold text-gray-900 leading-[1.05] tracking-tighter max-w-5xl"
-            >
-              <span className="text-accent">AI applications.</span> Custom platforms. Intelligent integrations.
-            </motion.h2>
+            className="text-[clamp(1.75rem,6vw,4.5rem)] font-bold text-gray-900 leading-[1.05] tracking-tighter max-w-5xl"
+          >
+            <span className="text-accent">AI applications.</span> Custom platforms. Intelligent integrations.
+          </motion.h2>
 
-            <motion.p
+          <motion.p
               variants={itemVariants}
-              className="mt-5 md:mt-8 text-base md:text-xl text-gray-600 max-w-xl leading-relaxed"
-            >
-              From multi-agent systems to full-stack platforms, we design and deliver software that transforms how businesses operate.
-            </motion.p>
+            className="mt-5 md:mt-8 text-base md:text-xl text-gray-600 max-w-xl leading-relaxed"
+          >
+            From multi-agent systems to full-stack platforms, we design and deliver software that transforms how businesses operate.
+          </motion.p>
           </motion.div>
         </div>
       </div>
