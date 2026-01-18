@@ -1,0 +1,158 @@
+{
+  "slug": "what-we-actually-look-for-technical-interviews",
+  "title": "What We Actually Look For in Technical Interviews",
+  "subtitle": "Spoiler: It's not whether you can reverse a binary tree",
+  "description": "After hundreds of technical interviews, here's what actually predicts success on engineering teams. It's not what you think.",
+  "topic": "engineering",
+  "readTime": "8 min read",
+  "content": [
+    {
+      "type": "paragraph",
+      "content": "I've been on both sides of the technical interview table for over a decade. I've watched brilliant engineers bomb interviews because they couldn't solve contrived algorithm puzzles, and I've seen mediocre candidates nail the whiteboard only to struggle with real work."
+    },
+    {
+      "type": "paragraph",
+      "content": "Here's the thing: most technical interviews optimize for the wrong signals. We're testing performance under artificial pressure instead of the skills that actually matter day-to-day. After hundreds of interviews and years of watching who thrives on engineering teams, I've learned what to actually look for."
+    },
+    {
+      "type": "heading",
+      "content": "The Questions That Actually Matter"
+    },
+    {
+      "type": "paragraph",
+      "content": "Forget the classic 'reverse a linked list' nonsense. The best predictor of engineering success isn't whether someone can perform algorithms under pressure. It's how they think about problems."
+    },
+    {
+      "type": "paragraph",
+      "content": "I start with something like: 'Walk me through how you'd debug a service that's responding slowly.' No right answer, no trick. Just listen to how they approach it. The best candidates don't jump straight to solutions. They ask questions first."
+    },
+    {
+      "type": "list",
+      "content": [
+        "What's the expected response time vs. actual?",
+        "Is it all endpoints or specific ones?",
+        "When did this start happening?",
+        "What's changed recently?",
+        "How are we measuring 'slow'?"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "That diagnostic mindset matters more than memorizing sorting algorithms. Real engineering is mostly debugging, integrating systems, and making things work together. Not implementing binary search for the hundredth time."
+    },
+    {
+      "type": "heading",
+      "content": "Communication Trumps Cleverness"
+    },
+    {
+      "type": "paragraph",
+      "content": "The most dangerous hire is the brilliant engineer who can't explain their thinking. I've seen teams grind to a halt because one person wrote clever code that nobody else could maintain."
+    },
+    {
+      "type": "paragraph",
+      "content": "During interviews, I care less about the solution and more about the explanation. Can they walk me through their reasoning? Do they check if I'm following along? When they make assumptions, do they state them out loud?"
+    },
+    {
+      "type": "paragraph",
+      "content": "Last month, a candidate was solving a caching problem. Mid-way through, they said, 'Actually, let me step back. I'm assuming we need to optimize for read speed, but what if writes are more important here?' That self-correction and clarification? That's the stuff."
+    },
+    {
+      "type": "quote",
+      "content": "Code is read far more often than it's written. Hire people who optimize for readability."
+    },
+    {
+      "type": "heading",
+      "content": "How They Handle 'I Don't Know'"
+    },
+    {
+      "type": "paragraph",
+      "content": "Nobody knows everything. The engineers I want on my team are comfortable saying 'I don't know' and then immediately following up with how they'd find out."
+    },
+    {
+      "type": "paragraph",
+      "content": "When I ask about a technology they haven't used, bad candidates either BS their way through it or just shut down. Good candidates say something like: 'I haven't worked with Kafka specifically, but I understand it's a distributed streaming platform. I'd probably start by reading the docs and looking at how it compares to the message queues I have used.'"
+    },
+    {
+      "type": "paragraph",
+      "content": "That curiosity and learning approach matters. Technology changes constantly. The ability to pick up new tools quickly beats deep knowledge of any specific stack."
+    },
+    {
+      "type": "heading",
+      "content": "The Red Flags We Actually Care About"
+    },
+    {
+      "type": "paragraph",
+      "content": "Forget whether they know the Big O notation for quicksort. Here are the red flags that actually predict problems:"
+    },
+    {
+      "type": "paragraph",
+      "content": "They can't explain a project they worked on. If you built it, you should be able to tell me why certain decisions were made and what trade-offs you considered. Vague hand-waving about 'the team decided' suggests they weren't really driving anything."
+    },
+    {
+      "type": "paragraph",
+      "content": "They blame tools instead of adapting to them. Every framework has quirks. Every language has warts. Engineers who constantly complain about their tools instead of working with them tend to be unproductive on any stack."
+    },
+    {
+      "type": "paragraph",
+      "content": "They can't talk about failure. I always ask about a time something went wrong. If they claim nothing ever has, they're either lying or they've never pushed boundaries. The best answers include what they learned and what they'd do differently."
+    },
+    {
+      "type": "heading",
+      "content": "Testing Real Skills with Real Problems"
+    },
+    {
+      "type": "paragraph",
+      "content": "Instead of abstract algorithms, I give candidates problems similar to what we actually work on. 'How would you design an API that needs to handle file uploads and trigger background processing?' Then we iterate based on their questions."
+    },
+    {
+      "type": "paragraph",
+      "content": "This reveals so much more than coding puzzles. Do they think about error handling? Security? Scalability? Monitoring? The conversation naturally covers the skills that matter: system design, API design, async processing, data flow."
+    },
+    {
+      "type": "paragraph",
+      "content": "If we're hiring for a specific project, I'll sometimes share a real architectural challenge we're facing and see how they think about it. Not looking for the perfect solution, just want to see their thought process and whether they ask good questions."
+    },
+    {
+      "type": "heading",
+      "content": "What About Code?"
+    },
+    {
+      "type": "paragraph",
+      "content": "Yes, engineers need to code. But the whiteboard coding exercise is theater. I'd rather look at code they've actually written or have them walk through a small take-home problem."
+    },
+    {
+      "type": "paragraph",
+      "content": "When reviewing code, I'm not checking if it runs perfectly. I'm looking at structure, naming, comments, and whether I can understand what it's trying to do. Clean, readable code beats clever, compact code every single time."
+    },
+    {
+      "type": "paragraph",
+      "content": "The best candidates write code like they expect someone else to maintain it. Because that's exactly what's going to happen."
+    },
+    {
+      "type": "heading",
+      "content": "Making It Work for Both Sides"
+    },
+    {
+      "type": "paragraph",
+      "content": "Good interviews aren't just about evaluating candidates. They're about giving people a realistic preview of what working here would be like. If the interview is all gotcha questions and pressure, you're attracting people who thrive on that kind of environment."
+    },
+    {
+      "type": "paragraph",
+      "content": "We try to make our interviews collaborative. We're solving problems together, not testing memorization. This attracts engineers who like working through challenges as a team rather than solo heroes who need to prove they're the smartest person in the room."
+    },
+    {
+      "type": "paragraph",
+      "content": "The best hires come from interviews that felt more like interesting technical conversations than interrogations. Both sides learn something, and there's mutual excitement about working together."
+    },
+    {
+      "type": "paragraph",
+      "content": "Stop optimizing interviews for algorithmic performance under pressure. Start optimizing for the skills that actually matter: clear thinking, good communication, and the ability to collaborate on real problems. Your team will thank you."
+    }
+  ],
+  "tags": [
+    "hiring",
+    "interviews",
+    "engineering-management",
+    "team-building"
+  ]
+}

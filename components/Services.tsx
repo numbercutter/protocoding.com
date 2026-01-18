@@ -146,7 +146,7 @@ export default function Services() {
 
           {/* Right content - use cases grid */}
           <div className="flex-1 flex flex-col">
-            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 content-start">
+            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 content-start md:min-h-[560px]">
               <AnimatePresence mode="popLayout">
                 {visibleCases.map((useCase, i) => (
                   <motion.div

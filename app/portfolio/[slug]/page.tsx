@@ -170,9 +170,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'Project Not Found - Protocoding' };
   }
   
+  const title = `${project.title} - Portfolio - Protocoding`;
+  const description = project.overview;
+  
   return {
-    title: `${project.title} - Portfolio - Protocoding`,
-    description: project.overview,
+    title,
+    description,
+    openGraph: {
+      title: project.title,
+      description,
+      type: 'article',
+      images: [{
+        url: project.image,
+        width: 1200,
+        height: 675,
+        alt: project.title,
+      }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: project.title,
+      description,
+      images: [project.image],
+    },
   };
 }
 

@@ -2,17 +2,26 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
-import { INSIGHTS, TOPIC_LABELS, getRecentInsights, InsightTopic } from '@/lib/data/insights';
+import { 
+  INSIGHTS_BY_DATE, 
+  getRecentInsightsMetadata, 
+  TOPIC_LABELS, 
+  InsightTopic 
+} from '@/lib/data/insights-metadata';
+import InsightsFilter from '@/components/InsightsFilter';
 
 export const metadata: Metadata = {
   title: 'Insights - Protocoding',
   description: 'Thought leadership on AI, software engineering, startups, and technology trends from the Protocoding team.',
 };
 
-const topics = Object.entries(TOPIC_LABELS) as [InsightTopic, string][];
-const recentInsights = getRecentInsights(6);
+type Props = {
+  searchParams: Promise<{ topic?: string }>;
+};
 
-export default function InsightsPage() {
+export default async function InsightsPage({ searchParams }: Props) {
+  const { topic } = await searchParams;
+  const recentInsights = getRecentInsightsMetadata(6);
   const featuredInsight = recentInsights[0];
   const otherInsights = recentInsights.slice(1);
 
@@ -33,27 +42,8 @@ export default function InsightsPage() {
         <div className="gutter-right" />
       </div>
 
-      {/* Topics */}
-      <div className="section-row">
-        <div className="gutter-left" />
-        <div className="material">
-          <div className="grid grid-cols-2 md:grid-cols-5">
-            {topics.map(([key, label], index) => (
-              <Link
-                key={key}
-                href={`/insights?topic=${key}`}
-                className={`p-4 md:p-6 text-center cell ${index % 2 === 0 ? 'material' : 'material-inset'} hover:material-elevated transition-all`}
-              >
-                <span className="text-xs font-bold text-gray-600 uppercase tracking-[0.1em]">{label}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-        <div className="gutter-right" />
-      </div>
-
-      {/* Featured article */}
-      {featuredInsight && (
+      {/* Featured article - only show when no topic filter */}
+      {!topic && featuredInsight && (
         <div className="section-row">
           <div className="gutter-left" />
           <Link href={`/insights/${featuredInsight.slug}`} className="material group p-6 md:p-8 lg:p-12 block hover:material-elevated transition-all">
@@ -83,8 +73,18 @@ export default function InsightsPage() {
                   </div>
                 </div>
               </div>
-              <div className="aspect-video bg-gray-100 material-inset flex items-center justify-center">
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-300">Featured Article</span>
+              <div className="aspect-video bg-gray-100 material-inset flex items-center justify-center overflow-hidden">
+                {featuredInsight.heroImage ? (
+                  <Image
+                    src={featuredInsight.heroImage}
+                    alt={featuredInsight.title}
+                    width={640}
+                    height={360}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-300">Featured Article</span>
+                )}
               </div>
             </div>
           </Link>
@@ -92,81 +92,66 @@ export default function InsightsPage() {
         </div>
       )}
 
-      {/* Article grid header */}
-      <div className="section-row">
-        <div className="gutter-left" />
-        <div className="material-elevated p-6 md:p-8">
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">Latest</p>
-          <h2 className="text-xl font-bold text-gray-900 tracking-tight">Recent articles</h2>
-        </div>
-        <div className="gutter-right" />
-      </div>
-
-      {/* Article grid */}
-      <div className="section-row">
-        <div className="gutter-left" />
-        <div className="material">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {otherInsights.map((insight, index) => (
-              <Link
-                key={insight.slug}
-                href={`/insights/${insight.slug}`}
-                className={`group p-6 cell ${index % 2 === 0 ? 'material' : 'material-inset'} hover:material-elevated transition-all`}
-              >
-                <span className="inline-block px-2 py-1 text-[9px] font-bold uppercase tracking-[0.1em] bg-gray-100 text-gray-500 mb-4">
-                  {TOPIC_LABELS[insight.topic]}
-                </span>
-                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-accent transition-colors leading-tight">
-                  {insight.title}
-                </h3>
-                <p className="text-xs text-gray-500 leading-relaxed mb-4 line-clamp-2">{insight.subtitle}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold text-gray-400">{insight.readTime}</span>
-                  <span className="inline-flex items-center gap-1 text-xs font-bold text-gray-400 group-hover:text-accent transition-colors">
-                    Read <ArrowUpRight size={12} />
-                  </span>
-                </div>
-              </Link>
-            ))}
+      {/* Quick picks grid - only show when no topic filter */}
+      {!topic && (
+        <>
+          <div className="section-row">
+            <div className="gutter-left" />
+            <div className="material-elevated p-6 md:p-8">
+              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">Latest</p>
+              <h2 className="text-xl font-bold text-gray-900 tracking-tight">Recent articles</h2>
+            </div>
+            <div className="gutter-right" />
           </div>
-        </div>
-        <div className="gutter-right" />
-      </div>
 
-      {/* All articles */}
+          <div className="section-row">
+            <div className="gutter-left" />
+            <div className="material">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {otherInsights.map((insight, index) => (
+                  <Link
+                    key={insight.slug}
+                    href={`/insights/${insight.slug}`}
+                    className={`group p-6 cell ${index % 2 === 0 ? 'material' : 'material-inset'} hover:material-elevated transition-all`}
+                  >
+                    <span className="inline-block px-2 py-1 text-[9px] font-bold uppercase tracking-[0.1em] bg-gray-100 text-gray-500 mb-4">
+                      {TOPIC_LABELS[insight.topic]}
+                    </span>
+                    <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-accent transition-colors leading-tight">
+                      {insight.title}
+                    </h3>
+                    <p className="text-xs text-gray-500 leading-relaxed mb-4 line-clamp-2">{insight.subtitle}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-bold text-gray-400">{insight.readTime}</span>
+                      <span className="inline-flex items-center gap-1 text-xs font-bold text-gray-400 group-hover:text-accent transition-colors">
+                        Read <ArrowUpRight size={12} />
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div className="gutter-right" />
+          </div>
+        </>
+      )}
+
+      {/* All articles section header */}
       <div className="section-row">
         <div className="gutter-left" />
         <div className="material-elevated p-6 md:p-8">
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">Archive</p>
-          <h2 className="text-xl font-bold text-gray-900 tracking-tight">All articles</h2>
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-3">
+            {topic ? TOPIC_LABELS[topic as InsightTopic] || 'Browse' : 'Browse'}
+          </p>
+          <h2 className="text-xl font-bold text-gray-900 tracking-tight">
+            {topic ? `${TOPIC_LABELS[topic as InsightTopic] || 'All'} articles` : 'All articles'}
+          </h2>
         </div>
         <div className="gutter-right" />
       </div>
 
-      <div className="section-row">
-        <div className="gutter-left" />
-        <div className="material">
-          {Object.values(INSIGHTS).map((insight, index) => (
-            <Link
-              key={insight.slug}
-              href={`/insights/${insight.slug}`}
-              className={`group flex items-center justify-between p-5 cell ${index % 2 === 0 ? 'material' : 'material-inset'} hover:material-elevated transition-all`}
-            >
-              <div className="flex items-center gap-6">
-                <span className="text-[10px] font-bold text-gray-300 hidden md:block">{insight.publishedAt}</span>
-                <span className="px-2 py-1 text-[9px] font-bold uppercase tracking-[0.05em] bg-gray-100 text-gray-500">
-                  {TOPIC_LABELS[insight.topic]}
-                </span>
-                <h3 className="text-sm font-bold text-gray-900 group-hover:text-accent transition-colors">
-                  {insight.title}
-                </h3>
-              </div>
-              <span className="text-xs font-bold text-gray-400 hidden md:block">{insight.readTime}</span>
-            </Link>
-          ))}
-        </div>
-        <div className="gutter-right" />
-      </div>
+      {/* Interactive filter and list */}
+      <InsightsFilter insights={INSIGHTS_BY_DATE} initialTopic={topic} />
 
       {/* CTA */}
       <div className="section-row-dark">

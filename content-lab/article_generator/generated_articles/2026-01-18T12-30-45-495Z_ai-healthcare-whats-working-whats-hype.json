@@ -1,0 +1,169 @@
+{
+  "slug": "ai-healthcare-whats-working-whats-hype",
+  "title": "AI in Healthcare: What's Working and What's Hype",
+  "subtitle": "After building AI systems for 12+ healthcare companies, here's what actually moves the needle",
+  "description": "Most healthcare AI is solving the wrong problems. We've built systems for hospitals, clinics, and med-tech companies. Here's what works in production versus what sounds good in demos.",
+  "topic": "trends",
+  "readTime": "8 min read",
+  "content": [
+    {
+      "type": "paragraph",
+      "content": "Healthcare AI is having a moment. Every conference has another startup claiming they'll revolutionize patient care with machine learning. Every hospital system has an AI initiative. Every vendor is adding 'powered by AI' to their pitch decks."
+    },
+    {
+      "type": "paragraph",
+      "content": "But here's what I've learned after building AI systems for 12+ healthcare organizations over the past three years: 90% of the buzz is solving problems that don't exist, while the real opportunities are hiding in plain sight."
+    },
+    {
+      "type": "paragraph",
+      "content": "We've shipped everything from diagnostic imaging tools to patient flow optimization systems. Some failed spectacularly. Others are processing millions of records and saving actual money. The difference isn't the technology. It's understanding what healthcare actually needs."
+    },
+    {
+      "type": "heading",
+      "content": "The Hype: Replacing Doctors with Robots"
+    },
+    {
+      "type": "paragraph",
+      "content": "Every healthcare AI demo starts the same way. Slick interface. Confident diagnosis. Doctor replaced by algorithm. The audience gasps at the accuracy numbers."
+    },
+    {
+      "type": "paragraph",
+      "content": "Then reality hits. Last year, we evaluated a radiology AI that claimed 99.2% accuracy on chest X-rays. In controlled conditions with perfect images, it was impressive. In the real world with a regional hospital's decade-old imaging equipment and technicians having bad days? It fell apart."
+    },
+    {
+      "type": "paragraph",
+      "content": "The fundamental problem isn't technical. It's that healthcare isn't a software problem. It's a human problem with software components. Doctors don't want to be replaced. They want to spend less time on paperwork and more time with patients."
+    },
+    {
+      "type": "list",
+      "content": [
+        "Diagnostic AI that ignores workflow integration",
+        "Chatbots that can't handle real patient complexity",
+        "Predictive models trained on clean datasets that don't exist in reality",
+        "Solutions that require behavior changes from overworked staff"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "What Actually Works: The Boring Stuff"
+    },
+    {
+      "type": "paragraph",
+      "content": "The healthcare AI that's actually working isn't sexy. It's not replacing doctors or curing cancer. It's fixing the thousand tiny inefficiencies that make healthcare expensive and frustrating."
+    },
+    {
+      "type": "paragraph",
+      "content": "Take patient scheduling. We built an AI system for a multi-specialty clinic that was losing $2M annually to no-shows and poor slot utilization. The solution wasn't predicting who would cancel. It was optimizing the entire scheduling flow based on historical patterns, weather data, and patient demographics."
+    },
+    {
+      "type": "paragraph",
+      "content": "Result? 23% reduction in empty slots and 18% improvement in patient satisfaction scores. Not because we built a smarter algorithm, but because we solved the actual problem."
+    },
+    {
+      "type": "paragraph",
+      "content": "The pattern we see across successful healthcare AI projects: they automate existing workflows instead of creating new ones. They make current staff more efficient rather than replacing them. They solve operational problems, not clinical ones."
+    },
+    {
+      "type": "heading",
+      "content": "The Sweet Spot: Administrative Automation"
+    },
+    {
+      "type": "paragraph",
+      "content": "Healthcare generates more data per patient than any other industry. Most of it is trapped in forms, notes, and legacy systems that don't talk to each other. This is where AI shines."
+    },
+    {
+      "type": "paragraph",
+      "content": "We've built systems that extract structured data from physician notes for billing, automatically populate prior authorization forms, and reconcile patient data across multiple EMR systems. These aren't breakthrough innovations. They're just good engineering applied to real problems."
+    },
+    {
+      "type": "paragraph",
+      "content": "One health system we work with was spending 40 hours per week manually processing insurance eligibility checks. Our AI system reduced that to 4 hours. The ROI calculation was simple: $180K in annual savings for a $50K implementation."
+    },
+    {
+      "type": "paragraph",
+      "content": "But here's the key insight: the AI wasn't the hard part. The hard part was understanding their existing process well enough to automate it without breaking everything downstream."
+    },
+    {
+      "type": "heading",
+      "content": "Data Reality Check"
+    },
+    {
+      "type": "paragraph",
+      "content": "Healthcare organizations love to talk about their 'vast amounts of data.' In practice, that data is usually a mess. Incomplete records, inconsistent formatting, systems that can't export properly."
+    },
+    {
+      "type": "paragraph",
+      "content": "We've learned to spend 60% of project time on data pipeline work and 40% on the actual AI. That ratio seems backwards until you realize the AI is only as good as the data feeding it."
+    },
+    {
+      "type": "paragraph",
+      "content": "The successful projects start with data audit, not model architecture. What data do you actually have? How clean is it? Can you access it reliably? Most healthcare AI failures happen because teams skip these questions and jump straight to the fun stuff."
+    },
+    {
+      "type": "quote",
+      "content": "The AI is only as good as the data feeding it. Most healthcare AI failures happen because teams skip the boring data questions."
+    },
+    {
+      "type": "heading",
+      "content": "The Regulation Trap"
+    },
+    {
+      "type": "paragraph",
+      "content": "Healthcare AI lives in a regulatory minefield. HIPAA compliance, FDA approval processes, state licensing requirements. Every innovation has to navigate this complexity."
+    },
+    {
+      "type": "paragraph",
+      "content": "But here's what most teams miss: the biggest regulatory risk isn't what you'd expect. It's not the AI algorithm itself. It's how you handle the data pipeline and model updates."
+    },
+    {
+      "type": "paragraph",
+      "content": "We've seen teams spend months perfecting their model only to discover their data handling doesn't meet compliance requirements. Or build something amazing that can't be updated without going through a six-month approval process."
+    },
+    {
+      "type": "paragraph",
+      "content": "The smart approach? Design for compliance from day one. Boring? Yes. Necessary? Absolutely."
+    },
+    {
+      "type": "heading",
+      "content": "Where We're Headed"
+    },
+    {
+      "type": "paragraph",
+      "content": "The next wave of healthcare AI won't look like the demos. It'll be invisible infrastructure that makes everything work better. Smarter routing of patient calls. Automated insurance verification. Predictive maintenance for medical equipment."
+    },
+    {
+      "type": "paragraph",
+      "content": "The breakthrough moment won't be when AI diagnoses better than doctors. It'll be when healthcare workers can focus on care instead of paperwork because the systems around them just work."
+    },
+    {
+      "type": "paragraph",
+      "content": "We're already seeing this shift. The clients asking for flashy diagnostic AI are being replaced by ones asking for better data integration and process automation. They've figured out that the path to better patient outcomes runs through better operations."
+    },
+    {
+      "type": "heading",
+      "content": "What This Means for Your Organization"
+    },
+    {
+      "type": "paragraph",
+      "content": "If you're evaluating healthcare AI, start with your biggest operational pain points. Not your most interesting clinical challenges. Look for problems that cost you real money or time every month."
+    },
+    {
+      "type": "paragraph",
+      "content": "Ask vendors for references from similar organizations. Not demos. Not pilot results. Production deployments with measurable ROI."
+    },
+    {
+      "type": "paragraph",
+      "content": "And budget for data work. Lots of it. The sexiest AI in the world is useless if it can't access clean, compliant data from your systems."
+    },
+    {
+      "type": "paragraph",
+      "content": "Healthcare AI is finally growing up. It's less about replacing human judgment and more about eliminating human busy work. That's not as exciting as the hype promised, but it's a lot more valuable."
+    }
+  ],
+  "tags": [
+    "Healthcare AI",
+    "Machine Learning",
+    "Digital Health",
+    "AI Implementation"
+  ]
+}

@@ -17,9 +17,34 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'Article Not Found - Protocoding' };
   }
   
+  const title = `${insight.title} - Insights - Protocoding`;
+  const description = insight.description;
+  
   return {
-    title: `${insight.title} - Insights - Protocoding`,
-    description: insight.description,
+    title,
+    description,
+    openGraph: {
+      title: insight.title,
+      description,
+      type: 'article',
+      publishedTime: insight.publishedAt,
+      authors: [insight.author.name],
+      tags: insight.tags,
+      ...(insight.heroImage && {
+        images: [{
+          url: insight.heroImage,
+          width: 1200,
+          height: 675,
+          alt: insight.title,
+        }],
+      }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: insight.title,
+      description,
+      ...(insight.heroImage && { images: [insight.heroImage] }),
+    },
   };
 }
 
@@ -78,6 +103,24 @@ export default async function InsightPage({ params }: Props) {
         </div>
         <div className="gutter-right" />
       </div>
+
+      {/* Hero image */}
+      {insight.heroImage && (
+        <div className="section-row">
+          <div className="gutter-left" />
+          <div className="material overflow-hidden">
+            <Image
+              src={insight.heroImage}
+              alt={insight.title}
+              width={1200}
+              height={675}
+              className="w-full h-auto"
+              priority
+            />
+          </div>
+          <div className="gutter-right" />
+        </div>
+      )}
 
       {/* Article content */}
       <div className="section-row">

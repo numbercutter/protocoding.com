@@ -5,6 +5,24 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 
+// Animation variants for portfolio cards
+const cardVariants = {
+  hidden: { 
+    opacity: 0, 
+    scale: 1.03,
+    y: 20,
+  },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.4, 0.25, 1] as const,
+    },
+  },
+};
+
 const PROJECTS = [
   {
     slug: 'aivre',
@@ -71,10 +89,11 @@ export default function Portfolio() {
           {PROJECTS.map((project, i) => (
             <motion.div
               key={project.slug}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: "-30px" }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: i * 0.1 }}
               className="cell"
             >
               <Link href={`/portfolio/${project.slug}`} className="group relative block h-full min-h-[220px] md:min-h-[260px] overflow-hidden">
@@ -83,7 +102,7 @@ export default function Portfolio() {
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                  className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
                 />
                 
                 {/* Gradient overlay for text readability - stronger on mobile */}

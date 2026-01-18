@@ -6,9 +6,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:article": "bun run content-lab/scripts/generate-article.ts",
+    "generate:article:interactive": "bun run content-lab/scripts/generate-article.ts --interactive",
+    "add:article": "bun run content-lab/scripts/add-article-to-insights.ts",
+    "add:article:latest": "bun run content-lab/scripts/add-article-to-insights.ts --latest",
+    "add:article:latest:image": "bun run content-lab/scripts/add-article-to-insights.ts --latest --with-image",
+    "add:article:all": "bun run content-lab/scripts/add-article-to-insights.ts --all-new",
+    "generate:image": "bun run content-lab/scripts/generate-article-image.ts",
+    "generate:all-images": "bun run content-lab/scripts/generate-all-images.ts",
+    "fix:read-times": "bun run content-lab/scripts/fix-read-times.ts",
+    "expand:articles": "bun run content-lab/scripts/expand-short-articles.ts",
+    "expand:articles:dry-run": "bun run content-lab/scripts/expand-short-articles.ts --dry-run"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.2",
     "@react-email/components": "^1.0.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

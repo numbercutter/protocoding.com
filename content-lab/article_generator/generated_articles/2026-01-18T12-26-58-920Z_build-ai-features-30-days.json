@@ -1,0 +1,178 @@
+{
+  "slug": "build-ai-features-30-days",
+  "title": "How We Build AI Features in 30 Days",
+  "subtitle": "The sprint methodology that gets AI from concept to production",
+  "description": "Most AI projects take 6+ months to ship. Here's how we consistently deliver working AI features in 30-day sprints by focusing on the fundamentals that actually matter.",
+  "topic": "ai",
+  "readTime": "8 min read",
+  "content": [
+    {
+      "type": "paragraph",
+      "content": "Last month, a healthcare client came to us with a problem: their nurses were spending 40 minutes per patient documenting visits. They wanted AI to cut that in half. Thirty days later, we deployed a voice-to-text system that reduced documentation time to 12 minutes. The nurses love it. The executives are happy. And we didn't need a six-month runway to make it happen."
+    },
+    {
+      "type": "paragraph",
+      "content": "Most AI projects fail because teams try to solve everything at once. They build elaborate pipelines, perfect their models for months, and ship nothing until it's 'ready.' We take the opposite approach. We ship working AI features in 30-day sprints."
+    },
+    {
+      "type": "paragraph",
+      "content": "Here's exactly how we do it."
+    },
+    {
+      "type": "heading",
+      "content": "Week 1: Define the Job to Be Done"
+    },
+    {
+      "type": "paragraph",
+      "content": "The biggest mistake I see teams make is falling in love with the technology instead of the problem. They want to use the latest transformer model or build a complex multi-agent system. But users don't care about your architecture. They care about getting their job done faster."
+    },
+    {
+      "type": "paragraph",
+      "content": "We spend the first week getting crystal clear on one thing: what specific task does AI need to perform? Not 'improve customer service' or 'automate workflows.' Something concrete like 'extract patient allergies from handwritten notes' or 'flag suspicious transactions under $500.'"
+    },
+    {
+      "type": "paragraph",
+      "content": "The healthcare documentation project started with this simple job: turn a nurse's voice recording into structured data that populates the patient record. That's it. No sentiment analysis, no clinical insights, no predictive modeling. Just speech to structured text."
+    },
+    {
+      "type": "paragraph",
+      "content": "By day 7, we have a one-sentence job description and sample inputs/outputs. If you can't explain your AI feature in one sentence, you're not ready to build it."
+    },
+    {
+      "type": "heading",
+      "content": "Week 2: Build the Dumbest Thing That Works"
+    },
+    {
+      "type": "paragraph",
+      "content": "Week two is about proving the concept with the simplest possible implementation. We're not optimizing for performance or scale. We're optimizing for learning whether this actually solves the problem."
+    },
+    {
+      "type": "paragraph",
+      "content": "For the documentation system, we started with OpenAI's Whisper API for transcription and GPT-4 for structuring the output. No custom models, no fine-tuning, no complex pipelines. Just API calls and some prompt engineering."
+    },
+    {
+      "type": "paragraph",
+      "content": "The first version had a 70% accuracy rate and took 3 minutes to process a 10-minute recording. Terrible by production standards. But good enough to put in front of three nurses and get real feedback."
+    },
+    {
+      "type": "paragraph",
+      "content": "That feedback was gold. We learned that perfect transcription mattered less than getting the medication lists right. We discovered that nurses speak differently when they know AI is listening. We found edge cases our prompt engineering couldn't handle."
+    },
+    {
+      "type": "paragraph",
+      "content": "By day 14, we have a working prototype and a list of what needs to be fixed. Most teams would spend two months building this. We do it in a week because we're not trying to be perfect."
+    },
+    {
+      "type": "heading",
+      "content": "Week 3: Fix the Biggest Pain Points"
+    },
+    {
+      "type": "paragraph",
+      "content": "Week three is where the real engineering happens. We take what we learned from user testing and fix the issues that matter most. This is usually where teams want to rewrite everything. We resist that urge."
+    },
+    {
+      "type": "paragraph",
+      "content": "Instead, we rank problems by impact and tackle them one at a time. For the documentation system, the biggest issue was medication accuracy. Nurses couldn't trust the system if it got drug names wrong."
+    },
+    {
+      "type": "paragraph",
+      "content": "We didn't build a custom pharmaceutical NLP model. We added a medication validation step that cross-references extracted drugs against a standard formulary. Simple code that solved the trust problem."
+    },
+    {
+      "type": "paragraph",
+      "content": "The second biggest issue was processing time. Three minutes felt too slow when nurses had back-to-back patients. We parallelized the transcription and structuring steps, bringing processing time down to 45 seconds."
+    },
+    {
+      "type": "paragraph",
+      "content": "By the end of week three, we have something that solves the core problem well enough to use in production. Not perfectly, but well enough."
+    },
+    {
+      "type": "heading",
+      "content": "Week 4: Ship and Measure"
+    },
+    {
+      "type": "paragraph",
+      "content": "The final week is about getting the feature into users' hands and setting up measurement systems. This isn't just deployment—it's building the feedback loops that will drive future improvements."
+    },
+    {
+      "type": "paragraph",
+      "content": "We instrument everything: accuracy rates, processing times, user satisfaction scores, usage patterns. We want to know not just whether the AI works, but how it's changing user behavior."
+    },
+    {
+      "type": "paragraph",
+      "content": "For the documentation system, we tracked documentation time per patient, accuracy of extracted data, and nurse adoption rates. We also built an admin panel where supervisors could review AI-generated summaries and flag errors."
+    },
+    {
+      "type": "paragraph",
+      "content": "The results after 30 days: average documentation time dropped from 40 minutes to 12 minutes, accuracy hit 94% for critical fields, and 8 out of 10 nurses preferred the AI-assisted workflow."
+    },
+    {
+      "type": "paragraph",
+      "content": "More importantly, we had a foundation to build on. The next sprint focused on adding clinical insights. The one after that tackled integration with the hospital's EHR system."
+    },
+    {
+      "type": "heading",
+      "content": "Why This Approach Works"
+    },
+    {
+      "type": "paragraph",
+      "content": "The 30-day sprint works because it forces you to focus on what matters. You can't gold-plate the solution when you only have four weeks. You can't build elaborate architectures when users are waiting. You have to ship something useful."
+    },
+    {
+      "type": "paragraph",
+      "content": "But there's a deeper reason this approach succeeds: it builds momentum. Seeing AI work in production, even imperfectly, changes how teams think about what's possible. Stakeholders stop asking 'when will it be ready?' and start asking 'what should we build next?'"
+    },
+    {
+      "type": "paragraph",
+      "content": "The alternative—spending six months building the 'right' solution—usually fails because requirements change, budgets get cut, or teams lose interest. Perfect is the enemy of shipped."
+    },
+    {
+      "type": "heading",
+      "content": "What You Need to Make This Work"
+    },
+    {
+      "type": "paragraph",
+      "content": "This methodology isn't magic. It requires specific conditions to succeed:"
+    },
+    {
+      "type": "list",
+      "content": [
+        "Senior engineers who can make architectural tradeoffs quickly",
+        "Direct access to end users for feedback (no committee reviews)",
+        "Management that values learning over perfection",
+        "Clear boundaries around scope (saying no to feature creep)",
+        "Existing infrastructure for rapid deployment"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "The biggest blocker is usually organizational, not technical. If you need three committee approvals to deploy a prototype, you can't move fast enough for this to work."
+    },
+    {
+      "type": "heading",
+      "content": "Start Your 30-Day Sprint"
+    },
+    {
+      "type": "paragraph",
+      "content": "If you want to try this approach, start with your smallest, most annoying AI problem. Not the moonshot project that'll transform your business. The boring workflow that wastes 15 minutes of someone's day."
+    },
+    {
+      "type": "paragraph",
+      "content": "Write down the job to be done in one sentence. If you can't, keep simplifying until you can. Then give yourself 30 days to ship something that makes that job easier."
+    },
+    {
+      "type": "paragraph",
+      "content": "You'll be surprised what's possible when you focus on shipping instead of perfecting."
+    },
+    {
+      "type": "quote",
+      "content": "Perfect is the enemy of shipped."
+    }
+  ],
+  "tags": [
+    "AI Development",
+    "Sprint Methodology",
+    "Product Management",
+    "Software Engineering"
+  ]
+}

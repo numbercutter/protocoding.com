@@ -83,7 +83,7 @@ export const NAV_CONFIG: NavEntry[] = [
     label: 'ABOUT',
     href: '/about',
     items: [
-      { label: 'Our Story', href: '/about', description: 'Who we are' },
+      { label: 'Our Story', href: '/about', description: 'How it started' },
       { label: 'Team', href: '/about/team', description: 'Meet the people' },
       { label: 'Portfolio', href: '/portfolio', description: 'Our work' },
       { label: 'Careers', href: '/careers', description: 'Join us' },

@@ -1,0 +1,150 @@
+{
+  "slug": "client-red-flags-we-walk-away-from",
+  "title": "The Client Red Flags We Now Walk Away From",
+  "subtitle": "Hard-won lessons on which projects to avoid (and why we sleep better at night)",
+  "description": "After five years of building AI solutions, we've learned to spot the warning signs that predict project failure. Here are the red flags that make us politely decline new business.",
+  "topic": "startups",
+  "readTime": "5 min read",
+  "content": [
+    {
+      "type": "paragraph",
+      "content": "We used to say yes to everything. Bad idea."
+    },
+    {
+      "type": "paragraph",
+      "content": "Three years ago, we took on a fintech client who wanted to \"revolutionize lending with AI.\" Classic mistake. They had no data, unrealistic timelines, and a CEO who'd watched too many TED talks. The project died after burning through their budget in six weeks."
+    },
+    {
+      "type": "paragraph",
+      "content": "That failure taught us something valuable: not every project is worth taking. Some red flags are so reliable that we now walk away immediately, no matter how good the check looks. Here's what we've learned to avoid."
+    },
+    {
+      "type": "heading",
+      "content": "The \"We Need This Yesterday\" Client"
+    },
+    {
+      "type": "paragraph",
+      "content": "AI takes time. Good AI takes even more time. When a prospect calls saying they need a machine learning model in production by next month, we know they don't understand what they're asking for."
+    },
+    {
+      "type": "paragraph",
+      "content": "Real AI development involves data collection, cleaning, model training, testing, and careful deployment. Rush any of these steps and you'll end up with garbage that costs more to fix than rebuild."
+    },
+    {
+      "type": "paragraph",
+      "content": "We learned this the hard way with an e-commerce client who wanted a recommendation engine launched before Black Friday. They gave us three weeks and dirty product data. The model performed worse than random suggestions. They blamed us. We blamed ourselves for saying yes."
+    },
+    {
+      "type": "heading",
+      "content": "The \"Our Data Is Perfect\" Delusion"
+    },
+    {
+      "type": "paragraph",
+      "content": "Nobody has perfect data. Nobody. But some clients insist theirs is spotless when it's obviously not."
+    },
+    {
+      "type": "paragraph",
+      "content": "During discovery calls, we always ask to see sample data. If they refuse or get defensive, that's flag number one. If they show us data that's clearly incomplete, inconsistent, or ancient, but insist it's \"enterprise-grade,\" that's flag number two."
+    },
+    {
+      "type": "paragraph",
+      "content": "One healthcare client proudly showed us patient records from 2015 with missing fields in 40% of entries. \"It's all there,\" they insisted. \"We just need you to make it work.\" We spent two weeks explaining data quality requirements before they finally admitted their database was a mess."
+    },
+    {
+      "type": "list",
+      "content": [
+        "Missing timestamps on 30%+ of records",
+        "Inconsistent naming conventions across systems",
+        "No data dictionary or documentation",
+        "Haven't touched the data in over a year",
+        "Previous vendor \"couldn't make it work\""
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Single Point of Failure Sponsor"
+    },
+    {
+      "type": "paragraph",
+      "content": "Some projects have one champion fighting the entire organization. That champion thinks they can force AI adoption through willpower alone. They're wrong."
+    },
+    {
+      "type": "paragraph",
+      "content": "We once worked with a brilliant CTO at a manufacturing company who wanted predictive maintenance for their equipment. Great idea. Unfortunately, the operations team hated him, the finance team questioned every expense, and the CEO thought AI was \"just a fad.\""
+    },
+    {
+      "type": "paragraph",
+      "content": "Three months in, the CTO left for another job. The project died within a week. We learned to ask: \"Who else cares about this succeeding?\" If the answer is \"nobody,\" we pass."
+    },
+    {
+      "type": "heading",
+      "content": "The \"Magic Black Box\" Expectation"
+    },
+    {
+      "type": "paragraph",
+      "content": "Some clients want AI to be completely autonomous. They don't want to understand how it works, they don't want to maintain it, and they definitely don't want to improve their processes first."
+    },
+    {
+      "type": "paragraph",
+      "content": "\"Can't you just point the AI at our problem and have it figure everything out?\" This question is an immediate red flag. AI isn't magic. It's software that needs good inputs, clear objectives, and ongoing maintenance."
+    },
+    {
+      "type": "paragraph",
+      "content": "A logistics company once asked us to optimize their delivery routes without changing anything about how they currently operate. No new data collection, no process updates, no training for drivers. They wanted a black box that would somehow make their existing chaos more efficient. We politely declined."
+    },
+    {
+      "type": "heading",
+      "content": "The Budget Reality Check"
+    },
+    {
+      "type": "paragraph",
+      "content": "\"What's the minimum viable AI solution?\" This question usually means they don't have enough budget but hope we'll work miracles anyway."
+    },
+    {
+      "type": "paragraph",
+      "content": "Good AI costs money. Data preparation costs money. Model development costs money. Deployment and monitoring cost money. When prospects try to negotiate down to 30% of our estimate, we know they're not serious about success."
+    },
+    {
+      "type": "paragraph",
+      "content": "We'd rather work with smaller companies that understand the investment than enterprise clients who want enterprise results on startup budgets."
+    },
+    {
+      "type": "quote",
+      "content": "\"Can't you just use ChatGPT?\" - An actual question from a $100M company that wanted a custom fraud detection system"
+    },
+    {
+      "type": "heading",
+      "content": "What We Look For Instead"
+    },
+    {
+      "type": "paragraph",
+      "content": "Good clients exist. They have realistic timelines, acknowledge their data needs work, and understand AI requires ongoing investment. They ask thoughtful questions about accuracy tradeoffs and edge cases."
+    },
+    {
+      "type": "paragraph",
+      "content": "Best of all, they have organizational buy-in. The finance team allocated budget, operations agreed to process changes, and leadership committed to seeing it through."
+    },
+    {
+      "type": "paragraph",
+      "content": "These clients make our work better and their outcomes stronger. They're worth waiting for."
+    },
+    {
+      "type": "heading",
+      "content": "The Takeaway"
+    },
+    {
+      "type": "paragraph",
+      "content": "Saying no is hard when you're building a business. But some projects are doomed from the start, and taking them hurts everyone. The client wastes money, we waste time, and both sides end up frustrated."
+    },
+    {
+      "type": "paragraph",
+      "content": "Now we qualify hard and walk away fast. Our success rate is higher, our team is happier, and our clients get better results. Sometimes the best decision is the project you don't take."
+    }
+  ],
+  "tags": [
+    "Client Management",
+    "Project Selection",
+    "AI Consulting",
+    "Business Development"
+  ]
+}

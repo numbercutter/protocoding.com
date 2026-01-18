@@ -1,0 +1,182 @@
+{
+  "slug": "why-ai-pilots-fail-production",
+  "title": "Why Most AI Pilots Never Make It to Production",
+  "subtitle": "The gap between proof-of-concept and production isn't technical—it's organizational",
+  "description": "90% of AI pilots never reach production. After building dozens of AI systems, here's what actually kills projects and how to fix it before you start.",
+  "topic": "ai",
+  "readTime": "8 min read",
+  "content": [
+    {
+      "type": "paragraph",
+      "content": "I've built AI systems for 50+ companies. Want to know the most common question I get six months after delivery? \"How do we actually deploy this thing?\""
+    },
+    {
+      "type": "paragraph",
+      "content": "It's not a technical question. The model works. The API responds. The accuracy metrics look good. But somewhere between the demo and production, everything falls apart."
+    },
+    {
+      "type": "paragraph",
+      "content": "Here's what I've learned: successful AI projects die from organizational problems, not technical ones. And most of these problems are predictable."
+    },
+    {
+      "type": "heading",
+      "content": "The Production Valley of Death"
+    },
+    {
+      "type": "paragraph",
+      "content": "Every AI pilot follows the same arc. Week 1: excitement about the possibilities. Week 8: working prototype that impresses stakeholders. Week 12: project quietly dies in committee."
+    },
+    {
+      "type": "paragraph",
+      "content": "The gap between pilot and production isn't small. It's a chasm. And it's filled with questions nobody asked during the pilot phase."
+    },
+    {
+      "type": "paragraph",
+      "content": "Who's going to monitor the model when it starts drifting? How do you handle edge cases the training data didn't cover? What happens when the API goes down at 2 AM on a Sunday?"
+    },
+    {
+      "type": "paragraph",
+      "content": "These aren't technical problems you can solve with better algorithms. They're operational problems that require organizational commitment."
+    },
+    {
+      "type": "heading",
+      "content": "The Four Pilot Killers"
+    },
+    {
+      "type": "paragraph",
+      "content": "After watching dozens of AI projects succeed and fail, the patterns are clear. Here are the four things that kill AI pilots:"
+    },
+    {
+      "type": "paragraph",
+      "content": "**1. No production owner.** The data science team built it, but they don't run production systems. The DevOps team can deploy it, but they don't understand the model. Nobody wants to be on-call for something they can't debug."
+    },
+    {
+      "type": "paragraph",
+      "content": "**2. Data pipeline fantasy.** Your pilot used a clean CSV file. Production needs real-time data from three different systems, two of which are down 10% of the time. The data engineering work is 3x bigger than the ML work."
+    },
+    {
+      "type": "paragraph",
+      "content": "**3. Accuracy theater.** 94% accuracy sounds impressive until you realize what happens with the 6% of cases the model gets wrong. If those failures aren't graceful, your users will lose trust fast."
+    },
+    {
+      "type": "paragraph",
+      "content": "**4. Integration complexity.** Your pilot was a standalone app. Production means integrating with existing workflows, user permissions, audit trails, and compliance requirements. It's not just an API call anymore."
+    },
+    {
+      "type": "heading",
+      "content": "The Real Cost of Production"
+    },
+    {
+      "type": "paragraph",
+      "content": "Most companies budget for the pilot, not production. That's backwards. The pilot is the cheap part."
+    },
+    {
+      "type": "paragraph",
+      "content": "Building a model: $50K. Building the infrastructure to run it reliably: $200K. Building the organizational processes to maintain it: $500K annually."
+    },
+    {
+      "type": "paragraph",
+      "content": "I've seen companies spend $100K on a beautiful proof-of-concept, then discover they need another $300K just to make it production-ready. That's when CFOs start asking hard questions."
+    },
+    {
+      "type": "paragraph",
+      "content": "But here's the thing: if you're not planning for production from day one, you're not building an AI system. You're building an expensive demo."
+    },
+    {
+      "type": "heading",
+      "content": "Starting with Production in Mind"
+    },
+    {
+      "type": "paragraph",
+      "content": "The teams that succeed think about production before they write the first line of code. They ask different questions:"
+    },
+    {
+      "type": "list",
+      "content": [
+        "Who will be responsible for this system in production?",
+        "How will we know when it's working correctly?",
+        "What's our rollback plan when something goes wrong?",
+        "How do we handle data quality issues in real-time?",
+        "What's the maximum acceptable downtime for this system?"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "These questions feel premature during the pilot phase. They're not. They're the difference between a successful deployment and another pilot that never ships."
+    },
+    {
+      "type": "paragraph",
+      "content": "One client learned this the hard way. They built an AI system to automate insurance claims processing. The pilot worked great—90% accuracy, fast processing, impressive demos. But when they tried to deploy it, they realized they had no way to handle the 10% of cases the AI couldn't process. Claims started piling up. Customer service was overwhelmed. They rolled back after three days."
+    },
+    {
+      "type": "paragraph",
+      "content": "The fix wasn't better AI. It was better workflow design. They needed human review queues, escalation procedures, and fallback processes. The AI was never the hard part."
+    },
+    {
+      "type": "heading",
+      "content": "The Production Checklist"
+    },
+    {
+      "type": "paragraph",
+      "content": "Before you start your next AI pilot, make sure you can answer these questions:"
+    },
+    {
+      "type": "paragraph",
+      "content": "**Operations:** Who's on-call? How do you monitor performance? What's your incident response plan?"
+    },
+    {
+      "type": "paragraph",
+      "content": "**Data:** Where does production data come from? How do you handle missing or corrupted inputs? What's your backup plan when upstream systems fail?"
+    },
+    {
+      "type": "paragraph",
+      "content": "**Integration:** How does this fit into existing workflows? What happens to edge cases the AI can't handle? How do you maintain audit trails?"
+    },
+    {
+      "type": "paragraph",
+      "content": "**Governance:** Who approves model updates? How do you handle bias or fairness issues? What are your compliance requirements?"
+    },
+    {
+      "type": "paragraph",
+      "content": "If you can't answer these questions, you're not ready for production. And if you're not ready for production, you shouldn't start the pilot."
+    },
+    {
+      "type": "quote",
+      "content": "The AI that ships is better than the AI that's perfect but never leaves the lab."
+    },
+    {
+      "type": "heading",
+      "content": "Making the Jump"
+    },
+    {
+      "type": "paragraph",
+      "content": "The companies that successfully deploy AI don't build better models. They build better processes around those models."
+    },
+    {
+      "type": "paragraph",
+      "content": "They start small—not with a pilot project, but with a pilot process. They pick one workflow, one team, one use case. They build all the operational infrastructure around it. Then they expand."
+    },
+    {
+      "type": "paragraph",
+      "content": "They invest as much in change management as they do in data science. They train users, document processes, and plan for failures. They treat AI deployment as an organizational change, not a technical upgrade."
+    },
+    {
+      "type": "paragraph",
+      "content": "Most importantly, they measure success differently. Not just model accuracy, but operational metrics: uptime, processing speed, user adoption, business impact."
+    },
+    {
+      "type": "paragraph",
+      "content": "Your 85% accurate model that ships and improves over time will always beat the 95% accurate model that never leaves the lab. Production is where AI creates value. Everything else is just expensive research."
+    },
+    {
+      "type": "paragraph",
+      "content": "So before you start your next AI pilot, ask yourself: are you building a demo, or are you building a system? The answer will determine whether you join the 90% of pilots that fail, or the 10% that actually ship."
+    }
+  ],
+  "tags": [
+    "AI Implementation",
+    "Production Deployment",
+    "Technical Leadership",
+    "Machine Learning Operations"
+  ]
+}

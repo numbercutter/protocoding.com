@@ -1,0 +1,163 @@
+{
+  "slug": "predictive-maintenance-ml-models-prevent-downtime",
+  "title": "Predictive Maintenance for Manufacturing: Building ML Models That Actually Prevent Downtime",
+  "subtitle": "Why 70% of predictive maintenance projects fail and how to build models that work in production",
+  "description": "Most predictive maintenance ML models never make it past the pilot stage. Here's what separates working systems from expensive science projects, based on real manufacturing deployments.",
+  "topic": "ai",
+  "readTime": "8 min read",
+  "content": [
+    {
+      "type": "paragraph",
+      "content": "I've seen more predictive maintenance projects die than succeed. Not because the technology doesn't work, but because teams build models that look great in Jupyter notebooks and fall apart in production. The difference between a $2M pilot project and a system that actually prevents downtime comes down to three things: data architecture, model design, and operational integration."
+    },
+    {
+      "type": "paragraph",
+      "content": "Let's talk about what actually works."
+    },
+    {
+      "type": "heading",
+      "content": "The Data Reality Check"
+    },
+    {
+      "type": "paragraph",
+      "content": "Most predictive maintenance projects start with someone saying 'we have tons of sensor data.' Then you look at it. Half the sensors are miscalibrated. Data's missing for three months when someone forgot to restart a service. The timestamps are wrong because of daylight saving time bugs."
+    },
+    {
+      "type": "paragraph",
+      "content": "Here's what you need before you write a single line of ML code:"
+    },
+    {
+      "type": "list",
+      "content": [
+        "Synchronized timestamps across all sensors (this is harder than it sounds)",
+        "At least 18 months of clean data with labeled failure events",
+        "Environmental context data (temperature, humidity, load conditions)",
+        "Maintenance logs that actually match reality, not what was supposed to happen"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "One client had beautiful vibration data from $50K sensors on their pumps. But nobody tracked when they changed the oil. Turns out oil viscosity changes were causing 40% of the 'anomalies' their model was flagging. Without maintenance context, their model was just expensive noise detection."
+    },
+    {
+      "type": "heading",
+      "content": "Model Architecture That Scales"
+    },
+    {
+      "type": "paragraph",
+      "content": "Forget the fancy deep learning papers. Most successful predictive maintenance models I've deployed use ensemble methods combining three approaches:"
+    },
+    {
+      "type": "paragraph",
+      "content": "**Statistical baselines** that catch obvious problems. If bearing temperature jumps 20 degrees in 10 minutes, you don't need neural networks to know something's wrong. These simple rules catch 60% of failures and give your fancy models credibility with plant managers who've been burned before."
+    },
+    {
+      "type": "paragraph",
+      "content": "**Feature engineering that matters**. Rolling statistics over different time windows. Frequency domain features from vibration data. Rate of change calculations. The magic isn't in the algorithm, it's in the features that capture how machines actually fail."
+    },
+    {
+      "type": "paragraph",
+      "content": "**Anomaly detection for the unknown unknowns**. This is where isolation forests or autoencoders earn their keep. But treat them as early warning systems, not diagnosis tools."
+    },
+    {
+      "type": "paragraph",
+      "content": "The key insight: your model needs to work with incomplete data. Sensors fail. Networks go down. If your model can't handle missing 30% of inputs and still make useful predictions, it won't survive production."
+    },
+    {
+      "type": "heading",
+      "content": "The Alert Problem"
+    },
+    {
+      "type": "paragraph",
+      "content": "Here's where most systems die: alert fatigue. Your beautiful model starts flagging everything as 'potential issues.' Maintenance teams get 50 alerts a day. After two weeks, they ignore all of them. Then when a real failure happens, you get blamed for the false sense of security."
+    },
+    {
+      "type": "paragraph",
+      "content": "The solution isn't better models. It's better alert design:"
+    },
+    {
+      "type": "list",
+      "content": [
+        "Tier your alerts by confidence and severity",
+        "Include estimated time to failure (12 hours vs 3 weeks matters)",
+        "Show which sensors are driving the prediction",
+        "Provide recommended actions, not just warnings"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "We built a system that sends three types of alerts: 'Schedule maintenance in 2-4 weeks' (green), 'Plan downtime this week' (yellow), and 'Stop the machine now' (red). The red alerts better be right 95% of the time, or you lose all credibility."
+    },
+    {
+      "type": "quote",
+      "content": "The best predictive maintenance system is the one that maintenance teams actually trust and use every day."
+    },
+    {
+      "type": "heading",
+      "content": "Integration Is Everything"
+    },
+    {
+      "type": "paragraph",
+      "content": "Your ML model is maybe 30% of the solution. The other 70% is integration: getting data out of industrial systems, processing it in real-time, and putting predictions where people can act on them."
+    },
+    {
+      "type": "paragraph",
+      "content": "Most manufacturing environments are technological archaeology. You've got PLCs from 1995 talking to SCADA systems from 2010, feeding data to historians that nobody knows how to query. Adding ML to this stack requires serious systems thinking."
+    },
+    {
+      "type": "paragraph",
+      "content": "Edge deployment is usually the right answer. You can't rely on network connectivity to the cloud for critical alerts. We typically deploy lightweight models on industrial PCs at the plant level, with cloud systems handling model training and updates."
+    },
+    {
+      "type": "heading",
+      "content": "Measuring Success"
+    },
+    {
+      "type": "paragraph",
+      "content": "Don't measure success by model accuracy. Measure it by business outcomes:"
+    },
+    {
+      "type": "list",
+      "content": [
+        "Reduction in unplanned downtime hours",
+        "Increase in time between failures",
+        "Maintenance cost per unit produced",
+        "Alert precision (how often alerts lead to actual issues found)"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "One manufacturing client saw 35% reduction in unplanned downtime in the first year. Not because we predicted every failure, but because we gave them enough early warning to schedule repairs during planned maintenance windows. That's worth millions in avoided production losses."
+    },
+    {
+      "type": "heading",
+      "content": "The Implementation Playbook"
+    },
+    {
+      "type": "paragraph",
+      "content": "Start with one critical asset class. Don't try to monitor everything at once. Pick the machines where downtime costs the most and where you have the best data."
+    },
+    {
+      "type": "paragraph",
+      "content": "Build the data pipeline first. Get clean, synchronized data flowing before you touch any ML. This takes longer than you think, but it's the foundation everything else depends on."
+    },
+    {
+      "type": "paragraph",
+      "content": "Deploy simple rules alongside ML models. The rules catch obvious problems and build trust while your models learn. Plant managers who see immediate value from simple temperature thresholds are more likely to trust complex vibration analysis later."
+    },
+    {
+      "type": "paragraph",
+      "content": "Plan for model drift. Manufacturing processes change. New suppliers, different operating conditions, equipment modifications. Your models need retraining cycles, not just deployment."
+    },
+    {
+      "type": "paragraph",
+      "content": "The companies succeeding with predictive maintenance aren't the ones with the fanciest algorithms. They're the ones who solve the whole problem: data, models, alerts, and integration. Focus on building systems that work reliably in production, not demos that impress in conference rooms."
+    }
+  ],
+  "tags": [
+    "Machine Learning",
+    "Manufacturing",
+    "Predictive Analytics",
+    "Industrial IoT"
+  ]
+}

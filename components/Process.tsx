@@ -10,6 +10,34 @@ const STEPS = [
   { num: '04', title: 'Ship', desc: 'We launch together and stick around. Ongoing support, maintenance, and iteration.', image: '/workplace/ship.png' },
 ];
 
+// Animation variants
+const headerVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.4, 0.25, 1] as const,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 25,
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.4, 0.25, 1] as const,
+    },
+  },
+};
+
 export default function Process() {
   return (
     <section className="section-row md:min-h-screen">
@@ -18,19 +46,26 @@ export default function Process() {
       
       {/* Content */}
       <div className="material flex flex-col">
-        <div className="p-6 md:p-10 lg:p-12 material-elevated border-b border-black/[0.08]">
+        <motion.div 
+          className="p-6 md:p-10 lg:p-12 material-elevated border-b border-black/[0.08]"
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-gray-500 mb-3">Process</p>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">How we work</h2>
-        </div>
+        </motion.div>
 
         <div className="flex-1 grid grid-cols-2 md:grid-cols-4">
           {STEPS.map((step, i) => (
             <motion.div
               key={step.title}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: "-30px" }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: i * 0.1 }}
               className="p-6 md:p-10 cell material-inset hover:material flex flex-col items-center text-center justify-center relative overflow-hidden group"
             >
               {/* Subtle B&W person backdrop */}

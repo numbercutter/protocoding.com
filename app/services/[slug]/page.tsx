@@ -17,9 +17,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'Service Not Found - Protocoding' };
   }
   
+  const title = `${service.title} - Services - Protocoding`;
+  const description = service.heroDescription;
+  
   return {
-    title: `${service.title} - Services - Protocoding`,
-    description: service.heroDescription,
+    title,
+    description,
+    openGraph: {
+      title: `${service.title} | Protocoding`,
+      description,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${service.title} | Protocoding`,
+      description,
+    },
   };
 }
 

@@ -229,6 +229,7 @@ export default function Navigation() {
                     <>
                       <Link
                         href={item.href || '#'}
+                        onClick={() => setOpenDropdown(null)}
                         className={`flex items-center justify-center gap-1 h-full font-display text-[11px] font-bold tracking-[0.08em] border-r ${borderColor} ${textMuted} hover:opacity-100 relative overflow-hidden group`}
                       >
                         <div className="absolute inset-0 bg-black/[0.03] opacity-0 group-hover:opacity-100 transition-opacity" />

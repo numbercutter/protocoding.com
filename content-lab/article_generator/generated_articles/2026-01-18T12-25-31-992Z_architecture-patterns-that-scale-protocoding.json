@@ -1,0 +1,201 @@
+{
+  "slug": "architecture-patterns-that-scale-protocoding",
+  "title": "The Architecture Patterns That Scale: What We Use at Protocoding",
+  "subtitle": "The practical patterns we've learned from building production AI systems",
+  "description": "After building AI systems for 50+ companies, these are the architecture patterns that actually survive production. No theory—just what works when you're scaling from MVP to millions of requests.",
+  "topic": "engineering",
+  "readTime": "12 min read",
+  "content": [
+    {
+      "type": "paragraph",
+      "content": "Most architecture advice sounds great in meetings and falls apart in production. I've seen teams spend months building 'scalable' systems that crumble under real load, and others throw together MVPs that somehow handle millions of requests without breaking a sweat."
+    },
+    {
+      "type": "paragraph",
+      "content": "After building AI-powered systems for 50+ companies—from healthcare startups to Fortune 500 manufacturers—I've learned that scalability isn't about picking the right database or microservices framework. It's about following patterns that bend without breaking when reality hits."
+    },
+    {
+      "type": "paragraph",
+      "content": "Here are the architecture patterns we actually use when we need systems to scale. Not what looks good in diagrams, but what works when you're serving real traffic."
+    },
+    {
+      "type": "heading",
+      "content": "The Event-First Pattern: Build for Async from Day One"
+    },
+    {
+      "type": "paragraph",
+      "content": "The biggest mistake I see teams make is building synchronous systems and trying to bolt on async later. AI workloads are inherently unpredictable. A simple text classification might take 100ms. The same model on a longer document might take 3 seconds. Video processing? Could be 30 minutes."
+    },
+    {
+      "type": "paragraph",
+      "content": "We build everything event-first from the start. Every user action becomes an event. Every AI processing step becomes an event. Every external API call becomes an event. This sounds like overkill for an MVP, but it's actually simpler than you think."
+    },
+    {
+      "type": "paragraph",
+      "content": "Here's the pattern: User submits data → Event published → Processing workers consume → Results published → UI updates. Even for 'simple' requests that could be synchronous."
+    },
+    {
+      "type": "paragraph",
+      "content": "The payoff comes when you need to scale. Instead of rewriting your request flow, you just add more workers. Instead of timing out on slow requests, you show progress. Instead of losing work when servers restart, events wait in the queue."
+    },
+    {
+      "type": "paragraph",
+      "content": "We use this for everything from document processing to real-time financial analysis. The extra complexity upfront saves months of refactoring later."
+    },
+    {
+      "type": "heading",
+      "content": "The Data Pipeline as First-Class Citizen"
+    },
+    {
+      "type": "paragraph",
+      "content": "In traditional apps, data flows from database to API to frontend. In AI systems, data is constantly moving between storage, processing, training, and inference. Most teams treat this as an afterthought and pay for it later."
+    },
+    {
+      "type": "paragraph",
+      "content": "We make the data pipeline a first-class part of the architecture from day one. Every piece of data has a clear lineage. Every transformation is versioned. Every model knows exactly what data it was trained on."
+    },
+    {
+      "type": "list",
+      "content": [
+        "Raw data lands in immutable storage (usually S3 or equivalent)",
+        "Processing steps create new versioned datasets, never modify originals",
+        "All transformations are reproducible with clear dependencies",
+        "Models track exactly which dataset version they used",
+        "Inference data follows the same pipeline as training data"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "This isn't just good practice—it's survival. When a model starts giving weird results in production (and it will), you need to trace back through every step. When you need to retrain on new data, you need to reproduce the exact preprocessing. When regulations require data lineage, you need receipts for everything."
+    },
+    {
+      "type": "paragraph",
+      "content": "The tooling doesn't matter as much as the discipline. We've used everything from Apache Airflow to simple Python scripts with good logging. The key is treating data movement as infrastructure, not a side effect."
+    },
+    {
+      "type": "heading",
+      "content": "The Graceful Degradation Hierarchy"
+    },
+    {
+      "type": "paragraph",
+      "content": "AI systems fail in creative ways. Models go offline. Third-party APIs hit rate limits. GPUs run out of memory. Instead of hoping these things won't happen, we design explicit fallback hierarchies."
+    },
+    {
+      "type": "paragraph",
+      "content": "Every AI feature has multiple implementation tiers. Tier 1 is the ideal experience—fast, accurate, expensive. Tier 2 is the backup—slower but reliable. Tier 3 is the emergency fallback—basic but always available."
+    },
+    {
+      "type": "paragraph",
+      "content": "For document analysis, this might look like: Tier 1 uses a fine-tuned model on dedicated infrastructure. Tier 2 falls back to a general model via API. Tier 3 uses rule-based extraction. The user gets results either way, just with different speed and accuracy."
+    },
+    {
+      "type": "paragraph",
+      "content": "The key insight: degradation needs to be automatic and invisible to users when possible. Don't make the user retry or handle errors. The system should try Tier 1, fall back to Tier 2, and land on Tier 3 without human intervention."
+    },
+    {
+      "type": "paragraph",
+      "content": "This pattern has saved us countless times. When OpenAI had outages, our systems kept running on backup models. When our GPU cluster went down, processing continued on CPU fallbacks. Users barely noticed because the system degraded gracefully instead of failing completely."
+    },
+    {
+      "type": "heading",
+      "content": "The State Machine for Complex Workflows"
+    },
+    {
+      "type": "paragraph",
+      "content": "AI workflows are rarely linear. A document might need OCR, then classification, then extraction, but only if classification returns certain categories. A video might need transcription, then summary, then entity extraction, but the steps depend on previous results."
+    },
+    {
+      "type": "paragraph",
+      "content": "We model these as explicit state machines rather than trying to coordinate with if/else logic scattered across services. Every workflow becomes a state machine with clear transitions, error handling, and retry logic."
+    },
+    {
+      "type": "paragraph",
+      "content": "The benefits are huge. You can see exactly where any job is stuck. You can replay failed steps without restarting from scratch. You can add new processing steps without breaking existing flows. Most importantly, you can reason about the system when things go wrong."
+    },
+    {
+      "type": "quote",
+      "content": "The goal isn't to avoid failure—it's to fail in predictable, recoverable ways."
+    },
+    {
+      "type": "paragraph",
+      "content": "We typically implement this with a simple state table in the database and workers that pick up jobs by state. More sophisticated systems use AWS Step Functions or similar, but the pattern matters more than the implementation."
+    },
+    {
+      "type": "heading",
+      "content": "The Resource Pool Pattern for GPU Management"
+    },
+    {
+      "type": "paragraph",
+      "content": "GPU resources are expensive and finicky. They have memory limits, warming costs, and version compatibility issues. Most teams either overprovision (expensive) or underprovision (slow) because they don't have good resource management."
+    },
+    {
+      "type": "paragraph",
+      "content": "We use a resource pool pattern that treats GPUs like database connections. There's a pool manager that knows about available resources, their capabilities, and current load. Jobs request resources through the pool rather than assuming they're available."
+    },
+    {
+      "type": "paragraph",
+      "content": "This enables smart scheduling. Heavy models get dedicated resources during low traffic periods. Light models share resources efficiently. Failed jobs release resources immediately instead of holding them while retrying."
+    },
+    {
+      "type": "paragraph",
+      "content": "The pattern works for other constrained resources too. API rate limits, specialized hardware, even expensive third-party services. The key is centralizing resource management instead of letting each service figure it out independently."
+    },
+    {
+      "type": "heading",
+      "content": "The Monitoring That Actually Matters"
+    },
+    {
+      "type": "paragraph",
+      "content": "Standard web app monitoring doesn't work for AI systems. Response time and error rate tell you something broke, but not why or how to fix it. AI systems need domain-specific observability."
+    },
+    {
+      "type": "paragraph",
+      "content": "We track metrics that matter for AI workloads: model accuracy over time, data drift detection, resource utilization patterns, and business metric correlation. Not just system health, but model health."
+    },
+    {
+      "type": "list",
+      "content": [
+        "Track prediction confidence distributions, not just accuracy",
+        "Monitor data characteristics, not just data volume",
+        "Measure business impact, not just technical metrics",
+        "Alert on model degradation before users notice",
+        "Keep enough detail to debug specific predictions"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "The best monitoring often comes from domain experts, not engineers. They know what 'normal' looks like for the business problem you're solving. Build dashboards they can understand and alerts they can act on."
+    },
+    {
+      "type": "heading",
+      "content": "What This Looks Like in Practice"
+    },
+    {
+      "type": "paragraph",
+      "content": "These patterns work together. Events flow through state machines. State machines manage resource pools. Resource pools serve data pipelines. Everything degrades gracefully and gets monitored appropriately."
+    },
+    {
+      "type": "paragraph",
+      "content": "The result is systems that scale smoothly from prototype to production. They handle failure gracefully. They're debuggable when things go wrong. Most importantly, they let you focus on solving business problems instead of fighting infrastructure."
+    },
+    {
+      "type": "paragraph",
+      "content": "None of this is bleeding-edge technology. We use boring, proven tools wherever possible. The innovation is in how you combine them and the discipline to follow the patterns even when they feel like overkill."
+    },
+    {
+      "type": "paragraph",
+      "content": "Start with events and state machines. Add resource pooling when you have constrained resources. Build in graceful degradation before you need it. Treat your data pipeline as seriously as your application code. Monitor the things that actually matter."
+    },
+    {
+      "type": "paragraph",
+      "content": "Your future self—the one debugging a production incident at 2 AM—will thank you for the extra structure."
+    }
+  ],
+  "tags": [
+    "Architecture",
+    "Scalability",
+    "AI Systems",
+    "Engineering",
+    "Best Practices"
+  ]
+}

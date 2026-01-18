@@ -17,9 +17,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'Industry Not Found - Protocoding' };
   }
   
+  const title = `${industry.title} Software Development - Protocoding`;
+  const description = industry.heroDescription;
+  
   return {
-    title: `${industry.title} Software Development - Protocoding`,
-    description: industry.heroDescription,
+    title,
+    description,
+    openGraph: {
+      title: `${industry.title} Solutions | Protocoding`,
+      description,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${industry.title} Solutions | Protocoding`,
+      description,
+    },
   };
 }
 

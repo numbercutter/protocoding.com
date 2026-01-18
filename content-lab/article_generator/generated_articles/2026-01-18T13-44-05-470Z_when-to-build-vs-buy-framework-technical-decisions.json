@@ -1,0 +1,122 @@
+{
+  "slug": "when-to-build-vs-buy-framework-technical-decisions",
+  "title": "When to Build vs Buy: A Framework for Technical Decisions",
+  "subtitle": "Stop wasting months on the wrong choice—here's how to decide in days",
+  "description": "A practical framework for technical leaders to make build vs buy decisions quickly and confidently. Based on real patterns from 50+ engineering teams.",
+  "topic": "startups",
+  "readTime": "5 min read",
+  "content": [
+    {
+      "type": "paragraph",
+      "content": "Last month, a CTO told me his team spent 6 months building an authentication system that Auth0 would've solved in 6 hours. Another founder I know burned through $200k rebuilding Stripe's payment flow because 'we need full control.' Both decisions cost them their Series A runway."
+    },
+    {
+      "type": "paragraph",
+      "content": "The build vs buy decision kills more startups than bad product-market fit. Y'all spend weeks debating, months building, then realize you picked wrong. Here's a framework that'll save you both time and money."
+    },
+    {
+      "type": "heading",
+      "content": "The 3-Factor Decision Matrix"
+    },
+    {
+      "type": "paragraph",
+      "content": "Every build vs buy decision comes down to three factors: differentiation, speed, and total cost. Most teams overthink this. The right choice usually becomes obvious once you score these honestly."
+    },
+    {
+      "type": "paragraph",
+      "content": "Differentiation: Does this component give you a competitive edge? If customers can't tell the difference between your auth flow and everyone else's, don't build it. Save your engineering cycles for features that actually matter to users."
+    },
+    {
+      "type": "paragraph",
+      "content": "Speed: How fast can you ship? A payments integration might take your team 3 months. Stripe takes 3 days. Unless those 3 months buy you something special, you're just burning runway."
+    },
+    {
+      "type": "paragraph",
+      "content": "Total cost: This isn't just subscription fees vs engineering salaries. Factor in maintenance, security updates, compliance, and opportunity cost. That 'free' open source solution often costs 10x more than SaaS once you account for engineering time."
+    },
+    {
+      "type": "heading",
+      "content": "The Build Scenarios"
+    },
+    {
+      "type": "paragraph",
+      "content": "Build when the component is your core differentiator. Netflix built their recommendation engine. Uber built their matching algorithm. These weren't just features—they were the entire business."
+    },
+    {
+      "type": "paragraph",
+      "content": "Build when existing solutions don't exist or suck. We recently built a custom AI model for a healthcare client because nothing on the market handled their specific compliance requirements. Sometimes you're truly breaking new ground."
+    },
+    {
+      "type": "paragraph",
+      "content": "Build when you have excess capacity and clear requirements. If your team is between major features and you know exactly what you need, building can make sense. But this scenario is rarer than founders think."
+    },
+    {
+      "type": "list",
+      "content": [
+        "Your core differentiation depends on it",
+        "No good solutions exist in the market",
+        "You have clear requirements and excess engineering capacity",
+        "The component will generate direct revenue"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Buy Scenarios"
+    },
+    {
+      "type": "paragraph",
+      "content": "Buy commodity features that users expect but don't care about. Authentication, payments, email delivery, file storage—these are table stakes. Your customers assume they work. They don't choose you because of them."
+    },
+    {
+      "type": "paragraph",
+      "content": "Buy when speed matters more than cost. Early-stage companies should almost always favor speed. Getting to market 3 months faster is worth way more than saving $500/month on tools."
+    },
+    {
+      "type": "paragraph",
+      "content": "Buy when the vendor is better at it than you'll ever be. Twilio handles billions of messages. AWS manages global infrastructure. They've solved problems you don't even know exist yet."
+    },
+    {
+      "type": "quote",
+      "content": "The best engineering teams build what only they can build, and buy everything else."
+    },
+    {
+      "type": "heading",
+      "content": "The Hidden Costs Everyone Misses"
+    },
+    {
+      "type": "paragraph",
+      "content": "Building isn't just development time. It's ongoing maintenance, security patches, scaling issues, and documentation. That authentication system doesn't just need to work today—it needs to work when you're processing 10x the traffic."
+    },
+    {
+      "type": "paragraph",
+      "content": "I've seen teams spend 20% of their engineering bandwidth maintaining internal tools that SaaS would've handled. That's 20% not building features customers actually want."
+    },
+    {
+      "type": "paragraph",
+      "content": "Buying has hidden costs too. Vendor lock-in, integration complexity, and feature gaps. But these are usually more predictable than the maintenance burden of custom code."
+    },
+    {
+      "type": "heading",
+      "content": "Making the Call"
+    },
+    {
+      "type": "paragraph",
+      "content": "Score each factor on a 1-10 scale. If differentiation scores below 7, buy it. If speed to market is above 8, buy it. If total cost of building (including maintenance) is more than 3x the buy cost, buy it."
+    },
+    {
+      "type": "paragraph",
+      "content": "When in doubt, buy first. You can always build later once you've validated the need and have more resources. But you can't get back the 6 months you spent building a worse version of something that already existed."
+    },
+    {
+      "type": "paragraph",
+      "content": "The best CTOs make these decisions fast and move on. Don't let perfect be the enemy of shipped. Your customers are waiting."
+    }
+  ],
+  "tags": [
+    "Build vs Buy",
+    "Technical Leadership",
+    "Startup Strategy",
+    "Engineering Management"
+  ],
+  "_writer": "ryan"
+}

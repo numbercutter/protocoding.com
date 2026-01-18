@@ -1,6 +1,23 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import AnimatedCounter from './AnimatedCounter';
+
+// Animation variants for work items
+const cardVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 20,
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.25, 0.4, 0.25, 1] as const,
+    },
+  },
+};
 
 const WORK_ITEMS = [
   {
@@ -143,10 +160,11 @@ export default function FeaturedWork() {
           return (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: "-30px" }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: i * 0.08 }}
               className={`
                 grid 
                 ${isLeftColumn 
@@ -193,12 +211,20 @@ export default function FeaturedWork() {
       <section className="section-row flex-1">
         <div className="gutter-left" />
         <div className="material-inset p-8 md:p-10 lg:p-16 flex items-center justify-center">
-          <div className="text-center">
-            <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">20+</p>
+          <motion.div 
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
+          >
+            <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">
+              <AnimatedCounter end={20} suffix="+" duration={1.5} />
+            </p>
             <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-gray-600">
               Projects delivered across AI, fintech, and consumer products
             </p>
-          </div>
+          </motion.div>
         </div>
         <div className="gutter-right" />
       </section>

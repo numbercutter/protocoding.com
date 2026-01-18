@@ -1,0 +1,155 @@
+{
+  "slug": "why-your-engineers-keep-quitting",
+  "title": "The Real Reason Your Engineers Keep Quitting",
+  "subtitle": "It's not the money, the perks, or the remote work policy",
+  "description": "After talking to 50+ engineers who left their jobs in the past year, the pattern is clear. It's not what most CTOs think. Here's what's actually driving talent out the door and how to fix it.",
+  "topic": "trends",
+  "readTime": "8 min read",
+  "content": [
+    {
+      "type": "paragraph",
+      "content": "Last month, I grabbed coffee with Sarah, a senior engineer who just quit her job at a well-funded startup. Great salary, unlimited PTO, free lunch, all the usual perks. When I asked why she left, her answer surprised me: \"I felt like I was slowly becoming dumber.\""
+    },
+    {
+      "type": "paragraph",
+      "content": "That conversation started a pattern. Over the past six months, I've talked to 50+ engineers who recently changed jobs. The stories are remarkably consistent, and they're not what most CTOs think. It's not about compensation, remote work flexibility, or ping pong tables. It's about something deeper that's eroding the core of what makes engineering fulfilling."
+    },
+    {
+      "type": "heading",
+      "content": "The Growth Ceiling Problem"
+    },
+    {
+      "type": "paragraph",
+      "content": "Here's what 80% of the engineers I spoke with said: they hit a learning plateau and couldn't see a path forward. Not a career plateau, not a promotion plateau. A learning plateau."
+    },
+    {
+      "type": "paragraph",
+      "content": "Mark, a machine learning engineer with 8 years of experience, put it perfectly: \"I was maintaining the same three systems for two years. Every day felt like Groundhog Day. I wasn't learning anything new, and when I proposed working on different problems, I got told we needed to focus on stability.\""
+    },
+    {
+      "type": "paragraph",
+      "content": "Companies create this problem by treating senior engineers like expensive maintenance workers. You hire them for their expertise, then lock them into maintaining legacy systems because they're the only ones who understand the code. It's a death spiral. Your best people become prisoners of their own competence."
+    },
+    {
+      "type": "heading",
+      "content": "The AI Anxiety Factor"
+    },
+    {
+      "type": "paragraph",
+      "content": "The second biggest driver? Engineers are terrified they're falling behind on AI, and their current companies aren't helping them catch up. This isn't about job security fears. It's about professional relevance."
+    },
+    {
+      "type": "paragraph",
+      "content": "Jennifer, a frontend engineer at a traditional SaaS company, told me: \"Everyone's talking about AI changing everything, but at my job, we're still arguing about which JavaScript framework to use. I felt like I was missing the biggest shift in our industry.\""
+    },
+    {
+      "type": "paragraph",
+      "content": "Companies that aren't actively integrating AI into their development process aren't just missing business opportunities. They're becoming talent deserts. Engineers want to work on problems that feel relevant to the future of technology, not legacy maintenance that feels increasingly obsolete."
+    },
+    {
+      "type": "heading",
+      "content": "The Impact Visibility Gap"
+    },
+    {
+      "type": "paragraph",
+      "content": "The third pattern: engineers can't see how their work connects to real outcomes. They're building features in isolation without understanding the business impact or user behavior."
+    },
+    {
+      "type": "list",
+      "content": [
+        "They ship code but never see usage data",
+        "They build features but don't know if customers actually use them",
+        "They fix bugs but don't understand the business cost of those bugs",
+        "They optimize performance but don't see how it affects user retention"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "David, a backend engineer at a fintech company, said it best: \"I spent six months optimizing our payment processing system. Reduced latency by 40%. Never found out if that actually helped the business or just made me feel good about my code.\""
+    },
+    {
+      "type": "paragraph",
+      "content": "Engineers are problem solvers. When they can't see the problems they're solving or whether their solutions work, the job loses meaning. They start feeling like code monkeys instead of product builders."
+    },
+    {
+      "type": "heading",
+      "content": "The Technical Debt Trap"
+    },
+    {
+      "type": "paragraph",
+      "content": "Here's the cruel irony: the companies with the biggest retention problems are often the ones with the most technical debt. They desperately need senior engineers to fix their legacy systems, but working on those systems is exactly what drives senior engineers away."
+    },
+    {
+      "type": "paragraph",
+      "content": "It becomes a vicious cycle. Technical debt makes everything slower and more frustrating. Frustrated engineers leave. Remaining engineers inherit more technical debt. More engineers leave. Eventually, you're left with junior developers maintaining systems they don't understand, creating more technical debt."
+    },
+    {
+      "type": "paragraph",
+      "content": "I've seen companies lose their entire senior engineering team within 18 months because they couldn't break this cycle. The business suffers, product velocity tanks, and the remaining engineers are set up for failure."
+    },
+    {
+      "type": "quote",
+      "content": "Engineers don't leave companies. They leave learning plateaus."
+    },
+    {
+      "type": "heading",
+      "content": "What Actually Works"
+    },
+    {
+      "type": "paragraph",
+      "content": "The companies that retain top engineering talent do five things consistently:"
+    },
+    {
+      "type": "paragraph",
+      "content": "First, they rotate engineers through different problems regularly. Not different teams or different projects. Different types of problems. Database optimization one quarter, machine learning the next, frontend architecture after that. Keep the learning curve steep."
+    },
+    {
+      "type": "paragraph",
+      "content": "Second, they make AI adoption a engineering-wide initiative, not just a special project for a few people. Every engineer gets time to experiment with AI tools, integrate AI capabilities, or optimize AI workflows. It's not about becoming AI experts overnight. It's about staying current with the tools that are changing how we build software."
+    },
+    {
+      "type": "paragraph",
+      "content": "Third, they connect engineers directly to business metrics. Engineers see user analytics, revenue impact, and customer feedback for their features. They understand the business cost of technical debt and the revenue impact of performance improvements."
+    },
+    {
+      "type": "paragraph",
+      "content": "Fourth, they treat technical debt reduction as a product feature, not maintenance work. It gets roadmap time, success metrics, and celebration when completed. Engineers can see the impact of their refactoring work on team velocity and system reliability."
+    },
+    {
+      "type": "paragraph",
+      "content": "Fifth, they create clear paths from maintenance to innovation. Engineers know that doing good work on stability unlocks opportunities to work on new features, new architecture, or new products. Maintenance becomes a stepping stone, not a dead end."
+    },
+    {
+      "type": "heading",
+      "content": "The 90-Day Fix"
+    },
+    {
+      "type": "paragraph",
+      "content": "If you're losing good engineers, here's what you can do in the next 90 days:"
+    },
+    {
+      "type": "list",
+      "content": [
+        "Survey your team about what they want to learn next. Then create time for them to learn it.",
+        "Pick one AI tool or capability and have the whole engineering team experiment with it together.",
+        "Start sharing business metrics with engineers. Revenue per user, conversion rates, customer satisfaction scores.",
+        "Identify your biggest technical debt pain point and staff it like a product feature with clear success metrics.",
+        "Create a rotation plan so no engineer works on the same type of problem for more than 6 months."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "The companies that figure this out don't just retain talent. They attract it. Word spreads fast in engineering communities about places where you can grow, learn, and see your impact. Those companies become talent magnets while their competitors struggle with endless hiring."
+    },
+    {
+      "type": "paragraph",
+      "content": "Your engineers aren't leaving for better perks or higher salaries. They're leaving for better problems to solve and clearer paths to grow. Fix that, and you'll fix your retention problem."
+    }
+  ],
+  "tags": [
+    "Engineering",
+    "Talent",
+    "AI",
+    "Technical Debt"
+  ]
+}

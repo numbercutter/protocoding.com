@@ -1,7 +1,24 @@
 import type { Metadata } from 'next';
+import { DM_Sans, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import ScrollProgress from '@/components/ScrollProgress';
+
+// Optimized font loading - no render blocking
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
+});
 
 const title = 'Protocoding - AI Development Studio';
 const description = 'Protocoding is an AI development studio that designs and builds intelligent software applications, custom platforms, and AI integrations for businesses.';
@@ -85,8 +102,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${dmSans.variable} ${plusJakartaSans.variable}`}>
       <body>
+        <ScrollProgress />
         <Navigation />
         <main className="pt-14">{children}</main>
         <Footer />

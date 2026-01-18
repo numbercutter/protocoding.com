@@ -1,0 +1,125 @@
+{
+  "slug": "why-your-startup-doesnt-need-kubernetes-yet",
+  "title": "Why Your Startup Doesn't Need Kubernetes Yet",
+  "subtitle": "The infrastructure complexity trap that's killing productivity",
+  "description": "Most startups jump to Kubernetes way too early, trading simplicity for complexity without real benefits. Here's when you actually need it and what to use instead.",
+  "topic": "startups",
+  "readTime": "5 min read",
+  "content": [
+    {
+      "type": "paragraph",
+      "content": "Last week, a startup founder told me they were spending 40% of their engineering time managing Kubernetes. They had 3 engineers, 2 microservices, and about 100 daily active users. That's like buying a Ferrari to drive to the corner store."
+    },
+    {
+      "type": "paragraph",
+      "content": "Y'all are making this way harder than it needs to be. Kubernetes is incredible technology, but it's solving problems you don't have yet. And while you're busy playing DevOps engineer, your competitors are shipping features."
+    },
+    {
+      "type": "heading",
+      "content": "The Kubernetes Seduction"
+    },
+    {
+      "type": "paragraph",
+      "content": "I get the appeal. The tech blogs make it sound like Kubernetes is table stakes for any serious company. Your engineering team wants to work with 'modern' infrastructure. The job market rewards K8s experience. Every conference talk assumes you're already running containers in production."
+    },
+    {
+      "type": "paragraph",
+      "content": "But here's the thing: Google created Kubernetes to manage thousands of services across millions of containers. Netflix uses it to handle 230 million subscribers streaming simultaneously. You're not Google or Netflix. You're a startup trying to figure out product-market fit."
+    },
+    {
+      "type": "paragraph",
+      "content": "We've worked with over 50 startups in the past two years. The ones spending time on complex infrastructure in their early days consistently ship slower than those focused on their core product. It's not even close."
+    },
+    {
+      "type": "heading",
+      "content": "What You Actually Need"
+    },
+    {
+      "type": "paragraph",
+      "content": "For 90% of startups, a simple setup beats complex orchestration every time. Here's what actually works:"
+    },
+    {
+      "type": "list",
+      "content": [
+        "A single server or simple container deployment (Railway, Render, or even Heroku)",
+        "One database (probably Postgres)",
+        "A CDN for static assets",
+        "Basic monitoring (not a full observability stack)",
+        "Automated backups"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "That's it. This setup can handle way more than you think. Instagram ran on a similar architecture until they had 100 million users. Stack Overflow serves millions of developers with a surprisingly simple setup."
+    },
+    {
+      "type": "paragraph",
+      "content": "One client came to us after spending 6 months building a 'scalable' microservices architecture on Kubernetes. They had 50 users. We migrated them to a single Rails app on Railway in 3 days. Their development velocity doubled overnight."
+    },
+    {
+      "type": "heading",
+      "content": "The Real Costs Nobody Talks About"
+    },
+    {
+      "type": "paragraph",
+      "content": "Kubernetes isn't just complex to set up. It's complex forever. Every deployment becomes a YAML debugging session. Every new team member needs weeks to understand the setup. Every outage requires deep infrastructure knowledge to fix."
+    },
+    {
+      "type": "paragraph",
+      "content": "The math is brutal. Let's say your senior engineer makes $150k. If they spend 20 hours a month on Kubernetes maintenance (which is conservative), that's $18k annually just in maintenance costs. For a startup burning through runway, that money should go toward building features customers will pay for."
+    },
+    {
+      "type": "paragraph",
+      "content": "And debugging? Good luck. When something breaks in production at 2 AM, you need to understand containers, networking, storage, service meshes, and whatever else you've layered on top. Compare that to SSH-ing into a server and reading some logs."
+    },
+    {
+      "type": "heading",
+      "content": "When You Actually Need It"
+    },
+    {
+      "type": "paragraph",
+      "content": "Don't get me wrong. Kubernetes has its place. You probably need it when you have:"
+    },
+    {
+      "type": "list",
+      "content": [
+        "10+ services that need independent scaling",
+        "Multiple teams deploying dozens of times per day",
+        "Regulatory requirements for specific isolation",
+        "Traffic patterns that require complex load balancing",
+        "A dedicated platform team (3+ engineers)"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "Notice what's not on that list? 'We want to scale' or 'We might need it someday' or 'The team wants to learn it.' Those aren't reasons. Those are expensive hobbies."
+    },
+    {
+      "type": "quote",
+      "content": "Premature optimization is the root of all evil. Premature orchestration is the root of all overtime."
+    },
+    {
+      "type": "heading",
+      "content": "The Path Forward"
+    },
+    {
+      "type": "paragraph",
+      "content": "Start simple. Really simple. Deploy your app to a platform that handles the infrastructure for you. Focus on building something people want to use. Measure what matters: customer growth, feature velocity, system reliability."
+    },
+    {
+      "type": "paragraph",
+      "content": "When you hit real scaling constraints, you'll know. Your simple setup will start showing stress. You'll have enough revenue to justify the complexity cost. You'll have enough team members to handle the operational overhead."
+    },
+    {
+      "type": "paragraph",
+      "content": "But until then? Ship features. Talk to customers. Grow your business. Leave the orchestration to companies that actually need it. Your startup's success won't be determined by how cool your infrastructure is. It'll be determined by whether customers love what you've built."
+    }
+  ],
+  "tags": [
+    "Kubernetes",
+    "Startups",
+    "Infrastructure",
+    "DevOps",
+    "Engineering"
+  ]
+}

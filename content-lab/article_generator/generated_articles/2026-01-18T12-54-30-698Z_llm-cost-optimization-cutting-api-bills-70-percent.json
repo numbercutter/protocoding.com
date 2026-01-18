@@ -1,0 +1,113 @@
+{
+  "slug": "llm-cost-optimization-cutting-api-bills-70-percent",
+  "title": "LLM Cost Optimization: Cutting Your API Bills by 70%",
+  "subtitle": "Simple engineering tactics that slash AI inference costs without touching model performance",
+  "description": "Most teams are burning cash on inefficient LLM usage. Here's how to cut your OpenAI and Anthropic bills by 70% with smart caching, prompt optimization, and model routing strategies that actually work in production.",
+  "topic": "ai",
+  "readTime": "5 min read",
+  "content": [
+    {
+      "type": "paragraph",
+      "content": "Your LLM bills are probably 3x higher than they need to be. I've audited dozens of AI implementations this year, and the pattern is consistent: teams ship fast, optimize later, then get sticker shock when the invoices hit."
+    },
+    {
+      "type": "paragraph",
+      "content": "Last month, we helped a fintech client drop their monthly OpenAI spend from $47K to $14K. Same functionality, same user experience, 70% cost reduction. The fixes weren't complicated. They were just systematic."
+    },
+    {
+      "type": "heading",
+      "content": "The Big Three: Cache, Route, Compress"
+    },
+    {
+      "type": "paragraph",
+      "content": "Most cost optimization comes down to three moves. Cache repeated requests, route queries to cheaper models when possible, and compress your prompts without losing meaning. Everything else is marginal gains."
+    },
+    {
+      "type": "paragraph",
+      "content": "Start with caching. You're probably making the same API calls over and over. User asks about pricing, you hit GPT-4 with the same product data context every time. That's $0.30 per request when it should be $0.30 once, then cached for hours."
+    },
+    {
+      "type": "heading",
+      "content": "Smart Model Routing Saves Real Money"
+    },
+    {
+      "type": "paragraph",
+      "content": "GPT-4o costs 15x more than GPT-3.5-turbo. Anthropic Claude Sonnet costs 3x more than Haiku. Most tasks don't need the expensive models. The trick is knowing which queries can drop down a tier."
+    },
+    {
+      "type": "paragraph",
+      "content": "We built a simple classifier that routes requests based on complexity. Simple Q&A and data extraction goes to the cheap models. Complex reasoning and code generation hits the premium ones. The classifier itself costs pennies to run but saves hundreds monthly."
+    },
+    {
+      "type": "list",
+      "content": [
+        "Classification tasks: Use cheap models, they're surprisingly good",
+        "Data extraction: GPT-3.5 handles 90% of structured data pulls",
+        "Simple Q&A: Only use expensive models for nuanced questions",
+        "Code generation: Premium models worth it, but cache aggressively"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Prompt Engineering Actually Matters"
+    },
+    {
+      "type": "paragraph",
+      "content": "Shorter prompts cost less. Obvious, but most teams pad their prompts with redundant context and examples. We've seen 2000-token prompts do the same job as 400-token ones."
+    },
+    {
+      "type": "paragraph",
+      "content": "The biggest win: dynamic context loading. Don't dump your entire knowledge base into every prompt. Load only the relevant chunks based on the query. Vector search makes this easy, and it cuts token usage by 60-80% on knowledge-heavy tasks."
+    },
+    {
+      "type": "quote",
+      "content": "We dropped a client's average prompt from 1,800 tokens to 450 tokens. Same accuracy, 75% less spend on input tokens."
+    },
+    {
+      "type": "heading",
+      "content": "Response Streaming and Early Termination"
+    },
+    {
+      "type": "paragraph",
+      "content": "Stream your responses and implement early termination. If the model starts hallucinating or gives you enough info to proceed, cut the stream. You only pay for tokens actually generated."
+    },
+    {
+      "type": "paragraph",
+      "content": "For structured data extraction, this is huge. Soon as you get valid JSON, terminate. Don't let the model ramble about its confidence level or add helpful suggestions you don't need."
+    },
+    {
+      "type": "heading",
+      "content": "The Infrastructure Tax"
+    },
+    {
+      "type": "paragraph",
+      "content": "Rate limiting isn't just about API quotas. It's about cost control. Implement request queuing and batching where possible. OpenAI's batch API costs 50% less than real-time requests. If you can wait a few minutes for results, use it."
+    },
+    {
+      "type": "paragraph",
+      "content": "Also, monitor your error rates. Failed requests still cost money, but retries cost more. Add circuit breakers and exponential backoff. One runaway retry loop can blow your monthly budget in an hour."
+    },
+    {
+      "type": "heading",
+      "content": "Start With These Three Changes"
+    },
+    {
+      "type": "paragraph",
+      "content": "Don't try to optimize everything at once. Pick the biggest wins first. Add semantic caching to repeated queries. Route simple tasks to cheaper models. Trim your prompts down to essentials."
+    },
+    {
+      "type": "paragraph",
+      "content": "Set up cost monitoring with alerts. Most teams don't realize they're bleeding money until the invoice arrives. AWS CloudWatch or a simple script that checks your API usage daily can prevent nasty surprises."
+    },
+    {
+      "type": "paragraph",
+      "content": "The math is simple: every dollar you don't spend on inference is a dollar you can spend on better data, more features, or actually shipping products. Your CFO will notice the difference."
+    }
+  ],
+  "tags": [
+    "LLM",
+    "Cost Optimization",
+    "API",
+    "AI Infrastructure"
+  ]
+}

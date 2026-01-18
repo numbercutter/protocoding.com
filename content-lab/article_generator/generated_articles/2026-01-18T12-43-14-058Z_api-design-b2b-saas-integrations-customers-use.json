@@ -1,0 +1,149 @@
+{
+  "slug": "api-design-b2b-saas-integrations-customers-use",
+  "title": "API Design for B2B SaaS: Building Integrations Your Customers Will Actually Use",
+  "subtitle": "Most B2B APIs are built for engineers who will never use them",
+  "description": "Your API documentation looks great, but your customers still can't integrate. Here's what actually matters when designing APIs that drive adoption and reduce support tickets.",
+  "topic": "engineering",
+  "readTime": "8 min read",
+  "content": [
+    {
+      "type": "paragraph",
+      "content": "I've watched dozens of SaaS companies pour months into API development only to field the same integration support tickets over and over. Beautiful OpenAPI specs, comprehensive documentation, rate limiting that would make Netflix proud. But their customers still struggle to connect."
+    },
+    {
+      "type": "paragraph",
+      "content": "The problem isn't technical complexity. It's that most B2B APIs are designed by backend engineers for other backend engineers. But the person trying to integrate your API works at a mid-market company with three developers, two of whom are frontend specialists and one who's 'the API guy' because he once worked with REST endpoints."
+    },
+    {
+      "type": "paragraph",
+      "content": "After building integrations for healthcare systems, fintech platforms, and manufacturing software, I've learned what separates APIs that customers love from those that generate support tickets. It comes down to five principles that most teams get backwards."
+    },
+    {
+      "type": "heading",
+      "content": "Start with the Integration, Not the Data Model"
+    },
+    {
+      "type": "paragraph",
+      "content": "Most API design starts with your internal data structures. You map your database tables to endpoints, add CRUD operations, and call it RESTful. This creates APIs that make perfect sense to your engineering team and confuse everyone else."
+    },
+    {
+      "type": "paragraph",
+      "content": "Your customers don't care about your data model. They care about their workflow. A healthcare customer doesn't want to understand the relationship between your Patient, Appointment, and Provider tables. They want to 'schedule an appointment for a patient with their preferred doctor.'"
+    },
+    {
+      "type": "paragraph",
+      "content": "Start by mapping customer workflows, then design endpoints around those workflows. Instead of separate GET /patients and POST /appointments endpoints, consider POST /appointments that accepts patient details inline. Your database can handle the normalization. Your API should handle the experience."
+    },
+    {
+      "type": "heading",
+      "content": "Make Authentication Boring"
+    },
+    {
+      "type": "paragraph",
+      "content": "OAuth 2.0 is a beautiful standard. It's also the number one reason integrations stall in development. Not because OAuth is hard, but because every implementation is different and most developers have to Google the flow every time."
+    },
+    {
+      "type": "paragraph",
+      "content": "We built an integration with a healthcare platform that required OAuth with PKCE, custom scope definitions, and a callback URL that had to match their exact subdomain pattern. The actual API calls were simple. The authentication took three weeks to debug."
+    },
+    {
+      "type": "paragraph",
+      "content": "If your API handles sensitive data, OAuth makes sense. But for most B2B scenarios, API keys work fine. Make them long, make them secure, make them easy to rotate. But make authentication the easiest part of integration, not the hardest."
+    },
+    {
+      "type": "heading",
+      "content": "Design for Partial Failures"
+    },
+    {
+      "type": "paragraph",
+      "content": "Production systems fail in creative ways. Your customer's integration will send malformed data, your database will deadlock, their webhook endpoint will return 502 for six hours straight. Most APIs are designed for the happy path."
+    },
+    {
+      "type": "paragraph",
+      "content": "Build failure modes into your API from day one. What happens when you receive a batch of 100 records and 3 are invalid? Most APIs reject the entire batch. Better APIs process the 97 valid records and return detailed errors for the 3 failures."
+    },
+    {
+      "type": "list",
+      "content": [
+        "Return partial success responses with detailed error arrays",
+        "Make retry-safe operations idempotent by default",
+        "Include request IDs in every response for debugging",
+        "Design webhook payloads to be self-contained"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Optimize for the Second Integration"
+    },
+    {
+      "type": "paragraph",
+      "content": "Your first integration customer will work directly with your team. You'll hop on calls, debug issues together, maybe even write some code for them. This integration will work perfectly."
+    },
+    {
+      "type": "paragraph",
+      "content": "Your second integration customer will try to use your documentation and give up. Or they'll build something that works in staging but breaks mysteriously in production. This is when you learn whether your API actually works."
+    },
+    {
+      "type": "paragraph",
+      "content": "Design every endpoint assuming the developer has never talked to your team. Include examples that work copy-paste. Document error responses as thoroughly as success responses. Build testing endpoints that let developers verify their integration without affecting production data."
+    },
+    {
+      "type": "quote",
+      "content": "The best API documentation reads like a conversation with a senior developer who's patient enough to explain everything twice."
+    },
+    {
+      "type": "heading",
+      "content": "Version for Humans, Not Semantic Rules"
+    },
+    {
+      "type": "paragraph",
+      "content": "API versioning strategies fill blog posts and conference talks. Semantic versioning, URL-based versioning, header-based versioning. Most miss the point entirely."
+    },
+    {
+      "type": "paragraph",
+      "content": "Your customers don't upgrade APIs like they upgrade npm packages. They integrate once and forget about it until something breaks. Breaking changes aren't just technical problems, they're budget conversations with engineering managers who have ten other priorities."
+    },
+    {
+      "type": "paragraph",
+      "content": "Version as rarely as possible. When you must break compatibility, provide migration paths that work alongside existing integrations. A new v2 endpoint that coexists with v1 for six months beats a forced upgrade that breaks customer implementations."
+    },
+    {
+      "type": "heading",
+      "content": "The Integration Test That Actually Matters"
+    },
+    {
+      "type": "paragraph",
+      "content": "You've probably built comprehensive API tests. Unit tests for every endpoint, integration tests for complex workflows, load tests that prove your rate limiting works. But there's one test most teams skip: the naive integration test."
+    },
+    {
+      "type": "paragraph",
+      "content": "Give your API documentation to a developer who's never seen your product. Set a timer for two hours. Can they build a working integration that does something meaningful? Not a hello world example, but something they'd actually ship."
+    },
+    {
+      "type": "paragraph",
+      "content": "This test will surface every assumption you've baked into your API design. The implicit authentication steps, the undocumented error codes, the required fields that aren't marked required in your schema."
+    },
+    {
+      "type": "heading",
+      "content": "What This Looks Like in Practice"
+    },
+    {
+      "type": "paragraph",
+      "content": "Good B2B API design feels invisible. Developers integrate faster than expected. Support tickets focus on business logic, not API mechanics. Customers build integrations you never anticipated."
+    },
+    {
+      "type": "paragraph",
+      "content": "Bad API design generates support tickets, delays customer projects, and makes your product harder to adopt. Every friction point in your API becomes a reason for prospects to choose competitors."
+    },
+    {
+      "type": "paragraph",
+      "content": "The difference isn't technical sophistication. It's designing for the humans who will use your API, not the system that implements it. Start with their workflow, not your data model. Optimize for their success, not your architectural purity."
+    }
+  ],
+  "tags": [
+    "API Design",
+    "B2B SaaS",
+    "Developer Experience",
+    "Integration"
+  ]
+}
