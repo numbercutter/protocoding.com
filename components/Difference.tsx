@@ -77,7 +77,7 @@ export default function Difference() {
   if (isMobile) {
     return (
       <section className="section-row bg-[var(--dark-bg)]">
-        <div className="gutter-left !bg-[#1f1f1f]" />
+        <div className="gutter-left !bg-dark-gutter" />
         
         <div className="material-dark p-6 py-12">
           {/* Header */}
@@ -98,7 +98,7 @@ export default function Difference() {
           </div>
         </div>
         
-        <div className="gutter-right !bg-[#1f1f1f]" />
+        <div className="gutter-right !bg-dark-gutter" />
       </section>
     );
   }

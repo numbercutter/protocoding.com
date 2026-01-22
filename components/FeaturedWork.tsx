@@ -52,7 +52,7 @@ const TexturedBlock = ({
   isGutter?: boolean;
 }) => (
   <div 
-    className={`relative overflow-hidden bg-[#ebe8e4] ${className}`}
+    className={`relative overflow-hidden bg-page ${className}`}
   >
     {/* Base noise - fine grain */}
     <div 
@@ -154,13 +154,15 @@ export default function FeaturedWork() {
       {/* Colored work blocks - 2x2 grid with premium texturing */}
       <section className="section-row">
         <div className="gutter-left" />
-        <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:auto-rows-fr">
           {INDUSTRY_CAPABILITIES.map((item, i) => {
             const isLeftColumn = i % 2 === 0;
+            const isTopRow = i < 2;
             
             return (
               <motion.div
                 key={item.title}
+                className="h-full"
                 variants={cardVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -169,10 +171,10 @@ export default function FeaturedWork() {
               >
                 <TexturedBlock 
                   className={`
-                    p-6 lg:p-8 group cursor-pointer 
-                    border-b border-black/10
+                    p-6 lg:p-8 group cursor-pointer h-full
+                    ${isTopRow ? 'border-b border-black/10' : ''}
                     ${isLeftColumn ? 'md:border-r border-black/10' : ''}
-                    hover:bg-[#e2dfda] transition-all duration-200
+                    hover:bg-[var(--light-bg-hover)] transition-all duration-200
                   `}
                 >
                   <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-black/40 mb-3">{item.category}</p>

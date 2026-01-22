@@ -9,26 +9,95 @@
    THEME - Change colors here only
    ============================================ */
 :root {
-  /* Primary accent */
-  --accent: #0D99FF;
+  /* Primary accent - elegant dry sage green */
+  --accent: #83a0b9;
+  --accent-dark: #5D6E62;       /* Darker variant for hover */
+  --accent-light: #9BAA9F;      /* Lighter variant */
+  
+  /* Page background (gutters, body) - clean off-white grey */
+  --page-bg: #F5F5F5;
   
   /* Dark backgrounds */
   --dark-bg: #1a1a1a;
+  --dark-bg-deep: #0f0f12;      /* Deep dark sections */
   --dark-bg-elevated: #242424;
+  --dark-gutter: #1f1f1f;       /* Dark section gutters */
   
   /* Light backgrounds */
-  --light-bg: #f8f8f9;
+  --light-bg: #FAFAFA;
   --light-bg-elevated: #ffffff;
-  --light-bg-inset: #f0f0f2;
+  --light-bg-inset: #F0F0F0;
+  --light-bg-hover: #EBEBEB;        /* Hover state for cards */
   
   /* Text - improved contrast */
-  --text-primary: #111111;
-  --text-muted: #4b5563; /* Darker for better readability */
-  --text-subtle: #6b7280; /* For less important text */
+  --text-primary: #1a1a1a;
+  --text-muted: #52525b; /* Darker for better readability */
+  --text-subtle: #71717a; /* For less important text */
   
   /* Borders */
-  --border: rgba(0, 0, 0, 0.1);
+  --border: rgba(0, 0, 0, 0.08);
   --border-dark: rgba(255, 255, 255, 0.08);
+  
+  /* ============================================
+     HERO SECTION - Adjust these to change hero style
+     ============================================ */
+  /* Set to 'light' or 'dark' to toggle hero mode */
+  /* Currently: LIGHT MODE */
+  
+  --hero-bg: var(--light-bg);
+  --hero-gutter: var(--page-bg);
+  --hero-text: var(--text-primary);
+  --hero-text-muted: var(--text-muted);
+  --hero-overline: var(--accent-dark);
+  --hero-border: var(--border);
+  --hero-marquee-bg: rgba(255, 255, 255, 0.5);
+  --hero-gradient: rgba(124, 144, 130, 0.06);  /* Accent tinted */
+  
+  /* Hero buttons */
+  --hero-btn-primary-bg: var(--accent);
+  --hero-btn-primary-text: #ffffff;
+  --hero-btn-primary-hover: var(--accent-dark);
+  --hero-btn-secondary-border: var(--border);
+  --hero-btn-secondary-text: var(--text-primary);
+  --hero-btn-secondary-hover-border: var(--accent);
+  --hero-btn-secondary-hover-text: var(--accent);
+  
+  /* Navigation on hero (at top of page) */
+  --nav-hero-bg: transparent;
+  --nav-hero-text: var(--text-primary);
+  --nav-hero-text-muted: #52525b;
+  --nav-hero-border: var(--border);
+  --nav-hero-gutter: var(--page-bg);
+  --nav-hero-logo-invert: invert(1);  /* 1 = invert (for light bg), 0 = no invert */
+  
+  /* ============================================
+     DARK HERO (uncomment below, comment above)
+     ============================================ */
+  /*
+  --hero-bg: var(--dark-bg-deep);
+  --hero-gutter: var(--dark-gutter);
+  --hero-text: #ffffff;
+  --hero-text-muted: rgba(255, 255, 255, 0.7);
+  --hero-overline: var(--accent);
+  --hero-border: var(--border-dark);
+  --hero-marquee-bg: rgba(0, 0, 0, 0.2);
+  --hero-gradient: rgba(100, 110, 228, 0.08);
+  
+  --hero-btn-primary-bg: var(--accent);
+  --hero-btn-primary-text: #ffffff;
+  --hero-btn-primary-hover: var(--accent-light);
+  --hero-btn-secondary-border: rgba(255, 255, 255, 0.3);
+  --hero-btn-secondary-text: rgba(255, 255, 255, 0.8);
+  --hero-btn-secondary-hover-border: rgba(255, 255, 255, 0.5);
+  --hero-btn-secondary-hover-text: #ffffff;
+  
+  --nav-hero-bg: transparent;
+  --nav-hero-text: #ffffff;
+  --nav-hero-text-muted: rgba(255, 255, 255, 0.8);
+  --nav-hero-border: rgba(255, 255, 255, 0.1);
+  --nav-hero-gutter: var(--dark-bg-deep);
+  --nav-hero-logo-invert: invert(0);
+  */
 }
 
 *, *::before, *::after {
@@ -45,7 +114,7 @@ html {
 }
 
 body {
-  background: #ebe8e4;
+  background: var(--page-bg);
   color: var(--text-primary);
   font-family: var(--font-body), -apple-system, BlinkMacSystemFont, sans-serif;
   letter-spacing: -0.01em;
@@ -92,7 +161,7 @@ main > div > div + div {
     .section-row > .gutter-left,
     .section-row > .gutter-right {
       display: block;
-      background: #ebe8e4;
+      background: var(--page-bg);
     }
     
     .section-row > .gutter-left {
@@ -137,7 +206,7 @@ main > div > div + div {
     .section-row-dark > .gutter-left,
     .section-row-dark > .gutter-right {
       display: block;
-      background: #1f1f1f;
+      background: var(--dark-gutter);
     }
     
     .section-row-dark > .gutter-left {
@@ -175,9 +244,12 @@ main > div > div + div {
   .bg-accent { background-color: var(--accent); }
   .border-accent { border-color: var(--accent); }
 
-  /* Dark background utilities */
+  /* Background utilities */
+  .bg-page { background-color: var(--page-bg); }
   .bg-dark { background-color: var(--dark-bg); }
+  .bg-dark-deep { background-color: var(--dark-bg-deep); }
   .bg-dark-elevated { background-color: var(--dark-bg-elevated); }
+  .bg-dark-gutter { background-color: var(--dark-gutter); }
 
   /* Blocky material surface - Light */
   .material {
@@ -221,4 +293,78 @@ main > div > div + div {
     border-right: 1px solid var(--border-dark);
     border-bottom: 1px solid var(--border-dark);
   }
+}
+
+/* Infinite marquee animation - seamless loop */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ============================================
+   DYNAMIC THEME OVERRIDES
+   These use currentColor and CSS variables to ensure
+   components respond to theme changes from DevThemePicker
+   ============================================ */
+
+/* Override common Tailwind gray text colors to use CSS variables */
+.text-gray-900, .text-gray-800 {
+  color: var(--text-primary) !important;
+}
+
+.text-gray-600, .text-gray-500 {
+  color: var(--text-muted) !important;
+}
+
+.text-gray-400, .text-gray-300 {
+  color: var(--text-subtle, var(--text-muted)) !important;
+}
+
+/* Override common Tailwind gray backgrounds */
+.bg-gray-50, .bg-gray-100 {
+  background-color: var(--light-bg-inset) !important;
+}
+
+.bg-white {
+  background-color: var(--light-bg-elevated) !important;
+}
+
+/* Override border colors */
+.border-gray-100, .border-gray-200 {
+  border-color: var(--border) !important;
+}
+
+.border-black\/\[0\.08\], .border-black\/\[0\.05\] {
+  border-color: var(--border) !important;
+}
+
+/* Hover states */
+.hover\:bg-gray-50:hover, .hover\:bg-gray-100:hover {
+  background-color: var(--light-bg-hover) !important;
+}
+
+/* Placeholder text */
+.placeholder\:text-gray-400::placeholder,
+.placeholder\:text-gray-500::placeholder {
+  color: var(--text-subtle, var(--text-muted)) !important;
+}
+
+/* Footer specific */
+footer {
+  background-color: var(--page-bg);
+  color: var(--text-primary);
+}
+
+/* Navigation dropdown menus */
+nav .bg-white {
+  background-color: var(--light-bg-elevated) !important;
+}
+
+/* Material surfaces should adapt */
+.material, .material-elevated, .material-inset {
+  color: var(--text-primary);
 }

@@ -2,8 +2,12 @@ import { Metadata } from 'next';
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-  title: 'Contact - Protocoding',
-  description: 'Get in touch with our team.',
+  title: 'Contact Us - Free Project Assessment',
+  description: 'Get a free project assessment from Protocoding. Tell us about your AI development, software engineering, or consulting needs. We respond within 24 hours.',
+  openGraph: {
+    title: 'Contact Protocoding - Start Your Project',
+    description: 'Get a free project assessment from Protocoding. AI development, software engineering, and technical consulting. Response within 24 hours.',
+  },
 };
 
 export default function ContactPage() {

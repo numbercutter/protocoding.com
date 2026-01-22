@@ -4,8 +4,12 @@ import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About - Protocoding',
-  description: 'Protocoding was founded by Ryan and Jordan Lesson in 2017. A full-service software studio serving clients from startups to enterprise.',
+  title: 'About Us - Our Story & Mission',
+  description: 'Protocoding was founded by brothers Ryan and Jordan Lesson in 2017. From technical education to a full-service AI development studio serving startups to enterprise clients.',
+  openGraph: {
+    title: 'About Protocoding - AI Development Studio',
+    description: 'Founded by brothers Ryan and Jordan Lesson in 2017. From technical education to a full-service AI development studio serving startups to enterprise.',
+  },
 };
 
 const MILESTONES = [

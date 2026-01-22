@@ -11,8 +11,12 @@ import {
 import InsightsFilter from '@/components/InsightsFilter';
 
 export const metadata: Metadata = {
-  title: 'Insights - Protocoding',
-  description: 'Thought leadership on AI, software engineering, startups, and technology trends from the Protocoding team.',
+  title: 'Insights - AI & Engineering Blog',
+  description: 'Expert insights on AI development, software engineering best practices, startup strategy, and technology trends from the Protocoding team.',
+  openGraph: {
+    title: 'Protocoding Insights - AI & Engineering Blog',
+    description: 'Deep dives on AI, LLMs, software architecture, startup strategy, and emerging tech trends from our team of engineers.',
+  },
 };
 
 type Props = {

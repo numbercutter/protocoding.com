@@ -4,20 +4,22 @@ import './globals.css';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ScrollProgress from '@/components/ScrollProgress';
+import DevThemePicker from '@/components/DevThemePicker';
 
 // Optimized font loading - no render blocking
+// Only loading weights that are actually used in the design
 const dmSans = DM_Sans({
   subsets: ['latin'],
   variable: '--font-body',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700'], // normal, medium, semibold, bold
 });
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-display',
   display: 'swap',
-  weight: ['400', '500', '600', '700', '800'],
+  weight: ['500', '600', '700'], // medium, semibold, bold - headlines only
 });
 
 const title = 'Protocoding - AI Development Studio';
@@ -150,10 +152,19 @@ export default function RootLayout({
         />
       </head>
       <body>
+        {/* Skip to main content link for accessibility */}
+        <a 
+          href="#main-content" 
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:font-bold focus:text-sm"
+        >
+          Skip to main content
+        </a>
         <ScrollProgress />
         <Navigation />
-        <main className="pt-14">{children}</main>
+        <main id="main-content" className="pt-14" role="main">{children}</main>
         <Footer />
+        {/* Dev-only theme picker for testing colors */}
+        <DevThemePicker />
         {/* Add Google Analytics when ready:
         <GoogleAnalytics gaId="G-XXXXXXXXXX" />
         */}

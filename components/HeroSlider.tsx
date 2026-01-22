@@ -34,16 +34,19 @@ const itemVariants = {
 };
 
 // Company logos for the marquee
+// invertOnLight: true for logos that are white/light colored (need inversion on light bg)
 const COMPANIES = [
-  { name: 'DGB', logo: '/clients/dgb.png', invert: true },
-  { name: 'LIT Financial', logo: '/clients/litfinancial.png', invert: true },
-  { name: 'Poser', logo: '/clients/poser.png', invert: true },
-  { name: 'WhatsWhat', logo: '/clients/whatswhat.png', invert: false }, // Already white
+  { name: 'DGB', logo: '/clients/dgb.png', invertOnLight: false },
+  { name: 'LIT Financial', logo: '/clients/litfinancial.png', invertOnLight: false },
+  { name: 'Poser', logo: '/clients/poser.png', invertOnLight: false },
+  { name: 'WhatsWhat', logo: '/clients/whatswhat.png', invertOnLight: true },
 ];
 
-// Logo Marquee component - dark mode version
-// Only duplicate once for seamless loop (2x instead of 4x = 50% fewer images)
+// Logo Marquee component with CSS-only infinite scroll
 function LogoMarquee() {
+  // Render 4 copies for smoother seamless loop
+  const logoSets = [0, 1, 2, 3];
+  
   return (
     <div 
       className="relative overflow-hidden"
@@ -52,38 +55,30 @@ function LogoMarquee() {
         WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
       }}
     >
-      <div className="flex shrink-0 gap-16 md:gap-24 py-4 md:py-6 w-max flex-nowrap animate-scroll">
-        {/* First set */}
-        {COMPANIES.map((company) => (
-          <div 
-            key={company.name} 
-            className="w-24 h-12 md:w-32 md:h-14 flex justify-center items-center"
-          >
-            <Image 
-              src={company.logo} 
-              alt={`${company.name} logo`} 
-              width={112} 
-              height={48} 
-              className={`object-contain opacity-30 hover:opacity-50 transition-opacity ${company.invert ? 'invert' : ''}`}
-              loading="lazy"
-            />
-          </div>
-        ))}
-        {/* Duplicate for seamless loop */}
-        {COMPANIES.map((company) => (
-          <div 
-            key={`${company.name}-dup`} 
-            className="w-24 h-12 md:w-32 md:h-14 flex justify-center items-center"
-          >
-            <Image 
-              src={company.logo} 
-              alt="" 
-              width={112} 
-              height={48} 
-              className={`object-contain opacity-30 hover:opacity-50 transition-opacity ${company.invert ? 'invert' : ''}`}
-              loading="lazy"
-              aria-hidden="true"
-            />
+      <div 
+        className="flex py-4 md:py-6 w-fit"
+        style={{
+          animation: 'marquee 30s linear infinite',
+        }}
+      >
+        {logoSets.map((setIndex) => (
+          <div key={setIndex} className="flex shrink-0 gap-12 md:gap-20 px-6 md:px-10">
+            {COMPANIES.map((company) => (
+              <div 
+                key={`${company.name}-${setIndex}`} 
+                className="w-24 h-12 md:w-32 md:h-14 flex justify-center items-center shrink-0"
+              >
+                <Image 
+                  src={company.logo} 
+                  alt={setIndex === 0 ? `${company.name} logo` : ''} 
+                  width={112} 
+                  height={48} 
+                  className={`object-contain opacity-50 hover:opacity-80 transition-opacity ${company.invertOnLight ? 'invert' : ''}`}
+                  loading="lazy"
+                  aria-hidden={setIndex !== 0}
+                />
+              </div>
+            ))}
           </div>
         ))}
       </div>
@@ -102,16 +97,16 @@ export default function HeroSlider() {
   
   // Subtle scale effect: zooms out slightly as you scroll
   const bgScale = useTransform(scrollYProgress, [0, 1], [1.1, 1]);
-  // Fade out background as you scroll away
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.7], [0.15, 0.05]);
+  // Fade out background as you scroll away (more subtle for light mode)
+  const bgOpacity = useTransform(scrollYProgress, [0, 0.7], [0.08, 0.02]);
   
   return (
-    <section ref={heroRef} className="section-row-dark md:min-h-screen relative">
-      {/* Left gutter - dark */}
-      <div className="gutter-left !bg-[#0f0f12]" />
+    <section ref={heroRef} className="section-row md:min-h-screen relative">
+      {/* Left gutter - uses hero gutter color */}
+      <div className="gutter-left !bg-[var(--hero-gutter)]" />
       
-      {/* Content */}
-      <div className="relative overflow-hidden bg-[#0f0f12] flex flex-col">
+      {/* Content - uses hero background */}
+      <div className="relative overflow-hidden bg-[var(--hero-bg)] flex flex-col">
         
         {/* Workplace photo - parallax scale on scroll - z-0 */}
         <div className="absolute right-0 top-0 bottom-0 w-[70%] pointer-events-none hidden md:block z-0 overflow-hidden">
@@ -139,7 +134,7 @@ export default function HeroSlider() {
         <div 
           className="absolute inset-0 pointer-events-none z-[1]"
           style={{
-            background: 'radial-gradient(ellipse at 30% 50%, rgba(100,110,228,0.08) 0%, transparent 60%)',
+            background: 'radial-gradient(ellipse at 30% 50%, var(--hero-gradient) 0%, transparent 60%)',
           }}
         />
         
@@ -157,20 +152,20 @@ export default function HeroSlider() {
               className="flex items-center gap-3 mb-6 md:mb-8"
             >
               <motion.div 
-                className="w-8 md:w-12 h-[2px] bg-accent"
+                className="w-8 md:w-12 h-[2px] bg-[var(--hero-overline)]"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
                 style={{ originX: 0 }}
               />
-              <span className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] text-accent uppercase">
+              <span className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] text-[var(--hero-overline)] uppercase">
                 AI Development Studio
               </span>
             </motion.div>
             
             <motion.h1
               variants={itemVariants}
-              className="text-[clamp(2.25rem,7vw,4.5rem)] font-bold text-white leading-[1.05] tracking-tight max-w-3xl"
+              className="text-[clamp(2.25rem,7vw,4.5rem)] font-bold text-[var(--hero-text)] leading-[1.05] tracking-tight max-w-3xl"
             >
               Building the future with{' '}
               <span className="text-accent">intelligent software</span>
@@ -178,7 +173,7 @@ export default function HeroSlider() {
 
             <motion.p
               variants={itemVariants}
-              className="mt-6 md:mt-8 text-base md:text-xl text-white/70 max-w-xl leading-relaxed"
+              className="mt-6 md:mt-8 text-base md:text-xl text-[var(--hero-text-muted)] max-w-xl leading-relaxed"
             >
               We design and build AI-powered applications, custom platforms, and intelligent integrations that transform how businesses operate.
             </motion.p>
@@ -190,7 +185,7 @@ export default function HeroSlider() {
             >
               <Link
                 href="/contact"
-                className="group inline-flex items-center justify-center gap-2 px-7 py-4 bg-accent text-white text-[11px] font-bold tracking-[0.12em] uppercase hover:brightness-110 transition-all"
+                className="group inline-flex items-center justify-center gap-2 px-7 py-4 bg-[var(--hero-btn-primary-bg)] text-[var(--hero-btn-primary-text)] text-[11px] font-bold tracking-[0.12em] uppercase hover:bg-[var(--hero-btn-primary-hover)] transition-all"
               >
                 <span>Start a project</span>
                 <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -198,7 +193,7 @@ export default function HeroSlider() {
               
               <Link
                 href="/services"
-                className="group inline-flex items-center justify-center gap-2 px-7 py-4 border border-white/30 text-white/80 text-[11px] font-bold tracking-[0.12em] uppercase hover:border-white/50 hover:text-white transition-all"
+                className="group inline-flex items-center justify-center gap-2 px-7 py-4 border border-[var(--hero-btn-secondary-border)] text-[var(--hero-btn-secondary-text)] text-[11px] font-bold tracking-[0.12em] uppercase hover:border-[var(--hero-btn-secondary-hover-border)] hover:text-[var(--hero-btn-secondary-hover-text)] transition-all"
               >
                 Our services
                 <span className="w-4 h-[1px] bg-current opacity-50 transition-all group-hover:w-6 group-hover:opacity-100" />
@@ -212,14 +207,14 @@ export default function HeroSlider() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="border-t border-white/10 relative z-10 bg-black/20"
+          className="border-t border-[var(--hero-border)] relative z-10 bg-[var(--hero-marquee-bg)]"
         >
           <LogoMarquee />
         </motion.div>
       </div>
       
-      {/* Right gutter - dark */}
-      <div className="gutter-right !bg-[#0f0f12]" />
+      {/* Right gutter - uses hero gutter color */}
+      <div className="gutter-right !bg-[var(--hero-gutter)]" />
     </section>
   );
 }

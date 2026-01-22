@@ -4,8 +4,12 @@ import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Portfolio - Protocoding',
-  description: 'Explore our work across AI, fintech, mobile, and web development.',
+  title: 'Portfolio - Our Work & Case Studies',
+  description: 'Explore Protocoding\'s portfolio of AI-powered platforms, fintech solutions, mobile apps, and web applications. See how we transform ideas into products.',
+  openGraph: {
+    title: 'Protocoding Portfolio - AI & Software Projects',
+    description: 'Case studies from our work in AI, fintech, healthcare, and enterprise software. See how we build products that transform industries.',
+  },
 };
 
 const PROJECTS = [

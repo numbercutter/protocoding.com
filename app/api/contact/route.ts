@@ -3,6 +3,7 @@ import { Resend } from 'resend';
 import { AdminNotificationEmail } from './admin-notification';
 import { CustomerConfirmationEmail } from './customer-confirmation';
 import { render } from '@react-email/render';
+import { rateLimit, getClientIP } from '@/lib/rate-limit';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -62,6 +63,24 @@ async function sendEmails(data: ContactFormData) {
 
 export async function POST(request: Request) {
   try {
+    // Rate limiting: 5 requests per minute per IP
+    const clientIP = getClientIP(request);
+    const rateLimitResult = rateLimit(`contact:${clientIP}`, { limit: 5, windowSeconds: 60 });
+
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        { error: `Too many requests. Please try again in ${rateLimitResult.resetIn} seconds.` },
+        { 
+          status: 429,
+          headers: {
+            'Retry-After': rateLimitResult.resetIn.toString(),
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': rateLimitResult.resetIn.toString(),
+          }
+        }
+      );
+    }
+
     const data: ContactFormData = await request.json();
 
     // Validate required fields

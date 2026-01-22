@@ -51,50 +51,81 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-0">
+    <form onSubmit={handleSubmit} className="space-y-0" aria-label="Contact form">
       <div className="grid grid-cols-2">
+        <div className="relative">
+          <label htmlFor="contact-name" className="sr-only">Name (required)</label>
+          <input 
+            id="contact-name"
+            type="text" 
+            name="name" 
+            placeholder="Name *" 
+            value={form.name} 
+            onChange={handleChange}
+            required
+            aria-required="true"
+            aria-invalid={!!errors.name}
+            aria-describedby={errors.name ? 'name-error' : undefined}
+            className="w-full px-5 py-4 material text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:bg-white focus:ring-2 focus:ring-accent/20 cell"
+          />
+        </div>
+        <div className="relative">
+          <label htmlFor="contact-email" className="sr-only">Email (required)</label>
+          <input 
+            id="contact-email"
+            type="email" 
+            name="email" 
+            placeholder="Email *" 
+            value={form.email} 
+            onChange={handleChange}
+            required
+            aria-required="true"
+            aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? 'email-error' : undefined}
+            className="w-full px-5 py-4 material text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:bg-white focus:ring-2 focus:ring-accent/20 cell"
+          />
+        </div>
+      </div>
+      <div className="relative">
+        <label htmlFor="contact-company" className="sr-only">Company (optional)</label>
         <input 
+          id="contact-company"
           type="text" 
-          name="name" 
-          placeholder="Name *" 
-          value={form.name} 
+          name="company" 
+          placeholder="Company" 
+          value={form.company} 
           onChange={handleChange} 
-          className="w-full px-5 py-4 material text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:bg-white cell"
-        />
-        <input 
-          type="email" 
-          name="email" 
-          placeholder="Email *" 
-          value={form.email} 
-          onChange={handleChange} 
-          className="w-full px-5 py-4 material text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:bg-white cell"
+          className="w-full px-5 py-4 material text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:bg-white focus:ring-2 focus:ring-accent/20 cell"
         />
       </div>
-      <input 
-        type="text" 
-        name="company" 
-        placeholder="Company" 
-        value={form.company} 
-        onChange={handleChange} 
-        className="w-full px-5 py-4 material text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:bg-white cell"
-      />
-      <textarea 
-        name="message" 
-        placeholder="Tell us about your project... *" 
-        value={form.message} 
-        onChange={handleChange} 
-        rows={5} 
-        className="w-full px-5 py-4 material-inset text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none resize-none cell"
-      />
+      <div className="relative">
+        <label htmlFor="contact-message" className="sr-only">Project details (required)</label>
+        <textarea 
+          id="contact-message"
+          name="message" 
+          placeholder="Tell us about your project... *" 
+          value={form.message} 
+          onChange={handleChange} 
+          rows={5}
+          required
+          aria-required="true"
+          aria-invalid={!!errors.message}
+          aria-describedby={errors.message ? 'message-error' : undefined}
+          className="w-full px-5 py-4 material-inset text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-accent/20 resize-none cell"
+        />
+      </div>
       <button
         type="submit"
         disabled={isSubmitting}
-        className={`w-full flex items-center justify-center gap-2 py-4 bg-accent text-[var(--text-primary)] text-sm font-bold tracking-wide ${isSubmitting ? 'opacity-70' : 'hover:brightness-110'}`}
+        aria-busy={isSubmitting}
+        className={`w-full flex items-center justify-center gap-2 py-4 bg-accent text-[var(--text-primary)] text-sm font-bold tracking-wide transition-all ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:brightness-110'}`}
       >
-        {isSubmitting ? <><Loader2 size={14} className="animate-spin" /> Sending...</> : <>Send message <Send size={12} /></>}
+        {isSubmitting ? <><Loader2 size={14} className="animate-spin" aria-hidden="true" /> Sending...</> : <>Send message <Send size={12} aria-hidden="true" /></>}
       </button>
       {(errors.name || errors.email || errors.message) && (
-        <p className="text-xs text-red-500 p-3 material font-bold">{errors.name || errors.email || errors.message}</p>
+        <div role="alert" aria-live="polite" className="text-xs text-red-500 p-3 material font-bold">
+          {errors.name || errors.email || errors.message}
+        </div>
       )}
     </form>
   );

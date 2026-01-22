@@ -4,8 +4,12 @@ import Link from 'next/link';
 import JobsList from './JobsList';
 
 export const metadata: Metadata = {
-  title: 'Careers - Protocoding',
-  description: 'Join our team and help build the future of software development.',
+  title: 'Careers - Join Our Team',
+  description: 'Join Protocoding and build the future of AI-powered software. Remote-first, flexible hours, cutting-edge projects. View open positions in engineering and design.',
+  openGraph: {
+    title: 'Careers at Protocoding - Remote Engineering Jobs',
+    description: 'Join our remote-first team building AI-powered software. Flexible hours, cutting-edge projects, great culture. View open positions.',
+  },
 };
 
 const JOBS = [

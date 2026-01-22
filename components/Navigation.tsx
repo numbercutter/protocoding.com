@@ -8,8 +8,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { NAV_CONFIG, isDropdown, NavEntry, NavDropdown } from '@/lib/data/navigation';
 
-// Pages with dark hero
-const DARK_HERO_PAGES = ['/'];
+// Pages with hero section (nav uses hero-specific styling when at top)
+const HERO_PAGES = ['/'];
 
 // Noise texture SVG data URL
 const NOISE_TEXTURE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
@@ -140,9 +140,9 @@ export default function Navigation() {
   const pathname = usePathname();
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
-  const hasDarkHero = DARK_HERO_PAGES.includes(pathname);
+  const hasHero = HERO_PAGES.includes(pathname);
   const showFullNav = isAtTop || isScrollingUp;
-  const isOnDarkHero = hasDarkHero && isAtTop;
+  const isOnHero = hasHero && isAtTop;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -179,14 +179,16 @@ export default function Navigation() {
     }, 150);
   };
 
-  const navBg = isOnDarkHero 
-    ? 'bg-transparent' 
+  // When on hero: use hero CSS variables (transparent bg)
+  // When scrolled: use standard nav styling
+  const navBg = isOnHero 
+    ? 'bg-[var(--nav-hero-bg)]' 
     : 'bg-white/95 backdrop-blur-sm';
   
-  const textColor = isOnDarkHero ? 'text-white' : 'text-[var(--text-primary)]';
-  const textMuted = isOnDarkHero ? 'text-white/80' : 'text-gray-600';
-  const borderColor = isOnDarkHero ? 'border-white/10' : 'border-black/[0.08]';
-  const gutterBg = isOnDarkHero ? 'bg-[#0f0f12]' : 'bg-[#ebe8e4]';
+  const textColor = isOnHero ? 'text-[var(--nav-hero-text)]' : 'text-[var(--text-primary)]';
+  const textMuted = isOnHero ? 'text-[var(--nav-hero-text-muted)]' : 'text-gray-600';
+  const borderColor = isOnHero ? 'border-[var(--nav-hero-border)]' : 'border-black/[0.08]';
+  const gutterBg = isOnHero ? 'bg-[var(--nav-hero-gutter)]' : 'bg-page';
   const logoSrc = '/brand/logo_horizontal.svg';
 
   return (
@@ -211,7 +213,8 @@ export default function Navigation() {
                   alt="Protocoding" 
                   width={180} 
                   height={40} 
-                  className={`h-8 w-auto ${isOnDarkHero ? '' : 'invert'}`}
+                  className="h-8 w-auto"
+                  style={{ filter: isOnHero ? 'var(--nav-hero-logo-invert)' : 'invert(1)' }}
                 />
               </Link>
             </div>

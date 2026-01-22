@@ -3,6 +3,7 @@ import { Resend } from 'resend';
 import { AdminJobNotificationEmail } from './admin-notification';
 import { CandidateConfirmationEmail } from './candidate-confirmation';
 import { render } from '@react-email/render';
+import { rateLimit, getClientIP } from '@/lib/rate-limit';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -71,6 +72,22 @@ async function sendEmails(data: JobApplicationData, resumeFile: File) {
 
 export async function POST(request: Request) {
   try {
+    // Rate limiting: 3 applications per hour per IP (stricter for file uploads)
+    const clientIP = getClientIP(request);
+    const rateLimitResult = rateLimit(`job-application:${clientIP}`, { limit: 3, windowSeconds: 3600 });
+
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        { error: `Too many applications. Please try again in ${Math.ceil(rateLimitResult.resetIn / 60)} minutes.` },
+        { 
+          status: 429,
+          headers: {
+            'Retry-After': rateLimitResult.resetIn.toString(),
+          }
+        }
+      );
+    }
+
     const formData = await request.formData();
 
     // Extract form fields
