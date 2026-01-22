@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Palette, X, Copy, Check, RotateCcw, Sun, Moon, Shuffle } from 'lucide-react';
 
@@ -298,7 +298,7 @@ const PRESETS = [
   },
 ];
 
-export default function DevThemePicker() {
+function ThemePickerInner() {
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState<Record<string, string>>(DEFAULT_THEME);
@@ -572,5 +572,14 @@ export default function DevThemePicker() {
         </div>
       )}
     </>
+  );
+}
+
+// Wrap in Suspense for useSearchParams compatibility with static generation
+export default function DevThemePicker() {
+  return (
+    <Suspense fallback={null}>
+      <ThemePickerInner />
+    </Suspense>
   );
 }
