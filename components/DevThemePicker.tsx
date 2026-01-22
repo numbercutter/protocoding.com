@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Palette, X, Copy, Check, RotateCcw, Sun, Moon, Shuffle } from 'lucide-react';
 
-// Only render in development
+// Show in development or when ?theme=true is in URL
 const isDev = process.env.NODE_ENV === 'development';
 
 // Light mode defaults - comprehensive
@@ -298,14 +299,18 @@ const PRESETS = [
 ];
 
 export default function DevThemePicker() {
+  const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState<Record<string, string>>(DEFAULT_THEME);
   const [isDark, setIsDark] = useState(false);
   const [copied, setCopied] = useState(false);
 
+  // Show if in dev mode OR if ?theme=true is in URL
+  const showPicker = isDev || searchParams.get('theme') === 'true';
+
   // Load saved theme from localStorage
   useEffect(() => {
-    if (!isDev) return;
+    if (!showPicker) return;
     const saved = localStorage.getItem('dev-theme');
     const savedMode = localStorage.getItem('dev-theme-mode');
     if (savedMode === 'dark') setIsDark(true);
@@ -409,7 +414,7 @@ export default function DevThemePicker() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  if (!isDev) return null;
+  if (!showPicker) return null;
 
   return (
     <>
@@ -417,7 +422,7 @@ export default function DevThemePicker() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-4 right-4 z-[9999] w-12 h-12 bg-black text-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-800 transition-colors"
-        title="Theme Picker (Dev Only)"
+        title="Theme Picker"
       >
         <Palette size={20} />
       </button>
@@ -561,7 +566,7 @@ export default function DevThemePicker() {
           {/* Footer */}
           <div className="px-4 py-2 border-t border-gray-100 bg-gray-50">
             <p className="text-[9px] text-gray-400 text-center">
-              Dev only • {isDark ? '🌙 Dark' : '☀️ Light'} mode • Saved to localStorage
+              {isDark ? '🌙 Dark' : '☀️ Light'} mode • Saved to localStorage
             </p>
           </div>
         </div>

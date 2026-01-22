@@ -41,7 +41,7 @@ export default function Tagline() {
         {/* Subtle B&W workplace backdrop */}
         <div className="absolute right-0 top-0 bottom-0 w-[60%] pointer-events-none hidden lg:block">
           <Image
-            src="/workplace/discovery.png"
+            src="/workplace/build.png"
             alt=""
             fill
             className="object-cover object-left grayscale opacity-[0.06]"
